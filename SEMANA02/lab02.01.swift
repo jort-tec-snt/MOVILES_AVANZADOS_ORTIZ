@@ -10,7 +10,7 @@ print ("Nombre del Alumno: ")
 let alumno = readLine() ?? ""
 
 print ("Nota del Examen Parcial : ")
-let exparcial = Double(readLine() ?? "") ?? 0.0
+let exParcial = Double(readLine() ?? "") ?? 0.0
 
 print("Nota del Trabajo Completo: ")
 let exTrabajo = Double(readLine() ?? "") ?? 0.0
@@ -20,7 +20,7 @@ let exFinal = Double(readLine() ?? "") ?? 0.0
 
 // [BLOQUE 2: CALCULO]
 let notaFinal = (exParcial * parcial) + (exTrabajo * trabajo) + (exFinal * final)
-let estado = notaFinal >= 10.5 ? "Aprobado" : "Desaprobado" // Nota mínima aprobatoria común
+let estado = notaFinal >= 10.5 ? "Aprobado" : "Desaprobado"
 
 
 //[BLOQUE 3: Mostrando datos]
