@@ -4,16 +4,42 @@ import Foundation
 //Configuracion de dias permitidos por tipo de usuario
 let diasPorUsuario: [String: Int] = [
     "alumno": 7,
-    "profesor": 15,
-    "administrador": 10
+    "docente": 15,
+    "administrativo": 10
 ]
 
 // Ingresando Datos
 print("Titulo libro : ")
 let tituloLibro = readLine() ?? ""
 
-print("Tipo de Usuario (Alumno / Docente / Administrativo): ")
-let tipoUsuarioInput = (readLine() ?? "").lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+// Variables vacías que se llenarán dentro de los bucles
+var tipoUsuarioInput = ""
+var limiteMaximo = 0
+var diasSolicitados = 0
+
+while true {
+    print("Tipo de Usuario (Alumno / Docente / Administrativo): ")
+    tipoUsuarioInput = (readLine() ?? "").lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+    
+    limiteMaximo = diasPorUsuario[tipoUsuarioInput] ?? 0
+        
+        if limiteMaximo > 0 {
+            break // Entrada válida, salimos del bucle
+        } else {
+            print("❌ Error: Tipo de usuario inválido. Intente nuevamente.\n")
+        }
+}
+
+while true {
+    print("Días solicitados de préstamo (Máximo \(limiteMaximo) días): ")
+    diasSolicitados = Int(readLine() ?? "") ?? 0
+    
+    if diasSolicitados > 0 && diasSolicitados <= limiteMaximo {
+        break // Entrada válida, salimos del bucle
+    } else {
+        print("❌ Error: Cantidad de días inválida o supera el límite permitido de \(limiteMaximo) días. Intente nuevamente.\n")
+    }
+}
 
 print("Fecha prestado (DD/MM/AA): ")
 let fechaPrestadoStr = readLine() ?? ""
