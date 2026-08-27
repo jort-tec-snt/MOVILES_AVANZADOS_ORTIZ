@@ -1,7 +1,3 @@
-➜  SEMANA02 git:(main) ✗ git switch democlases
-fatal: invalid reference: democlases
-➜  SEMANA02 git:(main) ✗ 
-
 import Foundation
 
 print("Number 1")
