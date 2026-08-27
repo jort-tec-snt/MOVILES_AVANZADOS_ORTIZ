@@ -21,3 +21,10 @@ let exFinal = Double(readLine() ?? "") ?? 0.0
 // [BLOQUE 2: CALCULO]
 let notaFinal = (exParcial * parcial) + (exTrabajo * trabajo) + (exFinal * final)
 let estado = notaFinal >= 10.5 ? "Aprobado" : "Desaprobado" // Nota mínima aprobatoria común
+
+
+//[BLOQUE 3: Mostrando datos]
+print("\n--- REPORTE DE NOTAS ---")
+print("Alumno: \(alumno)")
+print("Promedio Final: \(String(format: "%.2f", notaFinal))")
+print("Estado: \(estado)")
