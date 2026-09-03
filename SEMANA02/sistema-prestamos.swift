@@ -10,11 +10,18 @@ struct Prestamo {
     let situacion: String
 }
 
-// Configuracion de dias permitidos por tipo de usuario
-let diasPorUsuario: [String: Int] = [
-    "alumno": 7,
-    "docente": 15,
-    "administrativo": 10
+// Estructura auxiliar para la configuración por tipo de usuario
+struct ConfigUsuario {
+    let maxDias: Int
+    let costoBase: Double
+}
+
+// Configuración de días permitidos y costo base diario por tipo de usuario
+let configUsuarios: [String: ConfigUsuario] = [
+    "alumno": ConfigUsuario(maxDias: 7, costoBase: 1.50),
+    "docente": ConfigUsuario(maxDias: 15, costoBase: 2.00),
+    "administrativo": ConfigUsuario(maxDias: 10, costoBase: 3.00),
+    "coordinador": ConfigUsuario(maxDias: 15, costoBase: 4.00)
 ]
 
 var historialPrestamos: [Prestamo] = []
@@ -25,7 +32,7 @@ formatter.isLenient = false
 
 let calendario = Calendar.current
 
-// Capturar el año actual de la Mac de forma dinámica (Ej: 2026)
+// Capturar el año actual de la Mac de forma dinámica
 let anioActual = calendario.component(.year, from: Date())
 
 var continuarSistema = true
@@ -49,15 +56,19 @@ while continuarSistema {
 
         var tipoUsuarioInput = ""
         var limiteMaximo = 0
+        var costoBaseUsuario = 0.0
         var diasSolicitados = 0
 
-        // Bucle interactivo: Validar Tipo de Usuario
+        // Bucle interactivo: Validar Tipo de Usuario (Alumno / Docente / Administrativo / Coordinador)
         while true {
-            print("Tipo de Usuario (Alumno / Docente / Administrativo): ")
+            print("Tipo de Usuario (Alumno / Docente / Administrativo / Coordinador): ")
             tipoUsuarioInput = (readLine() ?? "").lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-            limiteMaximo = diasPorUsuario[tipoUsuarioInput] ?? 0
-                
-            if limiteMaximo > 0 { break }
+            
+            if let config = configUsuarios[tipoUsuarioInput] {
+                limiteMaximo = config.maxDias
+                costoBaseUsuario = config.costoBase
+                break
+            }
             print("❌ Error: Tipo de usuario inválido. Intente nuevamente.\n")
         }
 
@@ -124,6 +135,7 @@ while continuarSistema {
         // Mostrar el desglose intermedio solicitado
         print("\nLibro : \(tituloLibro)")
         print("Usuario : \(tipoUsuarioInput.capitalized)")
+        print("Costo Base/Día : S/. \(String(format: "%.2f", costoBaseUsuario))")
         print("Fecha prestada : \(formatter.string(from: fPrestado))")
         print("Fecha limite : \(formatter.string(from: fechaLimite))")
         print("Fecha devolución : \(formatter.string(from: fDevolucion))")
@@ -139,30 +151,35 @@ while continuarSistema {
                 guard let fechaDiaAtraso = calendario.date(byAdding: .day, value: dia, to: fechaLimite) else { break }
                 let fechaDiaStr = formatter.string(from: fechaDiaAtraso)
                 
-                let multaBase = 1.50
-                var multaDia = multaBase
+                var multaDia = 0.0
                 
-                if dia >= 4 && dia <= 6 {
-                    multaDia = multaBase * 1.50
-                } else if dia >= 7 {
-                    multaDia = multaBase * 2.00
+                // LÓGICA DE MULTA PROGRESIVA
+                if dia >= 1 && dia <= 3 {
+                    multaDia = 0.0 // Del 1 al 3 de atraso: no paga
+                } else if dia >= 4 && dia <= 6 {
+                    multaDia = costoBaseUsuario * 1.25 // Del 4 al 6: 25% adicional
+                } else if dia >= 7 && dia <= 10 {
+                    multaDia = costoBaseUsuario * 1.50 // Del 7 al 10: 50% adicional
+                } else if dia >= 11 {
+                    multaDia = costoBaseUsuario * 2.00 // De 11 en adelante: 100% adicional
                 }
                 
                 multaTotal += multaDia
                 
-                // OPTIMIZACIÓN IMPRESIÓN: Imprime detallado solo hasta el día 10 para no saturar la terminal
-                if dia <= 10 {
+                // OPTIMIZACIÓN IMPRESIÓN: Imprime detallado solo hasta el día 20 para no saturar la consola
+                if dia <= 20 {
                     print(String(format: "%-4d | %-8@ | %-11.2f | %.2f", dia, fechaDiaStr, multaDia, multaTotal))
-                } else if dia == 11 {
+                } else if dia == 21 {
                     print("... [Calendario truncado por exceso de filas] ...")
                 }
             }
         }
 
         let estadoPrestamo = diasAtraso > 0 ? "Devuelto con atraso" : "Devuelto a tiempo"
-        let situacionUsuario = diasAtraso >= 10 ? "Usuario suspendido" : "Usuario habilitado"
+        // Si los días de atraso son más de 20 días, el usuario queda suspendido
+        let situacionUsuario = diasAtraso > 20 ? "Usuario suspendido" : "Usuario habilitado"
 
-        print("\nMulta total: \(String(format: "%.2f", multaTotal))")
+        print("\nMulta total: S/. \(String(format: "%.2f", multaTotal))")
         print("Estado:  \(estadoPrestamo)")
         print("Situación: \(situacionUsuario)")
 
