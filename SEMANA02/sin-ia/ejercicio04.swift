@@ -24,7 +24,7 @@ while numeroDivision >= 1.0 {
 print("Se dividió \(divisiones) veces")
 
 // --- TODO 13: Validar datos con repeat-while ---
-let intento1 = 25 // Inválido: > 20
+let intento1 = 24 // Inválido: > 20
 let intento2 = -3 // Inválido: < 0
 let intento3 = 15 // Válido
 
