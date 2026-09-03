@@ -20,7 +20,7 @@ default:
 }
 
 // --- TODO 5: Calculadora simple con switch ---
-let num1 = 20.0
+let num1 = 18.0
 let num2 = 5.0
 let operacion = "+"
 switch operacion {
