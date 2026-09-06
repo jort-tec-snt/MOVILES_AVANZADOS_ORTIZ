@@ -678,3 +678,62 @@ func ejecutarRF02_DetalleEstaciones() {
 }
 
 ejecutarRF02_DetalleEstaciones()
+
+// RF03 - DETECCIÓN DE TRANSBORDOS
+
+/// Detecta estaciones compartidas entre diferentes líneas.
+func ejecutarRF03_DetectarTransbordos() {
+
+    print("\n==================================================")
+    print("   [RF03] PUNTOS DE TRANSBORDO")
+    print("==================================================")
+
+    let codigos = Array(redMetro.keys).sorted()
+
+    for i in 0..<codigos.count {
+
+        for j in (i + 1)..<codigos.count {
+
+            let codigoA = codigos[i]
+            let codigoB = codigos[j]
+
+            guard
+                let lineaA = redMetro[codigoA],
+                let lineaB = redMetro[codigoB]
+            else {
+                continue
+            }
+
+            let estacionesA = Set(
+                lineaA.estaciones.map { $0.nombre }
+            )
+
+            let estacionesB = Set(
+                lineaB.estaciones.map { $0.nombre }
+            )
+
+            let intersecciones = estacionesA
+                .intersection(estacionesB)
+                .sorted()
+
+            if !intersecciones.isEmpty {
+
+                print("""
+                
+                🔀 \(codigoA) ↔ \(codigoB)
+                \(lineaA.nombre) ↔ \(lineaB.nombre)
+                """)
+
+                for estacion in intersecciones {
+                    print("   └── \(estacion)")
+                }
+            }
+        }
+    }
+
+    print("\n==================================================")
+}
+
+ejecutarRF03_DetectarTransbordos()
+
+
