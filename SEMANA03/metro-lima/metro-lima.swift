@@ -812,4 +812,72 @@ func ejecutarRF04_AsistenteRuta() {
 
 ejecutarRF04_AsistenteRuta()
 
+// RF05 - BÚSQUEDA GLOBAL
 
+// Busca una estación por nombre o coincidencia parcial.
+func ejecutarRF05_BuscarEstacion() {
+
+    print(
+        "\nIngrese el nombre o parte del nombre de la estación:",
+        terminator: " "
+    )
+
+    let consulta = (readLine() ?? "")
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+
+    guard !consulta.isEmpty else {
+        print("\n⚠️ Debe ingresar un texto para realizar la búsqueda.")
+        return
+    }
+
+    var hallazgos: [(codigo: String, linea: String, estacion: Estacion)] = []
+
+    for (codigo, linea) in redMetro {
+
+        for estacion in linea.estaciones {
+
+            if estacion.nombre
+                .lowercased()
+                .contains(consulta.lowercased()) {
+
+                hallazgos.append(
+                    (
+                        codigo: codigo,
+                        linea: linea.nombre,
+                        estacion: estacion
+                    )
+                )
+            }
+        }
+    }
+
+    print("\n==================================================")
+    print("   [RF05] RESULTADOS PARA '\(consulta)'")
+    print("==================================================")
+
+    guard !hallazgos.isEmpty else {
+        print("❌ No se encontraron estaciones.")
+        return
+    }
+
+    let resultadosOrdenados = hallazgos.sorted {
+        if $0.codigo == $1.codigo {
+            return $0.estacion.nombre < $1.estacion.nombre
+        }
+
+        return $0.codigo < $1.codigo
+    }
+
+    for resultado in resultadosOrdenados {
+
+        print("""
+
+        🚉 \(resultado.estacion.nombre)
+           ├── Línea: \(resultado.codigo) - \(resultado.linea)
+           ├── Ubicación: \(resultado.estacion.ubicacion)
+           └── Coordenadas: \(resultado.estacion.latitud), \(resultado.estacion.longitud)
+        """)
+    }
+}
+
+ejecutarRF05_BuscarEstacion()
