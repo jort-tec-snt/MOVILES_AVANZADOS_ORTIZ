@@ -737,3 +737,79 @@ func ejecutarRF03_DetectarTransbordos() {
 ejecutarRF03_DetectarTransbordos()
 
 
+// RF04 - ASISTENTE DE RUTA
+
+// Genera una ruta desde Línea 2 hacia Estadio Nacional en Línea 3.
+func ejecutarRF04_AsistenteRuta() {
+
+    print("\n==================================================")
+    print("   [RF04] ASISTENTE DE RUTA")
+    print("==================================================")
+
+    print("Origen: Línea 2")
+    print("Destino: Estadio Nacional - Línea 3")
+    print("--------------------------------------------------")
+
+    guard
+        let linea2 = redMetro["L2"],
+        let linea3 = redMetro["L3"]
+    else {
+        print("⚠️ No se encontraron las líneas necesarias.")
+        return
+    }
+
+    let estacionesL2 = Set(
+        linea2.estaciones.map { $0.nombre }
+    )
+
+    let estacionesL3 = Set(
+        linea3.estaciones.map { $0.nombre }
+    )
+
+    let transbordos = estacionesL2
+        .intersection(estacionesL3)
+
+    let puntoCambio: String?
+
+    if transbordos.contains("Estación Central") {
+        puntoCambio = "Estación Central"
+    } else {
+        puntoCambio = transbordos.sorted().first
+    }
+
+    guard let puntoCambio else {
+        print("⚠️ No existe una conexión registrada entre L2 y L3.")
+        return
+    }
+
+    guard
+        let indiceCambio = linea3.estaciones.firstIndex(
+            where: { $0.nombre == puntoCambio }
+        ),
+        let indiceDestino = linea3.estaciones.firstIndex(
+            where: { $0.nombre == "Estadio Nacional" }
+        )
+    else {
+        print("⚠️ No se pudo construir la ruta.")
+        return
+    }
+
+    let cantidadParadas = abs(indiceDestino - indiceCambio)
+
+    print("""
+
+    📍 GUÍA DE VIAJE
+
+    1. Aborda la Línea 2.
+    2. Continúa hasta '\(puntoCambio)'.
+    3. Realiza el transbordo hacia la Línea 3.
+    4. Continúa por \(cantidadParadas) estación(es).
+    5. Desciende en 'Estadio Nacional'.
+
+    ✅ Destino alcanzado.
+    """)
+}
+
+ejecutarRF04_AsistenteRuta()
+
+
