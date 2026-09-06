@@ -2,6 +2,13 @@ import Foundation
 
 //Modelo de Datos
 
+struct Estacion {
+    let nombre: String
+    let ubicacion: String
+    let latitud: Double
+    let longitud: Double
+}
+
 struct LineaMetro {
     let codigo: String;
     let nombre: String;
@@ -10,5 +17,4 @@ struct LineaMetro {
     let destino: String;
     let estaciones: [String];
 }
-
 
