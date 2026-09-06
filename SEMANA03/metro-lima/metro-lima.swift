@@ -15,7 +15,7 @@ struct LineaMetro {
     let estado: String;
     let origen: String;
     let destino: String;
-    let estaciones: [String];
+    let estaciones: [Estacion];
 }
 
 // bd mock de la linea de metro
@@ -621,3 +621,27 @@ let redMetro: [String: LineaMetro] = [
         ]
     )
 ]
+
+//RF01 - CATALOGO GENERAL
+
+/// Muestra todas las líneas registradas en la red.
+func ejecutarRF01_Catalogo() {
+
+    print("\n==================================================")
+    print("   [RF01] CATÁLOGO GENERAL DE LA RED METRO")
+    print("==================================================")
+
+    for (codigo, linea) in redMetro.sorted(by: { $0.key < $1.key }) {
+
+        print("""
+        • [\(codigo)] \(linea.nombre)
+          ├── Estado: \(linea.estado)
+          ├── Origen: \(linea.origen)
+          ├── Destino: \(linea.destino)
+          └── Estaciones: \(linea.estaciones.count)
+        --------------------------------------------------
+        """)
+    }
+}
+
+ejecutarRF01_Catalogo()
