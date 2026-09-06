@@ -645,3 +645,36 @@ func ejecutarRF01_Catalogo() {
 }
 
 ejecutarRF01_Catalogo()
+
+// RF02 - DETALLE DE ESTACIONES
+/// Permite consultar las estaciones pertenecientes a una línea.
+func ejecutarRF02_DetalleEstaciones() {
+
+    print("\nIngrese el código de la línea:", terminator: " ")
+
+    let entrada = (readLine() ?? "")
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+        .uppercased()
+
+    guard let linea = redMetro[entrada] else {
+        print("\n⚠️ La línea '\(entrada)' no existe en la red.")
+        return
+    }
+
+    print("\n==================================================")
+    print("   [RF02] ESTACIONES DE \(linea.nombre.uppercased())")
+    print("==================================================")
+
+    for (index, estacion) in linea.estaciones.enumerated() {
+
+        print("""
+        \(String(format: "%02d", index + 1)). \(estacion.nombre)
+            📍 \(estacion.ubicacion)
+        """)
+    }
+
+    print("--------------------------------------------------")
+    print("Total de estaciones: \(linea.estaciones.count)")
+}
+
+ejecutarRF02_DetalleEstaciones()
