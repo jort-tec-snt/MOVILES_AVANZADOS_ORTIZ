@@ -644,8 +644,6 @@ func ejecutarRF01_Catalogo() {
     }
 }
 
-ejecutarRF01_Catalogo()
-
 // RF02 - DETALLE DE ESTACIONES
 /// Permite consultar las estaciones pertenecientes a una línea.
 func ejecutarRF02_DetalleEstaciones() {
@@ -677,7 +675,6 @@ func ejecutarRF02_DetalleEstaciones() {
     print("Total de estaciones: \(linea.estaciones.count)")
 }
 
-ejecutarRF02_DetalleEstaciones()
 
 // RF03 - DETECCIÓN DE TRANSBORDOS
 
@@ -733,8 +730,6 @@ func ejecutarRF03_DetectarTransbordos() {
 
     print("\n==================================================")
 }
-
-ejecutarRF03_DetectarTransbordos()
 
 
 // RF04 - ASISTENTE DE RUTA
@@ -810,7 +805,6 @@ func ejecutarRF04_AsistenteRuta() {
     """)
 }
 
-ejecutarRF04_AsistenteRuta()
 
 // RF05 - BÚSQUEDA GLOBAL
 
@@ -850,7 +844,7 @@ func ejecutarRF05_BuscarEstacion() {
             }
         }
     }
-
+    
     print("\n==================================================")
     print("   [RF05] RESULTADOS PARA '\(consulta)'")
     print("==================================================")
@@ -880,4 +874,54 @@ func ejecutarRF05_BuscarEstacion() {
     }
 }
 
-ejecutarRF05_BuscarEstacion()
+// NAVEGACIÓN PRINCIPAL - CLI
+
+var sistemaActivo = true
+
+while sistemaActivo {
+
+    print("""
+
+    ==================================================
+           SIMULADOR DE RED - METRO DE LIMA
+    ==================================================
+
+    1) [RF01] Ver catálogo general de líneas
+    2) [RF02] Consultar estaciones por línea
+    3) [RF03] Ver puntos de transbordo
+    4) [RF04] Asistente de ruta al Estadio Nacional
+    5) [RF05] Búsqueda global de estaciones
+    6) Salir
+
+    --------------------------------------------------
+    Seleccione una opción (1-6):
+    """, terminator: " ")
+
+    let seleccion = (readLine() ?? "")
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+
+    switch seleccion {
+
+    case "1":
+        ejecutarRF01_Catalogo()
+
+    case "2":
+        ejecutarRF02_DetalleEstaciones()
+
+    case "3":
+        ejecutarRF03_DetectarTransbordos()
+
+    case "4":
+        ejecutarRF04_AsistenteRuta()
+
+    case "5":
+        ejecutarRF05_BuscarEstacion()
+
+    case "6":
+        print("\n👋 Cerrando el Simulador de la Red del Metro de Lima.")
+        sistemaActivo = false
+
+    default:
+        print("\n❌ Opción inválida. Ingrese un número entre 1 y 6.")
+    }
+}
