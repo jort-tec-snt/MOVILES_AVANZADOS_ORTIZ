@@ -78,3 +78,58 @@ class SucursalOnline: Sucursal {
         return 15.0
     }
 }
+
+let refrigeradora = Electrodomestico(
+    nombre: "Refrigeradora",
+    marca: "Frost",
+    precioLista: 2000.0,
+    categoria: .lineaBlanca
+)
+
+let licuadora = Electrodomestico(
+    nombre: "Licuadora",
+    marca: "Mix",
+    precioLista: 250.0,
+    categoria: .pequenos
+)
+
+let sucursales: [Sucursal] = [
+    SucursalLima(nombre: "Lima Centro", ciudad: "Lima"),
+    SucursalProvincia(nombre: "Provincia Cusco", ciudad: "Cusco"),
+    SucursalOutlet(nombre: "Outlet Ate", ciudad: "Lima"),
+    SucursalOnline(nombre: "Tienda Online", ciudad: "Virtual")
+]
+
+let productos = [refrigeradora, licuadora]
+
+for producto in productos {
+    print("===== \(producto.nombre) (S/ \(producto.precioLista)) =====")
+
+    for sucursal in sucursales {
+        sucursal.cotizar(item: producto)
+    }
+
+    print("")
+}
+
+class SucursalMall: Sucursal {
+    override func descuento() -> Double {
+        return 0.12
+    }
+}
+
+class SucursalExpress: Sucursal {
+    let radioKm: Int
+
+    init(nombre: String, ciudad: String, radioKm: Int) {
+        self.radioKm = radioKm
+        super.init(nombre: nombre, ciudad: ciudad)
+    }
+}
+
+let misteriosa: Sucursal = SucursalLima(nombre: "Lima Centro", ciudad: "Lima")
+print("===== PREDICT 6 y 7 =====")
+print(misteriosa.descuento())
+
+let monto = 2000.0 * (1 - misteriosa.descuento())
+print(misteriosa.costoEnvio(monto: monto))
