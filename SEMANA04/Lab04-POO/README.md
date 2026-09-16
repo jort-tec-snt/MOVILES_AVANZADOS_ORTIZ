@@ -17,10 +17,7 @@ Semana04/Lab04-POO/
 │   └── CursosLibres.swift
 │ 
 ├── Actividad02_Clientes/
-│   └─ Clientes.swift
-│ 
-├─
-└── COMMITS_SUGERIDOS.md
+    └─ Clientes.swift
 ```
 
 ## Como ejecutar
