@@ -1460,6 +1460,279 @@ func ejecutarRF07_InformacionEstacion() {
     )
 }
 
+// RF08 - MODO ADMINISTRADOR Y EXPANSIÓN DE LA RED
+
+func normalizarCodigoLinea(_ entrada: String) -> String {
+    return entrada
+        .components(separatedBy: .whitespacesAndNewlines)
+        .joined()
+        .uppercased()
+}
+
+func leerTextoNoVacio(_ mensaje: String) -> String? {
+    print(mensaje, terminator: " ")
+
+    let texto = (readLine() ?? "")
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+
+    guard !texto.isEmpty else {
+        print("\n⚠️ El valor ingresado no puede estar vacío.")
+        return nil
+    }
+
+    return texto
+}
+
+func leerDouble(_ mensaje: String) -> Double? {
+    print(mensaje, terminator: " ")
+
+    let entrada = (readLine() ?? "")
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+
+    guard let valor = Double(entrada), valor.isFinite else {
+        print("\n⚠️ Ingrese un valor numérico válido.")
+        return nil
+    }
+
+    return valor
+}
+
+func solicitarDatosEstacion(_ titulo: String) -> Estacion? {
+    print("\n\(titulo)")
+
+    guard let nombre = leerTextoNoVacio("Nombre:") else {
+        return nil
+    }
+
+    guard let ubicacion = leerTextoNoVacio("Ubicación:") else {
+        return nil
+    }
+
+    guard let latitud = leerDouble("Latitud:") else {
+        return nil
+    }
+
+    guard let longitud = leerDouble("Longitud:") else {
+        return nil
+    }
+
+    return Estacion(
+        nombre: nombre,
+        ubicacion: ubicacion,
+        latitud: latitud,
+        longitud: longitud,
+        referencias: []
+    )
+}
+
+func agregarEstacionAlFinal() {
+    print("\nIngrese el código de la línea:", terminator: " ")
+
+    let codigo = normalizarCodigoLinea(readLine() ?? "")
+
+    guard var linea = redMetro[codigo] else {
+        print("\n⚠️ La línea ingresada no existe.")
+        return
+    }
+
+    guard let nuevaEstacion = solicitarDatosEstacion(
+        "DATOS DE LA NUEVA ESTACIÓN"
+    ) else {
+        return
+    }
+
+    linea.estaciones.append(nuevaEstacion)
+    linea.destino = nuevaEstacion.nombre
+    redMetro[codigo] = linea
+
+    print("\n✅ Estación agregada correctamente a \(codigo).")
+}
+
+func insertarEstacionEnLinea() {
+    print("\nIngrese el código de la línea:", terminator: " ")
+
+    let codigo = normalizarCodigoLinea(readLine() ?? "")
+
+    guard var linea = redMetro[codigo] else {
+        print("\n⚠️ La línea ingresada no existe.")
+        return
+    }
+
+    guard !linea.estaciones.isEmpty else {
+        print("\n⚠️ La línea no tiene estaciones registradas.")
+        return
+    }
+
+    print("\n\(linea.codigo) - \(linea.nombre)")
+
+    for (indice, estacion) in linea.estaciones.enumerated() {
+        print("\(indice + 1). \(estacion.nombre)")
+    }
+
+    guard let indiceAnterior = solicitarIndiceEstacion(
+        mensaje: "\nSeleccione la estación después de la cual desea insertar la nueva estación:",
+        cantidadEstaciones: linea.estaciones.count
+    ) else {
+        return
+    }
+
+    let indiceInsercion = indiceAnterior + 1
+    let nombreAnterior = linea.estaciones[indiceAnterior].nombre
+    let nombreSiguiente = indiceInsercion < linea.estaciones.count
+        ? linea.estaciones[indiceInsercion].nombre
+        : nil
+
+    guard let nuevaEstacion = solicitarDatosEstacion(
+        "DATOS DE LA NUEVA ESTACIÓN"
+    ) else {
+        return
+    }
+
+    linea.estaciones.insert(nuevaEstacion, at: indiceInsercion)
+
+    if nombreSiguiente == nil {
+        linea.destino = nuevaEstacion.nombre
+    }
+
+    redMetro[codigo] = linea
+
+    if let nombreSiguiente {
+        print(
+            "\n✅ \(nuevaEstacion.nombre) insertada entre "
+            + "\(nombreAnterior) y \(nombreSiguiente)."
+        )
+    } else {
+        print(
+            "\n✅ \(nuevaEstacion.nombre) agregada al final después de "
+            + "\(nombreAnterior)."
+        )
+    }
+}
+
+func crearNuevaLinea() {
+    guard let codigoIngresado = leerTextoNoVacio(
+        "\nIngrese el código de la nueva línea:"
+    ) else {
+        return
+    }
+
+    let codigo = normalizarCodigoLinea(codigoIngresado)
+
+    guard redMetro[codigo] == nil else {
+        print("\n⚠️ Ya existe una línea registrada con el código \(codigo).")
+        return
+    }
+
+    guard let nombre = leerTextoNoVacio("Nombre de la línea:") else {
+        return
+    }
+
+    guard let estado = leerTextoNoVacio("Estado de la línea:") else {
+        return
+    }
+
+    guard let origen = leerTextoNoVacio("Origen de la línea:") else {
+        return
+    }
+
+    guard let destino = leerTextoNoVacio("Destino de la línea:") else {
+        return
+    }
+
+    guard let estacionOrigen = solicitarDatosEstacion(
+        "DATOS DE LA ESTACIÓN DE ORIGEN"
+    ) else {
+        return
+    }
+
+    guard let estacionDestino = solicitarDatosEstacion(
+        "DATOS DE LA ESTACIÓN DE DESTINO"
+    ) else {
+        return
+    }
+
+    let nuevaLinea = LineaMetro(
+        codigo: codigo,
+        nombre: nombre,
+        estado: estado,
+        origen: origen,
+        destino: destino,
+        estaciones: [estacionOrigen, estacionDestino]
+    )
+
+    redMetro[codigo] = nuevaLinea
+
+    print("\n✅ Línea \(codigo) creada correctamente con 2 estaciones.")
+}
+
+func mostrarResumenRed() {
+    let totalEstaciones = redMetro.values.reduce(0) {
+        $0 + $1.estaciones.count
+    }
+
+    print("""
+
+    ==================================================
+              ESTADO ACTUAL DE LA RED
+    ==================================================
+
+    Líneas registradas: \(redMetro.count)
+    Estaciones registradas: \(totalEstaciones)
+    """)
+
+    for (codigo, linea) in redMetro.sorted(by: { $0.key < $1.key }) {
+        print(
+            "\(codigo) | \(linea.origen) → \(linea.destino) | "
+            + "\(linea.estaciones.count) estaciones"
+        )
+    }
+}
+
+func ejecutarRF08_ModoAdministrador() {
+    var administradorActivo = true
+
+    while administradorActivo {
+        print("""
+
+        ==================================================
+               [RF08] MODO ADMINISTRADOR
+        ==================================================
+
+        1) Agregar estación a una línea
+        2) Insertar estación entre estaciones existentes
+        3) Crear nueva línea
+        4) Ver resumen actual de la red
+        5) Volver
+
+        --------------------------------------------------
+        Seleccione una opción (1-5):
+        """, terminator: " ")
+
+        let seleccion = (readLine() ?? "")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        switch seleccion {
+        case "1":
+            agregarEstacionAlFinal()
+
+        case "2":
+            insertarEstacionEnLinea()
+
+        case "3":
+            crearNuevaLinea()
+
+        case "4":
+            mostrarResumenRed()
+
+        case "5":
+            administradorActivo = false
+
+        default:
+            print("\n❌ Opción inválida. Ingrese un número entre 1 y 5.")
+        }
+    }
+}
+
 // NAVEGACIÓN PRINCIPAL - CLI
 
 var sistemaActivo = true
@@ -1479,10 +1752,11 @@ while sistemaActivo {
     5) [RF05] Búsqueda global de estaciones
     6) [RF06] Gestión de tarjeta de transporte
     7) [RF07] Información y referencias de estación
-    8) Salir
+    8) [RF08] Modo administrador
+    9) Salir
 
     --------------------------------------------------
-    Seleccione una opción (1-8):
+    Seleccione una opción (1-9):
     """, terminator: " ")
 
     let seleccion = (readLine() ?? "")
@@ -1512,10 +1786,13 @@ while sistemaActivo {
         ejecutarRF07_InformacionEstacion()
 
     case "8":
+        ejecutarRF08_ModoAdministrador()
+
+    case "9":
         print("\n👋 Cerrando el Simulador de la Red del Metro de Lima.")
         sistemaActivo = false
 
     default:
-        print("\n❌ Opción inválida. Ingrese un número entre 1 y 8.")
+        print("\n❌ Opción inválida. Ingrese un número entre 1 y 9.")
     }
 }

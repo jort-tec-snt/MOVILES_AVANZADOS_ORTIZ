@@ -17,8 +17,11 @@ El proyecto aplica estructuras de datos, colecciones y control de flujo mediante
 | **RF05** | Búsqueda Global          | Busca estaciones por nombre o coincidencia parcial dentro de toda la red.                    |
 | **RF06** | Gestión de Tarjeta de Transporte | Permite consultar el estado y saldo de una tarjeta simulada y realizar recargas durante la ejecución del sistema. |
 | **RF07** | Información y Referencias de Estación | Permite consultar la ubicación, coordenadas y referencias cercanas registradas de una estación de la red. |
+| **RF08** | Modo Administrador y Expansión de Red | Permite agregar e insertar estaciones, crear nuevas líneas y simular dinámicamente el crecimiento de la Red del Metro durante la ejecución. |
 
 Para recorridos entre líneas, RF04 utiliza búsqueda en anchura (BFS) sobre las estaciones y sus conexiones de transbordo.
+
+Los cambios realizados desde RF08 son temporales durante la sesión. Las funciones de consulta y rutas utilizan inmediatamente la red actualizada.
 
 ---
 
@@ -37,11 +40,11 @@ struct Estacion {
 
 struct LineaMetro {
     let codigo: String
-    let nombre: String
-    let estado: String
-    let origen: String
-    let destino: String
-    let estaciones: [Estacion]
+    var nombre: String
+    var estado: String
+    var origen: String
+    var destino: String
+    var estaciones: [Estacion]
 }
 ```
 
@@ -55,7 +58,7 @@ La red completa se almacena mediante:
 
 ## 🗃️ Red Mock
 
-Actualmente se modelan seis líneas:
+Inicialmente se modelan seis líneas:
 
 ```text
 L1 — Línea 1 (Verde)
@@ -87,7 +90,7 @@ referencias
 Almacena las líneas de la red:
 
 ```swift
-let redMetro: [String: LineaMetro]
+var redMetro: [String: LineaMetro]
 ```
 
 ### Array
@@ -127,7 +130,8 @@ El sistema integra los requerimientos mediante un menú interactivo:
 5) [RF05] Búsqueda global de estaciones
 6) [RF06] Gestión de tarjeta de transporte
 7) [RF07] Información y referencias de estación
-8) Salir
+8) [RF08] Modo administrador
+9) Salir
 ```
 
 ---
@@ -148,6 +152,7 @@ metro-lima/
 │   ├── RF05
 │   ├── RF06
 │   ├── RF07
+│   ├── RF08
 │   └── Menú CLI
 │
 └── README.md
