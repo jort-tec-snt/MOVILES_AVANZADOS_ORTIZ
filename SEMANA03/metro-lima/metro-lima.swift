@@ -18,6 +18,34 @@ struct LineaMetro {
     var estaciones: [Estacion];
 }
 
+enum EstadoTarjeta {
+    case activa
+    case bloqueada
+
+    var descripcion: String {
+        switch self {
+        case .activa:
+            return "ACTIVA"
+        case .bloqueada:
+            return "BLOQUEADA"
+        }
+    }
+}
+
+struct TarjetaTransporte {
+    let identificador: String
+    var saldo: Double
+    var estado: EstadoTarjeta
+    var ultimaRecarga: Double?
+}
+
+var tarjetaActual = TarjetaTransporte(
+    identificador: "METRO-0001",
+    saldo: 10.00,
+    estado: .activa,
+    ultimaRecarga: nil
+)
+
 // bd mock de la linea de metro
 
 var redMetro: [String: LineaMetro] = [
@@ -874,6 +902,89 @@ func ejecutarRF05_BuscarEstacion() {
     }
 }
 
+// RF06 - GESTIÓN DE TARJETA DE TRANSPORTE
+
+func ejecutarRF06_GestionTarjeta() {
+
+    var gestionActiva = true
+
+    while gestionActiva {
+
+        print("""
+
+        ==================================================
+               [RF06] TARJETA DE TRANSPORTE
+        ==================================================
+
+        Tarjeta: \(tarjetaActual.identificador)
+        Estado: \(tarjetaActual.estado.descripcion)
+        Saldo: \(String(format: "S/ %.2f", tarjetaActual.saldo))
+
+        1) Ver estado de la tarjeta
+        2) Consultar saldo
+        3) Recargar tarjeta
+        4) Volver
+
+        --------------------------------------------------
+        Seleccione una opción (1-4):
+        """, terminator: " ")
+
+        let seleccion = (readLine() ?? "")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        switch seleccion {
+
+        case "1":
+            print("""
+
+            Tarjeta: \(tarjetaActual.identificador)
+            Estado: \(tarjetaActual.estado.descripcion)
+            Saldo: \(String(format: "S/ %.2f", tarjetaActual.saldo))
+            """)
+
+            if let ultimaRecarga = tarjetaActual.ultimaRecarga {
+                print("Última recarga: \(String(format: "S/ %.2f", ultimaRecarga))")
+            } else {
+                print("Última recarga: Sin recargas registradas en esta sesión.")
+            }
+
+        case "2":
+            print("\nSaldo disponible: \(String(format: "S/ %.2f", tarjetaActual.saldo))")
+
+        case "3":
+            guard tarjetaActual.estado == .activa else {
+                print("\n⚠️ La tarjeta está bloqueada. No es posible realizar recargas.")
+                continue
+            }
+
+            print("\nIngrese el monto de recarga:", terminator: " ")
+
+            let entrada = (readLine() ?? "")
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+
+            guard let monto = Double(entrada), monto > 0 else {
+                print("\n⚠️ Ingrese un monto válido mayor que cero.")
+                continue
+            }
+
+            tarjetaActual.saldo += monto
+            tarjetaActual.ultimaRecarga = monto
+
+            print("""
+
+            ✅ Recarga realizada: \(String(format: "S/ %.2f", monto))
+            Nuevo saldo: \(String(format: "S/ %.2f", tarjetaActual.saldo))
+            """)
+
+        case "4":
+            gestionActiva = false
+
+        default:
+            print("\n❌ Opción inválida. Ingrese un número entre 1 y 4.")
+        }
+    }
+}
+
 // NAVEGACIÓN PRINCIPAL - CLI
 
 var sistemaActivo = true
@@ -891,10 +1002,11 @@ while sistemaActivo {
     3) [RF03] Ver puntos de transbordo
     4) [RF04] Asistente de ruta al Estadio Nacional
     5) [RF05] Búsqueda global de estaciones
-    6) Salir
+    6) [RF06] Gestión de tarjeta de transporte
+    7) Salir
 
     --------------------------------------------------
-    Seleccione una opción (1-6):
+    Seleccione una opción (1-7):
     """, terminator: " ")
 
     let seleccion = (readLine() ?? "")
@@ -918,10 +1030,13 @@ while sistemaActivo {
         ejecutarRF05_BuscarEstacion()
 
     case "6":
+        ejecutarRF06_GestionTarjeta()
+
+    case "7":
         print("\n👋 Cerrando el Simulador de la Red del Metro de Lima.")
         sistemaActivo = false
 
     default:
-        print("\n❌ Opción inválida. Ingrese un número entre 1 y 6.")
+        print("\n❌ Opción inválida. Ingrese un número entre 1 y 7.")
     }
 }

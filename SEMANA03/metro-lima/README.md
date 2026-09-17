@@ -15,6 +15,7 @@ El proyecto aplica estructuras de datos, colecciones y control de flujo mediante
 | **RF03** | Detección de Transbordos | Identifica estaciones compartidas entre líneas mediante operaciones con `Set`.               |
 | **RF04** | Asistente de Ruta        | Genera una ruta desde la Línea 2 hacia el Estadio Nacional mediante conexión con la Línea 3. |
 | **RF05** | Búsqueda Global          | Busca estaciones por nombre o coincidencia parcial dentro de toda la red.                    |
+| **RF06** | Gestión de Tarjeta de Transporte | Permite consultar el estado y saldo de una tarjeta simulada y realizar recargas durante la ejecución del sistema. |
 
 ---
 
@@ -119,7 +120,8 @@ El sistema integra los requerimientos mediante un menú interactivo:
 3) [RF03] Ver puntos de transbordo
 4) [RF04] Asistente de ruta al Estadio Nacional
 5) [RF05] Búsqueda global de estaciones
-6) Salir
+6) [RF06] Gestión de tarjeta de transporte
+7) Salir
 ```
 
 ---
@@ -138,6 +140,7 @@ metro-lima/
 │   ├── RF03
 │   ├── RF04
 │   ├── RF05
+│   ├── RF06
 │   └── Menú CLI
 │
 └── README.md
