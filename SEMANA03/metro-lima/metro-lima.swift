@@ -52,6 +52,15 @@ struct TarjetaTransporte {
     var saldo: Double
     var estado: EstadoTarjeta
     var ultimaRecarga: Double?
+
+    mutating func pagar(tarifa: Double) -> Bool {
+        guard estado == .activa, tarifa > 0, saldo >= tarifa else {
+            return false
+        }
+
+        saldo -= tarifa
+        return true
+    }
 }
 
 var tarjetaActual = TarjetaTransporte(
@@ -60,6 +69,8 @@ var tarjetaActual = TarjetaTransporte(
     estado: .activa,
     ultimaRecarga: nil
 )
+
+let tarifaViaje = 1.50
 
 // bd mock de la linea de metro
 
@@ -956,6 +967,73 @@ func buscarRutaBFS(
     return nil
 }
 
+func calcularRuta(
+    origen: NodoRuta,
+    destino: NodoRuta
+) -> [NodoRuta]? {
+    guard
+        obtenerEstacion(de: origen) != nil,
+        obtenerEstacion(de: destino) != nil
+    else {
+        return nil
+    }
+
+    guard origen.codigoLinea == destino.codigoLinea else {
+        return buscarRutaBFS(origen: origen, destino: destino)
+    }
+
+    let paso = destino.indiceEstacion >= origen.indiceEstacion ? 1 : -1
+
+    return stride(
+        from: origen.indiceEstacion,
+        through: destino.indiceEstacion,
+        by: paso
+    ).map {
+        NodoRuta(
+            codigoLinea: origen.codigoLinea,
+            indiceEstacion: $0
+        )
+    }
+}
+
+struct ResumenRuta {
+    let estacionesRecorridas: Int
+    let transbordos: Int
+    let lineasUtilizadas: [String]
+}
+
+func obtenerResumenRuta(_ ruta: [NodoRuta]) -> ResumenRuta {
+    var estacionesRecorridas = 0
+    var transbordos = 0
+    var lineasUtilizadas: [String] = []
+
+    for nodo in ruta where lineasUtilizadas.last != nodo.codigoLinea {
+        lineasUtilizadas.append(nodo.codigoLinea)
+    }
+
+    guard ruta.count > 1 else {
+        return ResumenRuta(
+            estacionesRecorridas: 0,
+            transbordos: 0,
+            lineasUtilizadas: lineasUtilizadas
+        )
+    }
+
+    for indice in 0..<(ruta.count - 1) {
+        if ruta[indice].codigoLinea == ruta[indice + 1].codigoLinea {
+            estacionesRecorridas += 1
+        } else {
+            transbordos += 1
+        }
+    }
+
+    return ResumenRuta(
+        estacionesRecorridas: estacionesRecorridas,
+        transbordos: transbordos,
+        lineasUtilizadas: lineasUtilizadas
+    )
+}
+
 func direccionDelMovimiento(
     desde nodoActual: NodoRuta,
     hasta siguienteNodo: NodoRuta
@@ -989,6 +1067,8 @@ func mostrarRutaEntreLineas(_ ruta: [NodoRuta]) {
         return
     }
 
+    let resumen = obtenerResumenRuta(ruta)
+
     print("""
 
     ==================================================
@@ -1015,9 +1095,6 @@ func mostrarRutaEntreLineas(_ ruta: [NodoRuta]) {
         print("Dirección: \(direccionInicial)")
     }
 
-    var estacionesRestantes = 0
-    var cantidadTransbordos = 0
-
     for indice in 0..<(ruta.count - 1) {
         let nodoActual = ruta[indice]
         let siguienteNodo = ruta[indice + 1]
@@ -1031,8 +1108,6 @@ func mostrarRutaEntreLineas(_ ruta: [NodoRuta]) {
         }
 
         if nodoActual.codigoLinea != siguienteNodo.codigoLinea {
-            cantidadTransbordos += 1
-
             print("""
 
             🔀 TRANSBORDO
@@ -1048,7 +1123,6 @@ func mostrarRutaEntreLineas(_ ruta: [NodoRuta]) {
                 print("Dirección: \(nuevaDireccion)")
             }
         } else {
-            estacionesRestantes += 1
             print("↓")
             print("\(siguienteEstacion.nombre) [\(siguienteNodo.codigoLinea)]")
         }
@@ -1057,8 +1131,8 @@ func mostrarRutaEntreLineas(_ ruta: [NodoRuta]) {
     print("""
 
     --------------------------------------------------
-    Estaciones restantes: \(estacionesRestantes)
-    Transbordos: \(cantidadTransbordos)
+    Estaciones restantes: \(resumen.estacionesRecorridas)
+    Transbordos: \(resumen.transbordos)
     """)
 }
 
@@ -1127,15 +1201,15 @@ func ejecutarRF04_AsistenteRuta() {
         indiceEstacion: indiceDestino
     )
 
-    if codigoLineaOrigen != codigoLineaDestino {
-        guard let ruta = buscarRutaBFS(
-            origen: nodoOrigen,
-            destino: nodoDestino
-        ) else {
-            print("\n⚠️ No se encontró una ruta disponible entre las estaciones seleccionadas.")
-            return
-        }
+    guard let ruta = calcularRuta(
+        origen: nodoOrigen,
+        destino: nodoDestino
+    ) else {
+        print("\n⚠️ No se encontró una ruta disponible entre las estaciones seleccionadas.")
+        return
+    }
 
+    if codigoLineaOrigen != codigoLineaDestino {
         mostrarRutaEntreLineas(ruta)
         return
     }
@@ -1733,6 +1807,177 @@ func ejecutarRF08_ModoAdministrador() {
     }
 }
 
+// RF09 - SIMULACIÓN DE VIAJE Y PAGO CON TARJETA
+
+func solicitarNodoViaje(_ tipo: String) -> NodoRuta? {
+    print("\nIngrese el código de la línea de \(tipo):", terminator: " ")
+
+    let codigo = normalizarCodigoLinea(readLine() ?? "")
+
+    guard let linea = redMetro[codigo] else {
+        print("\n⚠️ La línea ingresada no existe.")
+        return nil
+    }
+
+    print("\n\(linea.codigo) - \(linea.nombre)")
+
+    for (indice, estacion) in linea.estaciones.enumerated() {
+        print("\(indice + 1). \(estacion.nombre)")
+    }
+
+    guard let indice = solicitarIndiceEstacion(
+        mensaje: "\nSeleccione la estación de \(tipo):",
+        cantidadEstaciones: linea.estaciones.count
+    ) else {
+        return nil
+    }
+
+    return NodoRuta(
+        codigoLinea: codigo,
+        indiceEstacion: indice
+    )
+}
+
+func ejecutarRF09_SimularViaje() {
+    print("\n==================================================")
+    print("   [RF09] SIMULACIÓN DE VIAJE")
+    print("==================================================")
+
+    guard let nodoOrigen = solicitarNodoViaje("origen") else {
+        return
+    }
+
+    guard let nodoDestino = solicitarNodoViaje("destino") else {
+        return
+    }
+
+    guard nodoOrigen != nodoDestino else {
+        print("\n✅ Ya se encuentra en la estación de destino.")
+        print("No es necesario iniciar un viaje.")
+        print("Estaciones por recorrer: 0")
+        return
+    }
+
+    guard let ruta = calcularRuta(
+        origen: nodoOrigen,
+        destino: nodoDestino
+    ) else {
+        print("\n⚠️ No existe una ruta disponible entre las estaciones seleccionadas.")
+        return
+    }
+
+    guard
+        let estacionOrigen = obtenerEstacion(de: nodoOrigen),
+        let estacionDestino = obtenerEstacion(de: nodoDestino)
+    else {
+        print("\n⚠️ No se pudo preparar el viaje seleccionado.")
+        return
+    }
+
+    let resumen = obtenerResumenRuta(ruta)
+    let lineas = resumen.lineasUtilizadas.joined(separator: " → ")
+
+    print("""
+
+    ==================================================
+                 RESUMEN DEL VIAJE
+    ==================================================
+
+    Origen:
+    \(estacionOrigen.nombre) [\(nodoOrigen.codigoLinea)]
+
+    Destino:
+    \(estacionDestino.nombre) [\(nodoDestino.codigoLinea)]
+
+    Líneas utilizadas:
+    \(lineas)
+
+    Estaciones por recorrer: \(resumen.estacionesRecorridas)
+    Transbordos: \(resumen.transbordos)
+
+    Tarifa simulada: \(String(format: "S/ %.2f", tarifaViaje))
+
+    Tarjeta:
+    \(tarjetaActual.identificador)
+
+    Estado:
+    \(tarjetaActual.estado.descripcion)
+
+    Saldo actual:
+    \(String(format: "S/ %.2f", tarjetaActual.saldo))
+    """)
+
+    guard tarjetaActual.estado == .activa else {
+        print(
+            "\n⛔ Viaje rechazado. La tarjeta se encuentra "
+            + "\(tarjetaActual.estado.descripcion)."
+        )
+        return
+    }
+
+    guard tarjetaActual.saldo >= tarifaViaje else {
+        print("\n❌ Saldo insuficiente.")
+        print("Saldo actual: \(String(format: "S/ %.2f", tarjetaActual.saldo))")
+        print("Tarifa requerida: \(String(format: "S/ %.2f", tarifaViaje))")
+        print("Realice una recarga desde RF06.")
+        return
+    }
+
+    let saldoPosterior = tarjetaActual.saldo - tarifaViaje
+    print(
+        "\nSaldo después del viaje: "
+        + String(format: "S/ %.2f", saldoPosterior)
+    )
+
+    print(
+        "\n¿Desea iniciar el viaje y pagar "
+        + "\(String(format: "S/ %.2f", tarifaViaje))? (S/N):",
+        terminator: " "
+    )
+
+    let confirmacion = (readLine() ?? "")
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+        .folding(options: .diacriticInsensitive, locale: .current)
+        .uppercased()
+
+    guard confirmacion == "S" || confirmacion == "SI" else {
+        if confirmacion == "N" || confirmacion == "NO" {
+            print("\nViaje cancelado. No se realizó ningún cobro.")
+        } else {
+            print("\n⚠️ Confirmación inválida. No se realizó ningún cobro.")
+        }
+        return
+    }
+
+    let saldoAnterior = tarjetaActual.saldo
+
+    guard tarjetaActual.pagar(tarifa: tarifaViaje) else {
+        print("\n⛔ No fue posible autorizar el pago del viaje.")
+        return
+    }
+
+    print("""
+
+    ==================================================
+                 VIAJE AUTORIZADO
+    ==================================================
+
+    ✅ Pago realizado correctamente.
+
+    Tarifa: \(String(format: "S/ %.2f", tarifaViaje))
+    Saldo anterior: \(String(format: "S/ %.2f", saldoAnterior))
+    Saldo disponible: \(String(format: "S/ %.2f", tarjetaActual.saldo))
+
+    Origen:
+    \(estacionOrigen.nombre) [\(nodoOrigen.codigoLinea)]
+
+    Destino:
+    \(estacionDestino.nombre) [\(nodoDestino.codigoLinea)]
+
+    Buen viaje.
+    """)
+}
+
 // NAVEGACIÓN PRINCIPAL - CLI
 
 var sistemaActivo = true
@@ -1753,10 +1998,11 @@ while sistemaActivo {
     6) [RF06] Gestión de tarjeta de transporte
     7) [RF07] Información y referencias de estación
     8) [RF08] Modo administrador
-    9) Salir
+    9) [RF09] Simular viaje y pagar con tarjeta
+    10) Salir
 
     --------------------------------------------------
-    Seleccione una opción (1-9):
+    Seleccione una opción (1-10):
     """, terminator: " ")
 
     let seleccion = (readLine() ?? "")
@@ -1789,10 +2035,13 @@ while sistemaActivo {
         ejecutarRF08_ModoAdministrador()
 
     case "9":
+        ejecutarRF09_SimularViaje()
+
+    case "10":
         print("\n👋 Cerrando el Simulador de la Red del Metro de Lima.")
         sistemaActivo = false
 
     default:
-        print("\n❌ Opción inválida. Ingrese un número entre 1 y 9.")
+        print("\n❌ Opción inválida. Ingrese un número entre 1 y 10.")
     }
 }

@@ -18,10 +18,13 @@ El proyecto aplica estructuras de datos, colecciones y control de flujo mediante
 | **RF06** | Gestión de Tarjeta de Transporte | Permite consultar el estado y saldo de una tarjeta simulada y realizar recargas durante la ejecución del sistema. |
 | **RF07** | Información y Referencias de Estación | Permite consultar la ubicación, coordenadas y referencias cercanas registradas de una estación de la red. |
 | **RF08** | Modo Administrador y Expansión de Red | Permite agregar e insertar estaciones, crear nuevas líneas y simular dinámicamente el crecimiento de la Red del Metro durante la ejecución. |
+| **RF09** | Simulación de Viaje y Pago con Tarjeta | Permite calcular un recorrido utilizando la red actual, consultar el estado y saldo de la tarjeta, confirmar el viaje y descontar una tarifa simulada. |
 
 Para recorridos entre líneas, RF04 utiliza búsqueda en anchura (BFS) sobre las estaciones y sus conexiones de transbordo.
 
 Los cambios realizados desde RF08 son temporales durante la sesión. Las funciones de consulta y rutas utilizan inmediatamente la red actualizada.
+
+La tarifa utilizada por RF09 es un valor simulado con fines académicos y no representa necesariamente la tarifa oficial del servicio.
 
 ---
 
@@ -131,7 +134,8 @@ El sistema integra los requerimientos mediante un menú interactivo:
 6) [RF06] Gestión de tarjeta de transporte
 7) [RF07] Información y referencias de estación
 8) [RF08] Modo administrador
-9) Salir
+9) [RF09] Simular viaje y pagar con tarjeta
+10) Salir
 ```
 
 ---
@@ -153,6 +157,7 @@ metro-lima/
 │   ├── RF06
 │   ├── RF07
 │   ├── RF08
+│   ├── RF09
 │   └── Menú CLI
 │
 └── README.md
