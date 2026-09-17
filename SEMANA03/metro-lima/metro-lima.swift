@@ -11,16 +11,16 @@ struct Estacion {
 
 struct LineaMetro {
     let codigo: String;
-    let nombre: String;
-    let estado: String;
-    let origen: String;
-    let destino: String;
-    let estaciones: [Estacion];
+    var nombre: String;
+    var estado: String;
+    var origen: String;
+    var destino: String;
+    var estaciones: [Estacion];
 }
 
 // bd mock de la linea de metro
 
-let redMetro: [String: LineaMetro] = [
+var redMetro: [String: LineaMetro] = [
 
     // ============================================================
     // LÍNEA 1
