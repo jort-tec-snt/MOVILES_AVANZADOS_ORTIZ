@@ -807,74 +807,107 @@ func ejecutarRF03_DetectarTransbordos() {
 
 // RF04 - ASISTENTE DE RUTA
 
-// Genera una ruta desde Línea 2 hacia Estadio Nacional en Línea 3.
+func solicitarIndiceEstacion(
+    mensaje: String,
+    cantidadEstaciones: Int
+) -> Int? {
+
+    print(mensaje, terminator: " ")
+
+    let entrada = (readLine() ?? "")
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+
+    guard
+        let seleccion = Int(entrada),
+        (1...cantidadEstaciones).contains(seleccion)
+    else {
+        print("\n⚠️ Selección inválida. Ingrese un número de estación válido.")
+        return nil
+    }
+
+    return seleccion - 1
+}
+
 func ejecutarRF04_AsistenteRuta() {
 
     print("\n==================================================")
     print("   [RF04] ASISTENTE DE RUTA")
     print("==================================================")
 
-    print("Origen: Línea 2")
-    print("Destino: Estadio Nacional - Línea 3")
-    print("--------------------------------------------------")
+    print("\nIngrese el código de la línea (ej. L1):", terminator: " ")
 
-    guard
-        let linea2 = redMetro["L2"],
-        let linea3 = redMetro["L3"]
-    else {
-        print("⚠️ No se encontraron las líneas necesarias.")
+    let codigoLinea = (readLine() ?? "")
+        .components(separatedBy: .whitespacesAndNewlines)
+        .joined()
+        .uppercased()
+
+    guard let linea = redMetro[codigoLinea] else {
+        print("\n⚠️ La línea ingresada no existe.")
         return
     }
 
-    let estacionesL2 = Set(
-        linea2.estaciones.map { $0.nombre }
-    )
+    print("\n\(linea.codigo) - \(linea.nombre)")
 
-    let estacionesL3 = Set(
-        linea3.estaciones.map { $0.nombre }
-    )
-
-    let transbordos = estacionesL2
-        .intersection(estacionesL3)
-
-    let puntoCambio: String?
-
-    if transbordos.contains("Estación Central") {
-        puntoCambio = "Estación Central"
-    } else {
-        puntoCambio = transbordos.sorted().first
+    for (indice, estacion) in linea.estaciones.enumerated() {
+        print("\(indice + 1). \(estacion.nombre)")
     }
 
-    guard let puntoCambio else {
-        print("⚠️ No existe una conexión registrada entre L2 y L3.")
+    guard let indiceOrigen = solicitarIndiceEstacion(
+        mensaje: "\nSeleccione la estación de origen:",
+        cantidadEstaciones: linea.estaciones.count
+    ) else {
         return
     }
 
-    guard
-        let indiceCambio = linea3.estaciones.firstIndex(
-            where: { $0.nombre == puntoCambio }
-        ),
-        let indiceDestino = linea3.estaciones.firstIndex(
-            where: { $0.nombre == "Estadio Nacional" }
-        )
-    else {
-        print("⚠️ No se pudo construir la ruta.")
+    guard let indiceDestino = solicitarIndiceEstacion(
+        mensaje: "Seleccione la estación de destino:",
+        cantidadEstaciones: linea.estaciones.count
+    ) else {
         return
     }
 
-    let cantidadParadas = abs(indiceDestino - indiceCambio)
+    let estacionesRestantes = abs(indiceDestino - indiceOrigen)
+
+    guard estacionesRestantes > 0 else {
+        print("\n✅ Ya se encuentra en la estación de destino.")
+        print("Estaciones restantes: 0")
+        return
+    }
+
+    let direccion = indiceDestino > indiceOrigen
+        ? linea.destino
+        : linea.origen
+    let paso = indiceDestino > indiceOrigen ? 1 : -1
 
     print("""
 
-    📍 GUÍA DE VIAJE
+    ==================================================
+                  RUTA ENCONTRADA
+    ==================================================
 
-    1. Aborda la Línea 2.
-    2. Continúa hasta '\(puntoCambio)'.
-    3. Realiza el transbordo hacia la Línea 3.
-    4. Continúa por \(cantidadParadas) estación(es).
-    5. Desciende en 'Estadio Nacional'.
+    Línea: \(linea.codigo) - \(linea.nombre)
+    Dirección: \(direccion)
 
-    ✅ Destino alcanzado.
+    Origen:
+    🚉 \(linea.estaciones[indiceOrigen].nombre)
+
+    Recorrido:
+    """)
+
+    for indice in stride(from: indiceOrigen, through: indiceDestino, by: paso) {
+        print(linea.estaciones[indice].nombre)
+
+        if indice != indiceDestino {
+            print("↓")
+        }
+    }
+
+    print("""
+
+    Destino:
+    🏁 \(linea.estaciones[indiceDestino].nombre)
+
+    Estaciones restantes: \(estacionesRestantes)
     """)
 }
 
@@ -1166,7 +1199,7 @@ while sistemaActivo {
     1) [RF01] Ver catálogo general de líneas
     2) [RF02] Consultar estaciones por línea
     3) [RF03] Ver puntos de transbordo
-    4) [RF04] Asistente de ruta al Estadio Nacional
+    4) [RF04] Asistente de ruta entre estaciones
     5) [RF05] Búsqueda global de estaciones
     6) [RF06] Gestión de tarjeta de transporte
     7) [RF07] Información y referencias de estación

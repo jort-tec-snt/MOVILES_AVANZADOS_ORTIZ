@@ -13,7 +13,7 @@ El proyecto aplica estructuras de datos, colecciones y control de flujo mediante
 | **RF01** | Catálogo General         | Muestra las líneas registradas, origen, destino, estado y cantidad de estaciones.            |
 | **RF02** | Detalle de Estaciones    | Permite seleccionar una línea y listar secuencialmente sus estaciones.                       |
 | **RF03** | Detección de Transbordos | Identifica estaciones compartidas entre líneas mediante operaciones con `Set`.               |
-| **RF04** | Asistente de Ruta        | Genera una ruta desde la Línea 2 hacia el Estadio Nacional mediante conexión con la Línea 3. |
+| **RF04** | Asistente de Ruta        | Calcula el recorrido entre dos estaciones de una misma línea, mostrando dirección, secuencia del trayecto y cantidad de estaciones restantes. |
 | **RF05** | Búsqueda Global          | Busca estaciones por nombre o coincidencia parcial dentro de toda la red.                    |
 | **RF06** | Gestión de Tarjeta de Transporte | Permite consultar el estado y saldo de una tarjeta simulada y realizar recargas durante la ejecución del sistema. |
 | **RF07** | Información y Referencias de Estación | Permite consultar la ubicación, coordenadas y referencias cercanas registradas de una estación de la red. |
@@ -121,7 +121,7 @@ El sistema integra los requerimientos mediante un menú interactivo:
 1) [RF01] Ver catálogo general de líneas
 2) [RF02] Consultar estaciones por línea
 3) [RF03] Ver puntos de transbordo
-4) [RF04] Asistente de ruta al Estadio Nacional
+4) [RF04] Asistente de ruta entre estaciones
 5) [RF05] Búsqueda global de estaciones
 6) [RF06] Gestión de tarjeta de transporte
 7) [RF07] Información y referencias de estación
