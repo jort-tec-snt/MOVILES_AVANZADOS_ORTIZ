@@ -16,6 +16,7 @@ El proyecto aplica estructuras de datos, colecciones y control de flujo mediante
 | **RF04** | Asistente de Ruta        | Genera una ruta desde la Línea 2 hacia el Estadio Nacional mediante conexión con la Línea 3. |
 | **RF05** | Búsqueda Global          | Busca estaciones por nombre o coincidencia parcial dentro de toda la red.                    |
 | **RF06** | Gestión de Tarjeta de Transporte | Permite consultar el estado y saldo de una tarjeta simulada y realizar recargas durante la ejecución del sistema. |
+| **RF07** | Información y Referencias de Estación | Permite consultar la ubicación, coordenadas y referencias cercanas registradas de una estación de la red. |
 
 ---
 
@@ -29,6 +30,7 @@ struct Estacion {
     let ubicacion: String
     let latitud: Double
     let longitud: Double
+    let referencias: [String]
 }
 
 struct LineaMetro {
@@ -69,6 +71,7 @@ nombre
 ubicación
 latitud
 longitud
+referencias
 ```
 
 > Los datos forman parte de una representación académica utilizada para el funcionamiento del simulador.
@@ -121,7 +124,8 @@ El sistema integra los requerimientos mediante un menú interactivo:
 4) [RF04] Asistente de ruta al Estadio Nacional
 5) [RF05] Búsqueda global de estaciones
 6) [RF06] Gestión de tarjeta de transporte
-7) Salir
+7) [RF07] Información y referencias de estación
+8) Salir
 ```
 
 ---
@@ -141,6 +145,7 @@ metro-lima/
 │   ├── RF04
 │   ├── RF05
 │   ├── RF06
+│   ├── RF07
 │   └── Menú CLI
 │
 └── README.md

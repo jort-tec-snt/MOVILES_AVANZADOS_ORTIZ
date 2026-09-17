@@ -7,6 +7,21 @@ struct Estacion {
     let ubicacion: String
     let latitud: Double
     let longitud: Double
+    let referencias: [String]
+
+    init(
+        nombre: String,
+        ubicacion: String,
+        latitud: Double,
+        longitud: Double,
+        referencias: [String] = []
+    ) {
+        self.nombre = nombre
+        self.ubicacion = ubicacion
+        self.latitud = latitud
+        self.longitud = longitud
+        self.referencias = referencias
+    }
 }
 
 struct LineaMetro {
@@ -125,7 +140,12 @@ var redMetro: [String: LineaMetro] = [
                 nombre: "La Cultura",
                 ubicacion: "Av. Aviación con Av. Javier Prado Este",
                 latitud: -12.0872,
-                longitud: -77.0053),
+                longitud: -77.0053,
+                referencias: [
+                    "Museo de la Nación",
+                    "Biblioteca Nacional del Perú",
+                    "Centro de Convenciones de Lima"
+                ]),
             Estacion(
                 nombre: "Nicolás Arriola",
                 ubicacion: "Av. Aviación con Av. Nicolás Arriola",
@@ -135,7 +155,12 @@ var redMetro: [String: LineaMetro] = [
                 nombre: "Gamarra",
                 ubicacion: "Av. Aviación con Jr. Hipólito Unanue (La Victoria)",
                 latitud: -12.0687,
-                longitud: -77.0145),
+                longitud: -77.0145,
+                referencias: [
+                    "Emporio Comercial de Gamarra",
+                    "Parque Cánepa",
+                    "Mercado de Gamarra"
+                ]),
             Estacion(
                 nombre: "Miguel Grau",
                 ubicacion: "Av. Miguel Grau con Av. Aviación",
@@ -239,7 +264,12 @@ var redMetro: [String: LineaMetro] = [
                 nombre: "San Marcos",
                 ubicacion: "Av. Amézaga (Frente a la Univ. San Marcos)",
                 latitud: -12.0568,
-                longitud: -77.0722),
+                longitud: -77.0722,
+                referencias: [
+                    "Universidad Nacional Mayor de San Marcos",
+                    "Ciudad Universitaria",
+                    "Av. Amézaga"
+                ]),
             Estacion(
                 nombre: "Elio",
                 ubicacion: "Av. Venezuela con Jr. República de Ecuador",
@@ -269,7 +299,12 @@ var redMetro: [String: LineaMetro] = [
                 nombre: "Estación Central",
                 ubicacion: "Paseo de los Héroes Navales (Debajo de Av. Grau)",
                 latitud: -12.0555,
-                longitud: -77.0345),
+                longitud: -77.0345,
+                referencias: [
+                    "Paseo de los Héroes Navales",
+                    "Metropolitano",
+                    "Centro Cívico de Lima"
+                ]),
             Estacion(
                 nombre: "Cangallo",
                 ubicacion: "Av. 28 de Julio con Jr. Cangallo",
@@ -423,7 +458,12 @@ var redMetro: [String: LineaMetro] = [
                 nombre: "Estadio Nacional",
                 ubicacion: "Av. Paseo de la República (Frente al Estadio)",
                 latitud: -12.0665,
-                longitud: -77.0332),
+                longitud: -77.0332,
+                referencias: [
+                    "Estadio Nacional",
+                    "Parque de la Reserva",
+                    "Circuito Mágico del Agua"
+                ]),
             Estacion(
                 nombre: "Alejandro Tirado",
                 ubicacion: "Av. Arequipa con Av. Alejandro Tirado",
@@ -502,7 +542,12 @@ var redMetro: [String: LineaMetro] = [
                 nombre: "Aeropuerto",
                 ubicacion: "Av. Elmer Faucett (Frente al Aeropuerto Jorge Chávez)",
                 latitud: -12.0215,
-                longitud: -77.1082),
+                longitud: -77.1082,
+                referencias: [
+                    "Aeropuerto Internacional Jorge Chávez",
+                    "Av. Elmer Faucett",
+                    "Terminal aéreo"
+                ]),
             Estacion(
                 nombre: "El Muelle",
                 ubicacion: "Av. Elmer Faucett con Av. El Muelle",
@@ -985,6 +1030,127 @@ func ejecutarRF06_GestionTarjeta() {
     }
 }
 
+// RF07 - INFORMACIÓN Y REFERENCIAS DE ESTACIÓN
+
+func mostrarInformacionEstacion(
+    codigo: String,
+    linea: String,
+    estacion: Estacion
+) {
+
+    print("""
+
+    ==================================================
+           [RF07] INFORMACIÓN DE ESTACIÓN
+    ==================================================
+
+    🚉 \(estacion.nombre)
+    Línea: \(codigo) - \(linea)
+
+    📍 Ubicación:
+    \(estacion.ubicacion)
+
+    🧭 Coordenadas:
+    Latitud: \(estacion.latitud)
+    Longitud: \(estacion.longitud)
+
+    🏙 Referencias cercanas:
+    """)
+
+    guard !estacion.referencias.isEmpty else {
+        print("Sin referencias cercanas registradas.")
+        return
+    }
+
+    for referencia in estacion.referencias {
+        print("• \(referencia)")
+    }
+}
+
+func ejecutarRF07_InformacionEstacion() {
+
+    print(
+        "\nIngrese el nombre o parte del nombre de la estación:",
+        terminator: " "
+    )
+
+    let consulta = (readLine() ?? "")
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+
+    guard !consulta.isEmpty else {
+        print("\n⚠️ Debe ingresar un texto para realizar la búsqueda.")
+        return
+    }
+
+    var hallazgos: [(codigo: String, linea: String, estacion: Estacion)] = []
+
+    for (codigo, linea) in redMetro {
+        for estacion in linea.estaciones {
+            if estacion.nombre
+                .lowercased()
+                .contains(consulta.lowercased()) {
+
+                hallazgos.append(
+                    (
+                        codigo: codigo,
+                        linea: linea.nombre,
+                        estacion: estacion
+                    )
+                )
+            }
+        }
+    }
+
+    let resultadosOrdenados = hallazgos.sorted {
+        if $0.codigo == $1.codigo {
+            return $0.estacion.nombre < $1.estacion.nombre
+        }
+
+        return $0.codigo < $1.codigo
+    }
+
+    guard !resultadosOrdenados.isEmpty else {
+        print("\n❌ No se encontraron estaciones con ese criterio.")
+        return
+    }
+
+    if resultadosOrdenados.count == 1 {
+        let resultado = resultadosOrdenados[0]
+        mostrarInformacionEstacion(
+            codigo: resultado.codigo,
+            linea: resultado.linea,
+            estacion: resultado.estacion
+        )
+        return
+    }
+
+    print("\nSe encontraron varias estaciones:")
+
+    for (indice, resultado) in resultadosOrdenados.enumerated() {
+        print("\(indice + 1). \(resultado.estacion.nombre) - \(resultado.codigo)")
+    }
+
+    print("Seleccione una estación:", terminator: " ")
+
+    let entrada = (readLine() ?? "")
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+
+    guard
+        let seleccion = Int(entrada),
+        resultadosOrdenados.indices.contains(seleccion - 1)
+    else {
+        print("\n⚠️ Selección inválida. Regresando al menú principal.")
+        return
+    }
+
+    let resultado = resultadosOrdenados[seleccion - 1]
+    mostrarInformacionEstacion(
+        codigo: resultado.codigo,
+        linea: resultado.linea,
+        estacion: resultado.estacion
+    )
+}
+
 // NAVEGACIÓN PRINCIPAL - CLI
 
 var sistemaActivo = true
@@ -1003,10 +1169,11 @@ while sistemaActivo {
     4) [RF04] Asistente de ruta al Estadio Nacional
     5) [RF05] Búsqueda global de estaciones
     6) [RF06] Gestión de tarjeta de transporte
-    7) Salir
+    7) [RF07] Información y referencias de estación
+    8) Salir
 
     --------------------------------------------------
-    Seleccione una opción (1-7):
+    Seleccione una opción (1-8):
     """, terminator: " ")
 
     let seleccion = (readLine() ?? "")
@@ -1033,10 +1200,13 @@ while sistemaActivo {
         ejecutarRF06_GestionTarjeta()
 
     case "7":
+        ejecutarRF07_InformacionEstacion()
+
+    case "8":
         print("\n👋 Cerrando el Simulador de la Red del Metro de Lima.")
         sistemaActivo = false
 
     default:
-        print("\n❌ Opción inválida. Ingrese un número entre 1 y 7.")
+        print("\n❌ Opción inválida. Ingrese un número entre 1 y 8.")
     }
 }
