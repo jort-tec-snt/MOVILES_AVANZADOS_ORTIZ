@@ -807,6 +807,12 @@ func ejecutarRF03_DetectarTransbordos() {
 
 // RF04 - ASISTENTE DE RUTA
 
+// Nodo auxiliar utilizado únicamente por el algoritmo de rutas.
+struct NodoRuta: Hashable {
+    let codigoLinea: String
+    let indiceEstacion: Int
+}
+
 func solicitarIndiceEstacion(
     mensaje: String,
     cantidadEstaciones: Int
@@ -819,7 +825,8 @@ func solicitarIndiceEstacion(
 
     guard
         let seleccion = Int(entrada),
-        (1...cantidadEstaciones).contains(seleccion)
+        seleccion >= 1,
+        seleccion <= cantidadEstaciones
     else {
         print("\n⚠️ Selección inválida. Ingrese un número de estación válido.")
         return nil
@@ -828,41 +835,308 @@ func solicitarIndiceEstacion(
     return seleccion - 1
 }
 
+func obtenerEstacion(de nodo: NodoRuta) -> Estacion? {
+    guard
+        let linea = redMetro[nodo.codigoLinea],
+        linea.estaciones.indices.contains(nodo.indiceEstacion)
+    else {
+        return nil
+    }
+
+    return linea.estaciones[nodo.indiceEstacion]
+}
+
+func obtenerVecinosRuta(de nodo: NodoRuta) -> [NodoRuta] {
+    guard
+        let lineaActual = redMetro[nodo.codigoLinea],
+        lineaActual.estaciones.indices.contains(nodo.indiceEstacion)
+    else {
+        return []
+    }
+
+    var vecinos: [NodoRuta] = []
+
+    if nodo.indiceEstacion > 0 {
+        vecinos.append(
+            NodoRuta(
+                codigoLinea: nodo.codigoLinea,
+                indiceEstacion: nodo.indiceEstacion - 1
+            )
+        )
+    }
+
+    if nodo.indiceEstacion + 1 < lineaActual.estaciones.count {
+        vecinos.append(
+            NodoRuta(
+                codigoLinea: nodo.codigoLinea,
+                indiceEstacion: nodo.indiceEstacion + 1
+            )
+        )
+    }
+
+    let nombreEstacion = lineaActual.estaciones[nodo.indiceEstacion].nombre
+
+    for codigoLinea in redMetro.keys.sorted()
+    where codigoLinea != nodo.codigoLinea {
+        guard let otraLinea = redMetro[codigoLinea] else {
+            continue
+        }
+
+        for (indice, estacion) in otraLinea.estaciones.enumerated()
+        where estacion.nombre == nombreEstacion {
+            vecinos.append(
+                NodoRuta(
+                    codigoLinea: codigoLinea,
+                    indiceEstacion: indice
+                )
+            )
+        }
+    }
+
+    return vecinos
+}
+
+func reconstruirRuta(
+    origen: NodoRuta,
+    destino: NodoRuta,
+    predecesores: [NodoRuta: NodoRuta]
+) -> [NodoRuta]? {
+    var ruta = [destino]
+    var nodoActual = destino
+
+    while nodoActual != origen {
+        guard let nodoAnterior = predecesores[nodoActual] else {
+            return nil
+        }
+
+        ruta.append(nodoAnterior)
+        nodoActual = nodoAnterior
+    }
+
+    return Array(ruta.reversed())
+}
+
+func buscarRutaBFS(
+    origen: NodoRuta,
+    destino: NodoRuta
+) -> [NodoRuta]? {
+    if origen == destino {
+        return [origen]
+    }
+
+    var cola = [origen]
+    var siguienteEnCola = 0
+    var visitados: Set<NodoRuta> = [origen]
+    var predecesores: [NodoRuta: NodoRuta] = [:]
+
+    while siguienteEnCola < cola.count {
+        let nodoActual = cola[siguienteEnCola]
+        siguienteEnCola += 1
+
+        for vecino in obtenerVecinosRuta(de: nodoActual) {
+            guard !visitados.contains(vecino) else {
+                continue
+            }
+
+            visitados.insert(vecino)
+            predecesores[vecino] = nodoActual
+
+            if vecino == destino {
+                return reconstruirRuta(
+                    origen: origen,
+                    destino: destino,
+                    predecesores: predecesores
+                )
+            }
+
+            cola.append(vecino)
+        }
+    }
+
+    return nil
+}
+
+func direccionDelMovimiento(
+    desde nodoActual: NodoRuta,
+    hasta siguienteNodo: NodoRuta
+) -> String? {
+    guard
+        nodoActual.codigoLinea == siguienteNodo.codigoLinea,
+        let linea = redMetro[nodoActual.codigoLinea]
+    else {
+        return nil
+    }
+
+    if siguienteNodo.indiceEstacion > nodoActual.indiceEstacion {
+        return linea.destino
+    }
+
+    if siguienteNodo.indiceEstacion < nodoActual.indiceEstacion {
+        return linea.origen
+    }
+
+    return nil
+}
+
+func mostrarRutaEntreLineas(_ ruta: [NodoRuta]) {
+    guard
+        let nodoOrigen = ruta.first,
+        let nodoDestino = ruta.last,
+        let estacionOrigen = obtenerEstacion(de: nodoOrigen),
+        let estacionDestino = obtenerEstacion(de: nodoDestino)
+    else {
+        print("\n⚠️ No se pudo mostrar la ruta encontrada.")
+        return
+    }
+
+    print("""
+
+    ==================================================
+                  RUTA ENCONTRADA
+    ==================================================
+
+    Origen:
+    🚉 \(estacionOrigen.nombre)
+    Línea \(nodoOrigen.codigoLinea)
+
+    Destino:
+    🏁 \(estacionDestino.nombre)
+    Línea \(nodoDestino.codigoLinea)
+
+    Recorrido:
+    \(estacionOrigen.nombre) [\(nodoOrigen.codigoLinea)]
+    """)
+
+    if ruta.count > 1,
+       let direccionInicial = direccionDelMovimiento(
+           desde: ruta[0],
+           hasta: ruta[1]
+       ) {
+        print("Dirección: \(direccionInicial)")
+    }
+
+    var estacionesRestantes = 0
+    var cantidadTransbordos = 0
+
+    for indice in 0..<(ruta.count - 1) {
+        let nodoActual = ruta[indice]
+        let siguienteNodo = ruta[indice + 1]
+
+        guard
+            let estacionActual = obtenerEstacion(de: nodoActual),
+            let siguienteEstacion = obtenerEstacion(de: siguienteNodo)
+        else {
+            print("\n⚠️ No se pudo mostrar la ruta encontrada.")
+            return
+        }
+
+        if nodoActual.codigoLinea != siguienteNodo.codigoLinea {
+            cantidadTransbordos += 1
+
+            print("""
+
+            🔀 TRANSBORDO
+            \(nodoActual.codigoLinea) → \(siguienteNodo.codigoLinea)
+            \(estacionActual.nombre)
+            """)
+
+            if indice + 2 < ruta.count,
+               let nuevaDireccion = direccionDelMovimiento(
+                   desde: siguienteNodo,
+                   hasta: ruta[indice + 2]
+               ) {
+                print("Dirección: \(nuevaDireccion)")
+            }
+        } else {
+            estacionesRestantes += 1
+            print("↓")
+            print("\(siguienteEstacion.nombre) [\(siguienteNodo.codigoLinea)]")
+        }
+    }
+
+    print("""
+
+    --------------------------------------------------
+    Estaciones restantes: \(estacionesRestantes)
+    Transbordos: \(cantidadTransbordos)
+    """)
+}
+
 func ejecutarRF04_AsistenteRuta() {
 
     print("\n==================================================")
     print("   [RF04] ASISTENTE DE RUTA")
     print("==================================================")
 
-    print("\nIngrese el código de la línea (ej. L1):", terminator: " ")
+    print("\nIngrese el código de la línea de origen:", terminator: " ")
 
-    let codigoLinea = (readLine() ?? "")
+    let codigoLineaOrigen = (readLine() ?? "")
         .components(separatedBy: .whitespacesAndNewlines)
         .joined()
         .uppercased()
 
-    guard let linea = redMetro[codigoLinea] else {
+    guard let lineaOrigen = redMetro[codigoLineaOrigen] else {
         print("\n⚠️ La línea ingresada no existe.")
         return
     }
 
-    print("\n\(linea.codigo) - \(linea.nombre)")
+    print("\n\(lineaOrigen.codigo) - \(lineaOrigen.nombre)")
 
-    for (indice, estacion) in linea.estaciones.enumerated() {
+    for (indice, estacion) in lineaOrigen.estaciones.enumerated() {
         print("\(indice + 1). \(estacion.nombre)")
     }
 
     guard let indiceOrigen = solicitarIndiceEstacion(
         mensaje: "\nSeleccione la estación de origen:",
-        cantidadEstaciones: linea.estaciones.count
+        cantidadEstaciones: lineaOrigen.estaciones.count
     ) else {
         return
     }
 
+    print("\nIngrese el código de la línea de destino:", terminator: " ")
+
+    let codigoLineaDestino = (readLine() ?? "")
+        .components(separatedBy: .whitespacesAndNewlines)
+        .joined()
+        .uppercased()
+
+    guard let lineaDestino = redMetro[codigoLineaDestino] else {
+        print("\n⚠️ La línea ingresada no existe.")
+        return
+    }
+
+    print("\n\(lineaDestino.codigo) - \(lineaDestino.nombre)")
+
+    for (indice, estacion) in lineaDestino.estaciones.enumerated() {
+        print("\(indice + 1). \(estacion.nombre)")
+    }
+
     guard let indiceDestino = solicitarIndiceEstacion(
-        mensaje: "Seleccione la estación de destino:",
-        cantidadEstaciones: linea.estaciones.count
+        mensaje: "\nSeleccione la estación de destino:",
+        cantidadEstaciones: lineaDestino.estaciones.count
     ) else {
+        return
+    }
+
+    let nodoOrigen = NodoRuta(
+        codigoLinea: codigoLineaOrigen,
+        indiceEstacion: indiceOrigen
+    )
+    let nodoDestino = NodoRuta(
+        codigoLinea: codigoLineaDestino,
+        indiceEstacion: indiceDestino
+    )
+
+    if codigoLineaOrigen != codigoLineaDestino {
+        guard let ruta = buscarRutaBFS(
+            origen: nodoOrigen,
+            destino: nodoDestino
+        ) else {
+            print("\n⚠️ No se encontró una ruta disponible entre las estaciones seleccionadas.")
+            return
+        }
+
+        mostrarRutaEntreLineas(ruta)
         return
     }
 
@@ -871,12 +1145,13 @@ func ejecutarRF04_AsistenteRuta() {
     guard estacionesRestantes > 0 else {
         print("\n✅ Ya se encuentra en la estación de destino.")
         print("Estaciones restantes: 0")
+        print("Transbordos: 0")
         return
     }
 
     let direccion = indiceDestino > indiceOrigen
-        ? linea.destino
-        : linea.origen
+        ? lineaOrigen.destino
+        : lineaOrigen.origen
     let paso = indiceDestino > indiceOrigen ? 1 : -1
 
     print("""
@@ -885,17 +1160,17 @@ func ejecutarRF04_AsistenteRuta() {
                   RUTA ENCONTRADA
     ==================================================
 
-    Línea: \(linea.codigo) - \(linea.nombre)
+    Línea: \(lineaOrigen.codigo) - \(lineaOrigen.nombre)
     Dirección: \(direccion)
 
     Origen:
-    🚉 \(linea.estaciones[indiceOrigen].nombre)
+    🚉 \(lineaOrigen.estaciones[indiceOrigen].nombre)
 
     Recorrido:
     """)
 
     for indice in stride(from: indiceOrigen, through: indiceDestino, by: paso) {
-        print(linea.estaciones[indice].nombre)
+        print(lineaOrigen.estaciones[indice].nombre)
 
         if indice != indiceDestino {
             print("↓")
@@ -905,9 +1180,10 @@ func ejecutarRF04_AsistenteRuta() {
     print("""
 
     Destino:
-    🏁 \(linea.estaciones[indiceDestino].nombre)
+    🏁 \(lineaOrigen.estaciones[indiceDestino].nombre)
 
     Estaciones restantes: \(estacionesRestantes)
+    Transbordos: 0
     """)
 }
 

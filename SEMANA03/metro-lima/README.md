@@ -13,10 +13,12 @@ El proyecto aplica estructuras de datos, colecciones y control de flujo mediante
 | **RF01** | Catálogo General         | Muestra las líneas registradas, origen, destino, estado y cantidad de estaciones.            |
 | **RF02** | Detalle de Estaciones    | Permite seleccionar una línea y listar secuencialmente sus estaciones.                       |
 | **RF03** | Detección de Transbordos | Identifica estaciones compartidas entre líneas mediante operaciones con `Set`.               |
-| **RF04** | Asistente de Ruta        | Calcula el recorrido entre dos estaciones de una misma línea, mostrando dirección, secuencia del trayecto y cantidad de estaciones restantes. |
+| **RF04** | Asistente de Ruta        | Calcula recorridos entre estaciones de una misma línea o de líneas diferentes, detectando transbordos, mostrando el trayecto y contabilizando las estaciones restantes. |
 | **RF05** | Búsqueda Global          | Busca estaciones por nombre o coincidencia parcial dentro de toda la red.                    |
 | **RF06** | Gestión de Tarjeta de Transporte | Permite consultar el estado y saldo de una tarjeta simulada y realizar recargas durante la ejecución del sistema. |
 | **RF07** | Información y Referencias de Estación | Permite consultar la ubicación, coordenadas y referencias cercanas registradas de una estación de la red. |
+
+Para recorridos entre líneas, RF04 utiliza búsqueda en anchura (BFS) sobre las estaciones y sus conexiones de transbordo.
 
 ---
 
