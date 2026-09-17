@@ -17,12 +17,14 @@ El proyecto aplica estructuras de datos, colecciones y control de flujo mediante
 | **RF05** | Búsqueda Global          | Busca estaciones por nombre o coincidencia parcial dentro de toda la red.                    |
 | **RF06** | Gestión de Tarjeta de Transporte | Permite consultar el estado y saldo de una tarjeta simulada y realizar recargas durante la ejecución del sistema. |
 | **RF07** | Información y Referencias de Estación | Permite consultar la ubicación, coordenadas y referencias cercanas registradas de una estación de la red. |
-| **RF08** | Modo Administrador y Expansión de Red | Permite agregar e insertar estaciones, crear nuevas líneas y simular dinámicamente el crecimiento de la Red del Metro durante la ejecución. |
+| **RF08** | Modo Administrador y Gestión Operativa | Permite agregar e insertar estaciones, crear nuevas líneas y modificar el estado operativo de las estaciones para simular cierres y mantenimientos. |
 | **RF09** | Simulación de Viaje y Pago con Tarjeta | Permite calcular un recorrido utilizando la red actual, consultar el estado y saldo de la tarjeta, confirmar el viaje y descontar una tarifa simulada. |
 
-Para recorridos entre líneas, RF04 utiliza búsqueda en anchura (BFS) sobre las estaciones y sus conexiones de transbordo.
+RF04 utiliza búsqueda en anchura (BFS) exclusivamente sobre estaciones operativas y conexiones de transbordo disponibles.
 
 Los cambios realizados desde RF08 son temporales durante la sesión. Las funciones de consulta y rutas utilizan inmediatamente la red actualizada.
+
+Los cambios de estado afectan dinámicamente la disponibilidad de rutas y transbordos.
 
 La tarifa utilizada por RF09 es un valor simulado con fines académicos y no representa necesariamente la tarifa oficial del servicio.
 
@@ -33,12 +35,20 @@ La tarifa utilizada por RF09 es un valor simulado con fines académicos y no rep
 El sistema utiliza dos estructuras principales:
 
 ```swift
+enum EstadoEstacion {
+    case operativa
+    case mantenimiento
+    case cerrada
+}
+
 struct Estacion {
     let nombre: String
     let ubicacion: String
     let latitud: Double
     let longitud: Double
     let referencias: [String]
+    var estado: EstadoEstacion
+    var motivoEstado: String?
 }
 
 struct LineaMetro {
@@ -50,6 +60,8 @@ struct LineaMetro {
     var estaciones: [Estacion]
 }
 ```
+
+Las estaciones se inicializan como `operativa` y sin motivo por defecto, por lo que la red mock existente conserva su comportamiento sin cambios en sus inicializaciones.
 
 La red completa se almacena mediante:
 
@@ -80,6 +92,8 @@ ubicación
 latitud
 longitud
 referencias
+estado operativo
+motivo del estado (cuando corresponda)
 ```
 
 > Los datos forman parte de una representación académica utilizada para el funcionamiento del simulador.

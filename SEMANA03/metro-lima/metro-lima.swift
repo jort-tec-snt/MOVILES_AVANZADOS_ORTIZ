@@ -2,25 +2,59 @@ import Foundation
 
 //Modelo de Datos
 
+enum EstadoEstacion: CaseIterable {
+    case operativa
+    case mantenimiento
+    case cerrada
+
+    var descripcion: String {
+        switch self {
+        case .operativa:
+            return "OPERATIVA"
+        case .mantenimiento:
+            return "MANTENIMIENTO"
+        case .cerrada:
+            return "CERRADA"
+        }
+    }
+
+    var descripcionCLI: String {
+        switch self {
+        case .operativa:
+            return "✅ \(descripcion)"
+        case .mantenimiento:
+            return "⚠️ \(descripcion)"
+        case .cerrada:
+            return "⛔ \(descripcion)"
+        }
+    }
+}
+
 struct Estacion {
     let nombre: String
     let ubicacion: String
     let latitud: Double
     let longitud: Double
     let referencias: [String]
+    var estado: EstadoEstacion
+    var motivoEstado: String?
 
     init(
         nombre: String,
         ubicacion: String,
         latitud: Double,
         longitud: Double,
-        referencias: [String] = []
+        referencias: [String] = [],
+        estado: EstadoEstacion = .operativa,
+        motivoEstado: String? = nil
     ) {
         self.nombre = nombre
         self.ubicacion = ubicacion
         self.latitud = latitud
         self.longitud = longitud
         self.referencias = referencias
+        self.estado = estado
+        self.motivoEstado = motivoEstado
     }
 }
 
@@ -750,9 +784,14 @@ func ejecutarRF02_DetalleEstaciones() {
     for (index, estacion) in linea.estaciones.enumerated() {
 
         print("""
-        \(String(format: "%02d", index + 1)). \(estacion.nombre)
+        \(String(format: "%02d", index + 1)). \(estacion.nombre) [\(estacion.estado.descripcionCLI)]
             📍 \(estacion.ubicacion)
         """)
+
+        if estacion.estado != .operativa,
+           let motivo = estacion.motivoEstado {
+            print("    Motivo: \(motivo)")
+        }
     }
 
     print("--------------------------------------------------")
@@ -805,8 +844,41 @@ func ejecutarRF03_DetectarTransbordos() {
                 \(lineaA.nombre) ↔ \(lineaB.nombre)
                 """)
 
-                for estacion in intersecciones {
-                    print("   └── \(estacion)")
+                for nombreEstacion in intersecciones {
+                    guard
+                        let estacionA = lineaA.estaciones.first(
+                            where: { $0.nombre == nombreEstacion }
+                        ),
+                        let estacionB = lineaB.estaciones.first(
+                            where: { $0.nombre == nombreEstacion }
+                        )
+                    else {
+                        continue
+                    }
+
+                    print("   └── \(nombreEstacion)")
+
+                    let estacionesBloqueadas = [
+                        (codigoA, estacionA),
+                        (codigoB, estacionB)
+                    ].filter { $0.1.estado != .operativa }
+
+                    if estacionesBloqueadas.isEmpty {
+                        print("       ✅ Transbordo disponible")
+                    } else {
+                        print("       ⚠️ Transbordo no disponible")
+
+                        for (codigo, estacion) in estacionesBloqueadas {
+                            print(
+                                "       Estado en \(codigo): "
+                                + estacion.estado.descripcionCLI
+                            )
+
+                            if let motivo = estacion.motivoEstado {
+                                print("       Motivo: \(motivo)")
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -860,14 +932,16 @@ func obtenerEstacion(de nodo: NodoRuta) -> Estacion? {
 func obtenerVecinosRuta(de nodo: NodoRuta) -> [NodoRuta] {
     guard
         let lineaActual = redMetro[nodo.codigoLinea],
-        lineaActual.estaciones.indices.contains(nodo.indiceEstacion)
+        lineaActual.estaciones.indices.contains(nodo.indiceEstacion),
+        lineaActual.estaciones[nodo.indiceEstacion].estado == .operativa
     else {
         return []
     }
 
     var vecinos: [NodoRuta] = []
 
-    if nodo.indiceEstacion > 0 {
+    if nodo.indiceEstacion > 0,
+       lineaActual.estaciones[nodo.indiceEstacion - 1].estado == .operativa {
         vecinos.append(
             NodoRuta(
                 codigoLinea: nodo.codigoLinea,
@@ -876,7 +950,8 @@ func obtenerVecinosRuta(de nodo: NodoRuta) -> [NodoRuta] {
         )
     }
 
-    if nodo.indiceEstacion + 1 < lineaActual.estaciones.count {
+    if nodo.indiceEstacion + 1 < lineaActual.estaciones.count,
+       lineaActual.estaciones[nodo.indiceEstacion + 1].estado == .operativa {
         vecinos.append(
             NodoRuta(
                 codigoLinea: nodo.codigoLinea,
@@ -894,7 +969,8 @@ func obtenerVecinosRuta(de nodo: NodoRuta) -> [NodoRuta] {
         }
 
         for (indice, estacion) in otraLinea.estaciones.enumerated()
-        where estacion.nombre == nombreEstacion {
+        where estacion.nombre == nombreEstacion
+            && estacion.estado == .operativa {
             vecinos.append(
                 NodoRuta(
                     codigoLinea: codigoLinea,
@@ -931,6 +1007,13 @@ func buscarRutaBFS(
     origen: NodoRuta,
     destino: NodoRuta
 ) -> [NodoRuta]? {
+    guard
+        obtenerEstacion(de: origen)?.estado == .operativa,
+        obtenerEstacion(de: destino)?.estado == .operativa
+    else {
+        return nil
+    }
+
     if origen == destino {
         return [origen]
     }
@@ -972,28 +1055,50 @@ func calcularRuta(
     destino: NodoRuta
 ) -> [NodoRuta]? {
     guard
-        obtenerEstacion(de: origen) != nil,
-        obtenerEstacion(de: destino) != nil
+        obtenerEstacion(de: origen)?.estado == .operativa,
+        obtenerEstacion(de: destino)?.estado == .operativa
     else {
         return nil
     }
 
-    guard origen.codigoLinea == destino.codigoLinea else {
-        return buscarRutaBFS(origen: origen, destino: destino)
+    return buscarRutaBFS(origen: origen, destino: destino)
+}
+
+func validarExtremosOperativos(
+    origen: NodoRuta,
+    destino: NodoRuta
+) -> Bool {
+    guard
+        let estacionOrigen = obtenerEstacion(de: origen),
+        let estacionDestino = obtenerEstacion(de: destino)
+    else {
+        print("\n⚠️ No se pudieron validar las estaciones seleccionadas.")
+        return false
     }
 
-    let paso = destino.indiceEstacion >= origen.indiceEstacion ? 1 : -1
+    if estacionOrigen.estado != .operativa {
+        print("\n⛔ La estación de origen no se encuentra operativa.")
+        print("Estado: \(estacionOrigen.estado.descripcionCLI)")
 
-    return stride(
-        from: origen.indiceEstacion,
-        through: destino.indiceEstacion,
-        by: paso
-    ).map {
-        NodoRuta(
-            codigoLinea: origen.codigoLinea,
-            indiceEstacion: $0
-        )
+        if let motivo = estacionOrigen.motivoEstado {
+            print("Motivo: \(motivo)")
+        }
+
+        return false
     }
+
+    if estacionDestino.estado != .operativa {
+        print("\n⛔ La estación de destino no se encuentra operativa.")
+        print("Estado: \(estacionDestino.estado.descripcionCLI)")
+
+        if let motivo = estacionDestino.motivoEstado {
+            print("Motivo: \(motivo)")
+        }
+
+        return false
+    }
+
+    return true
 }
 
 struct ResumenRuta {
@@ -1201,64 +1306,32 @@ func ejecutarRF04_AsistenteRuta() {
         indiceEstacion: indiceDestino
     )
 
-    guard let ruta = calcularRuta(
+    guard validarExtremosOperativos(
         origen: nodoOrigen,
         destino: nodoDestino
     ) else {
-        print("\n⚠️ No se encontró una ruta disponible entre las estaciones seleccionadas.")
         return
     }
 
-    if codigoLineaOrigen != codigoLineaDestino {
-        mostrarRutaEntreLineas(ruta)
-        return
-    }
-
-    let estacionesRestantes = abs(indiceDestino - indiceOrigen)
-
-    guard estacionesRestantes > 0 else {
+    guard nodoOrigen != nodoDestino else {
         print("\n✅ Ya se encuentra en la estación de destino.")
         print("Estaciones restantes: 0")
         print("Transbordos: 0")
         return
     }
 
-    let direccion = indiceDestino > indiceOrigen
-        ? lineaOrigen.destino
-        : lineaOrigen.origen
-    let paso = indiceDestino > indiceOrigen ? 1 : -1
-
-    print("""
-
-    ==================================================
-                  RUTA ENCONTRADA
-    ==================================================
-
-    Línea: \(lineaOrigen.codigo) - \(lineaOrigen.nombre)
-    Dirección: \(direccion)
-
-    Origen:
-    🚉 \(lineaOrigen.estaciones[indiceOrigen].nombre)
-
-    Recorrido:
-    """)
-
-    for indice in stride(from: indiceOrigen, through: indiceDestino, by: paso) {
-        print(lineaOrigen.estaciones[indice].nombre)
-
-        if indice != indiceDestino {
-            print("↓")
-        }
+    guard let ruta = calcularRuta(
+        origen: nodoOrigen,
+        destino: nodoDestino
+    ) else {
+        print(
+            "\n⚠️ No existe una ruta operativa disponible entre "
+            + "las estaciones seleccionadas."
+        )
+        return
     }
 
-    print("""
-
-    Destino:
-    🏁 \(lineaOrigen.estaciones[indiceDestino].nombre)
-
-    Estaciones restantes: \(estacionesRestantes)
-    Transbordos: 0
-    """)
+    mostrarRutaEntreLineas(ruta)
 }
 
 
@@ -1325,8 +1398,14 @@ func ejecutarRF05_BuscarEstacion() {
         🚉 \(resultado.estacion.nombre)
            ├── Línea: \(resultado.codigo) - \(resultado.linea)
            ├── Ubicación: \(resultado.estacion.ubicacion)
-           └── Coordenadas: \(resultado.estacion.latitud), \(resultado.estacion.longitud)
+           ├── Coordenadas: \(resultado.estacion.latitud), \(resultado.estacion.longitud)
+           └── Estado: \(resultado.estacion.estado.descripcionCLI)
         """)
+
+        if resultado.estacion.estado != .operativa,
+           let motivo = resultado.estacion.motivoEstado {
+            print("   Motivo: \(motivo)")
+        }
     }
 }
 
@@ -1429,6 +1508,17 @@ func mostrarInformacionEstacion(
 
     🚉 \(estacion.nombre)
     Línea: \(codigo) - \(linea)
+
+    ⚙️ Estado operativo:
+    Estado: \(estacion.estado.descripcionCLI)
+    """)
+
+    if estacion.estado != .operativa,
+       let motivo = estacion.motivoEstado {
+        print("Motivo: \(motivo)")
+    }
+
+    print("""
 
     📍 Ubicación:
     \(estacion.ubicacion)
@@ -1762,6 +1852,87 @@ func mostrarResumenRed() {
     }
 }
 
+func cambiarEstadoEstacion() {
+    print("\nIngrese el código de la línea:", terminator: " ")
+
+    let codigo = normalizarCodigoLinea(readLine() ?? "")
+
+    guard var linea = redMetro[codigo] else {
+        print("\n⚠️ La línea ingresada no existe.")
+        return
+    }
+
+    guard !linea.estaciones.isEmpty else {
+        print("\n⚠️ La línea no tiene estaciones registradas.")
+        return
+    }
+
+    print("\n\(linea.codigo) - \(linea.nombre)")
+
+    for (indice, estacion) in linea.estaciones.enumerated() {
+        print(
+            "\(indice + 1). \(estacion.nombre) "
+            + "[\(estacion.estado.descripcionCLI)]"
+        )
+    }
+
+    guard let indiceEstacion = solicitarIndiceEstacion(
+        mensaje: "\nSeleccione la estación:",
+        cantidadEstaciones: linea.estaciones.count
+    ) else {
+        return
+    }
+
+    let estacionActual = linea.estaciones[indiceEstacion]
+    print("\nEstado actual: \(estacionActual.estado.descripcionCLI)")
+
+    if let motivo = estacionActual.motivoEstado {
+        print("Motivo actual: \(motivo)")
+    }
+
+    print("""
+
+    1. OPERATIVA
+    2. MANTENIMIENTO
+    3. CERRADA
+
+    Seleccione el nuevo estado:
+    """, terminator: " ")
+
+    let seleccion = (readLine() ?? "")
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+
+    let nuevoEstado: EstadoEstacion
+
+    switch seleccion {
+    case "1":
+        nuevoEstado = .operativa
+    case "2":
+        nuevoEstado = .mantenimiento
+    case "3":
+        nuevoEstado = .cerrada
+    default:
+        print("\n⚠️ Selección inválida. El estado no fue modificado.")
+        return
+    }
+
+    var motivo: String?
+
+    if nuevoEstado != .operativa {
+        guard let motivoIngresado = leerTextoNoVacio("Ingrese el motivo:") else {
+            return
+        }
+
+        motivo = motivoIngresado
+    }
+
+    linea.estaciones[indiceEstacion].estado = nuevoEstado
+    linea.estaciones[indiceEstacion].motivoEstado = motivo
+    redMetro[codigo] = linea
+
+    print("\n✅ Estado de la estación actualizado correctamente.")
+}
+
 func ejecutarRF08_ModoAdministrador() {
     var administradorActivo = true
 
@@ -1776,10 +1947,11 @@ func ejecutarRF08_ModoAdministrador() {
         2) Insertar estación entre estaciones existentes
         3) Crear nueva línea
         4) Ver resumen actual de la red
-        5) Volver
+        5) Cambiar estado de una estación
+        6) Volver
 
         --------------------------------------------------
-        Seleccione una opción (1-5):
+        Seleccione una opción (1-6):
         """, terminator: " ")
 
         let seleccion = (readLine() ?? "")
@@ -1799,10 +1971,13 @@ func ejecutarRF08_ModoAdministrador() {
             mostrarResumenRed()
 
         case "5":
+            cambiarEstadoEstacion()
+
+        case "6":
             administradorActivo = false
 
         default:
-            print("\n❌ Opción inválida. Ingrese un número entre 1 y 5.")
+            print("\n❌ Opción inválida. Ingrese un número entre 1 y 6.")
         }
     }
 }
@@ -1851,6 +2026,13 @@ func ejecutarRF09_SimularViaje() {
         return
     }
 
+    guard validarExtremosOperativos(
+        origen: nodoOrigen,
+        destino: nodoDestino
+    ) else {
+        return
+    }
+
     guard nodoOrigen != nodoDestino else {
         print("\n✅ Ya se encuentra en la estación de destino.")
         print("No es necesario iniciar un viaje.")
@@ -1862,7 +2044,10 @@ func ejecutarRF09_SimularViaje() {
         origen: nodoOrigen,
         destino: nodoDestino
     ) else {
-        print("\n⚠️ No existe una ruta disponible entre las estaciones seleccionadas.")
+        print(
+            "\n⚠️ No existe una ruta operativa disponible entre "
+            + "las estaciones seleccionadas."
+        )
         return
     }
 
@@ -1876,6 +2061,8 @@ func ejecutarRF09_SimularViaje() {
 
     let resumen = obtenerResumenRuta(ruta)
     let lineas = resumen.lineasUtilizadas.joined(separator: " → ")
+
+    mostrarRutaEntreLineas(ruta)
 
     print("""
 
