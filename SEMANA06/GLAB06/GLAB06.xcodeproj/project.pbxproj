@@ -13,6 +13,8 @@
 		010000000000000000000005 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 020000000000000000000005 /* Main.storyboard */; };
 		010000000000000000000006 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 020000000000000000000006 /* LaunchScreen.storyboard */; };
 		010000000000000000000007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 020000000000000000000007 /* Assets.xcassets */; };
+		010000000000000000000008 /* ClienteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02000000000000000000000A /* ClienteModel.swift */; };
+		010000000000000000000009 /* ViewControllerConfirmacion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02000000000000000000000B /* ViewControllerConfirmacion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		020000000000000000000007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		020000000000000000000008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		020000000000000000000009 /* GLAB06.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLAB06.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		02000000000000000000000A /* ClienteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClienteModel.swift; sourceTree = "<group>"; };
+		02000000000000000000000B /* ViewControllerConfirmacion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerConfirmacion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,8 @@
 				020000000000000000000002 /* SceneDelegate.swift */,
 				020000000000000000000003 /* ViewController.swift */,
 				020000000000000000000004 /* ViewController2.swift */,
+				02000000000000000000000A /* ClienteModel.swift */,
+				02000000000000000000000B /* ViewControllerConfirmacion.swift */,
 				020000000000000000000005 /* Main.storyboard */,
 				020000000000000000000006 /* LaunchScreen.storyboard */,
 				020000000000000000000007 /* Assets.xcassets */,
@@ -108,7 +114,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		030000000000000000000002 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (010000000000000000000001 /* AppDelegate.swift in Sources */, 010000000000000000000002 /* SceneDelegate.swift in Sources */, 010000000000000000000003 /* ViewController.swift in Sources */, 010000000000000000000004 /* ViewController2.swift in Sources */); runOnlyForDeploymentPostprocessing = 0; };
+		030000000000000000000002 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (010000000000000000000001 /* AppDelegate.swift in Sources */, 010000000000000000000002 /* SceneDelegate.swift in Sources */, 010000000000000000000003 /* ViewController.swift in Sources */, 010000000000000000000004 /* ViewController2.swift in Sources */, 010000000000000000000008 /* ClienteModel.swift in Sources */, 010000000000000000000009 /* ViewControllerConfirmacion.swift in Sources */); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
