@@ -16,6 +16,9 @@
 		010000000000000000000007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 020000000000000000000007 /* Assets.xcassets */; };
 		010000000000000000000008 /* ClienteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02000000000000000000000A /* ClienteModel.swift */; };
 		010000000000000000000009 /* ViewControllerConfirmacion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02000000000000000000000B /* ViewControllerConfirmacion.swift */; };
+		01000000000000000000000A /* VentaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02000000000000000000000C /* VentaModel.swift */; };
+		01000000000000000000000B /* NuevaVentaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02000000000000000000000D /* NuevaVentaViewController.swift */; };
+		01000000000000000000000C /* ResultadoVentaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02000000000000000000000E /* ResultadoVentaViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		020000000000000000000009 /* GLAB06.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLAB06.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02000000000000000000000A /* ClienteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClienteModel.swift; sourceTree = "<group>"; };
 		02000000000000000000000B /* ViewControllerConfirmacion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerConfirmacion.swift; sourceTree = "<group>"; };
+		02000000000000000000000C /* VentaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VentaModel.swift; sourceTree = "<group>"; };
+		02000000000000000000000D /* NuevaVentaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuevaVentaViewController.swift; sourceTree = "<group>"; };
+		02000000000000000000000E /* ResultadoVentaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultadoVentaViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,9 @@
 				020000000000000000000004 /* ViewController2.swift */,
 				02000000000000000000000A /* ClienteModel.swift */,
 				02000000000000000000000B /* ViewControllerConfirmacion.swift */,
+				02000000000000000000000C /* VentaModel.swift */,
+				02000000000000000000000D /* NuevaVentaViewController.swift */,
+				02000000000000000000000E /* ResultadoVentaViewController.swift */,
 				020000000000000000000005 /* Main.storyboard */,
 				020000000000000000000006 /* LaunchScreen.storyboard */,
 				020000000000000000000007 /* Assets.xcassets */,
@@ -153,6 +162,9 @@
 				010000000000000000000004 /* ViewController2.swift in Sources */,
 				010000000000000000000008 /* ClienteModel.swift in Sources */,
 				010000000000000000000009 /* ViewControllerConfirmacion.swift in Sources */,
+				01000000000000000000000A /* VentaModel.swift in Sources */,
+				01000000000000000000000B /* NuevaVentaViewController.swift in Sources */,
+				01000000000000000000000C /* ResultadoVentaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
