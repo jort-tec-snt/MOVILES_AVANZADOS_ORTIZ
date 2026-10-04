@@ -80,6 +80,11 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lbl-result" secondAttribute="trailing" constant="32" id="c-trail-result-lbl"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="heightTextField" destination="txt-height" id="out-height"/>
+                        <outlet property="resultLabel" destination="lbl-result" id="out-result"/>
+                        <outlet property="weightTextField" destination="txt-weight" id="out-weight"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
