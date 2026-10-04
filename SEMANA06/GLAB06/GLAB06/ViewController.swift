@@ -11,6 +11,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.tintColor = .systemBlue
+    }
+
     @IBAction func btnContinuar(_ sender: Any) {
         let oCliente = ClienteModel(
             pCodigo: 0,
