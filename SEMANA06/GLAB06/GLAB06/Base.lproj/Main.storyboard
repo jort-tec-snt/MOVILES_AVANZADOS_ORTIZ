@@ -149,6 +149,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Clientes" largeTitleDisplayMode="always" id="nav-item-screen-01">
+                        <barButtonItem key="leftBarButtonItem" title="Nueva venta" id="button-new-sale-01">
+                            <connections><segue destination="vc-new-sale" kind="show" id="segue-new-sale"/></connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Pantalla 2" image="rectangle.portrait.and.arrow.right" catalog="system" id="button-screen-02">
                             <connections><segue destination="vc-screen-02" kind="show" id="segue-show-screen-02"/></connections>
                         </barButtonItem>
@@ -297,6 +300,173 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="first-confirmation-01" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-330" y="960"/>
+        </scene>
+        <scene sceneID="scene-new-sale">
+            <objects>
+                <viewController storyboardIdentifier="NuevaVentaViewController" id="vc-new-sale" customClass="NuevaVentaViewController" customModule="GLAB06" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="view-new-sale">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <viewLayoutGuide key="safeArea" id="safe-new-sale"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" alwaysBounceVertical="YES" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="scroll-new-sale">
+                                <subviews>
+                                    <view translatesAutoresizingMaskIntoConstraints="NO" id="content-new-sale">
+                                        <subviews>
+                                            <stackView axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="stack-new-sale">
+                                                <subviews>
+                                                    <stackView axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="heading-new-sale">
+                                                        <subviews>
+                                                            <label text="Nueva Venta" translatesAutoresizingMaskIntoConstraints="NO" id="title-new-sale"><fontDescription key="fontDescription" type="system" weight="bold" pointSize="24"/><color key="textColor" systemColor="labelColor"/></label>
+                                                            <label text="Calcula el pago mensual de un electrodoméstico." lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="subtitle-new-sale"><fontDescription key="fontDescription" type="system" pointSize="15"/><color key="textColor" systemColor="secondaryLabelColor"/></label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <view translatesAutoresizingMaskIntoConstraints="NO" id="card-new-sale">
+                                                        <subviews>
+                                                            <stackView axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="form-new-sale">
+                                                                <subviews>
+                                                                    <label text="Datos de la venta" translatesAutoresizingMaskIntoConstraints="NO" id="form-title-new-sale"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/><color key="textColor" systemColor="labelColor"/></label>
+                                                                    <label text="Nombre del electrodoméstico" translatesAutoresizingMaskIntoConstraints="NO" id="label-product"><fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/><color key="textColor" systemColor="secondaryLabelColor"/></label>
+                                                                    <textField borderStyle="roundedRect" placeholder="Ej. Refrigeradora" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="field-product"><color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/><constraints><constraint firstAttribute="height" constant="48" id="height-product"/></constraints><fontDescription key="fontDescription" type="system" pointSize="16"/><textInputTraits key="textInputTraits" autocapitalizationType="words"/></textField>
+                                                                    <label text="Precio unitario" translatesAutoresizingMaskIntoConstraints="NO" id="label-price"><fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/><color key="textColor" systemColor="secondaryLabelColor"/></label>
+                                                                    <textField borderStyle="roundedRect" placeholder="Ej. 1200.00" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="field-price"><color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/><constraints><constraint firstAttribute="height" constant="48" id="height-price"/></constraints><fontDescription key="fontDescription" type="system" pointSize="16"/><textInputTraits key="textInputTraits" keyboardType="decimalPad"/></textField>
+                                                                    <label text="Cantidad" translatesAutoresizingMaskIntoConstraints="NO" id="label-quantity"><fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/><color key="textColor" systemColor="secondaryLabelColor"/></label>
+                                                                    <textField borderStyle="roundedRect" placeholder="Ej. 2" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="field-quantity"><color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/><constraints><constraint firstAttribute="height" constant="48" id="height-quantity"/></constraints><fontDescription key="fontDescription" type="system" pointSize="16"/><textInputTraits key="textInputTraits" keyboardType="numberPad"/></textField>
+                                                                    <label text="Número de meses" translatesAutoresizingMaskIntoConstraints="NO" id="label-months"><fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/><color key="textColor" systemColor="secondaryLabelColor"/></label>
+                                                                    <textField borderStyle="roundedRect" placeholder="Ej. 12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="field-months"><color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/><constraints><constraint firstAttribute="height" constant="48" id="height-months"/></constraints><fontDescription key="fontDescription" type="system" pointSize="16"/><textInputTraits key="textInputTraits" keyboardType="numberPad"/></textField>
+                                                                    <label text="Tasa de interés mensual (%)" translatesAutoresizingMaskIntoConstraints="NO" id="label-rate"><fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/><color key="textColor" systemColor="secondaryLabelColor"/></label>
+                                                                    <textField borderStyle="roundedRect" placeholder="Ej. 2.5" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="field-rate"><color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/><constraints><constraint firstAttribute="height" constant="48" id="height-rate"/></constraints><fontDescription key="fontDescription" type="system" pointSize="16"/><textInputTraits key="textInputTraits" keyboardType="decimalPad"/></textField>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="form-new-sale" firstAttribute="top" secondItem="card-new-sale" secondAttribute="top" constant="20" id="form-sale-top"/>
+                                                            <constraint firstItem="form-new-sale" firstAttribute="leading" secondItem="card-new-sale" secondAttribute="leading" constant="20" id="form-sale-leading"/>
+                                                            <constraint firstAttribute="trailing" secondItem="form-new-sale" secondAttribute="trailing" constant="20" id="form-sale-trailing"/>
+                                                            <constraint firstAttribute="bottom" secondItem="form-new-sale" secondAttribute="bottom" constant="20" id="form-sale-bottom"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="16"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <button buttonType="system" translatesAutoresizingMaskIntoConstraints="NO" id="button-calculate"><color key="backgroundColor" systemColor="systemBlueColor"/><constraints><constraint firstAttribute="height" constant="52" id="height-calculate"/></constraints><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/><state key="normal" title="Calcular"><color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></state><userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes><connections><action selector="calcular:" destination="vc-new-sale" eventType="touchUpInside" id="action-calculate"/></connections></button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="stack-new-sale" firstAttribute="top" secondItem="content-new-sale" secondAttribute="top" constant="24" id="sale-stack-top"/>
+                                            <constraint firstItem="stack-new-sale" firstAttribute="leading" secondItem="content-new-sale" secondAttribute="leading" constant="20" id="sale-stack-leading"/>
+                                            <constraint firstAttribute="trailing" secondItem="stack-new-sale" secondAttribute="trailing" constant="20" id="sale-stack-trailing"/>
+                                            <constraint firstAttribute="bottom" secondItem="stack-new-sale" secondAttribute="bottom" constant="24" id="sale-stack-bottom"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="content-new-sale" firstAttribute="top" secondItem="scroll-new-sale" secondAttribute="top" id="sale-content-top"/>
+                                    <constraint firstItem="content-new-sale" firstAttribute="leading" secondItem="scroll-new-sale" secondAttribute="leading" id="sale-content-leading"/>
+                                    <constraint firstAttribute="trailing" secondItem="content-new-sale" secondAttribute="trailing" id="sale-content-trailing"/>
+                                    <constraint firstAttribute="bottom" secondItem="content-new-sale" secondAttribute="bottom" id="sale-content-bottom"/>
+                                    <constraint firstItem="content-new-sale" firstAttribute="width" secondItem="scroll-new-sale" secondAttribute="width" id="sale-content-width"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="scroll-new-sale" firstAttribute="top" secondItem="safe-new-sale" secondAttribute="top" id="sale-scroll-top"/>
+                            <constraint firstItem="scroll-new-sale" firstAttribute="leading" secondItem="view-new-sale" secondAttribute="leading" id="sale-scroll-leading"/>
+                            <constraint firstAttribute="trailing" secondItem="scroll-new-sale" secondAttribute="trailing" id="sale-scroll-trailing"/>
+                            <constraint firstAttribute="bottom" secondItem="scroll-new-sale" secondAttribute="bottom" id="sale-scroll-bottom"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Nueva Venta" largeTitleDisplayMode="never" id="nav-new-sale"/>
+                    <connections>
+                        <outlet property="tfElectrodomestico" destination="field-product" id="outlet-product"/>
+                        <outlet property="tfPrecioUnitario" destination="field-price" id="outlet-price"/>
+                        <outlet property="tfCantidad" destination="field-quantity" id="outlet-quantity"/>
+                        <outlet property="tfMeses" destination="field-months" id="outlet-months"/>
+                        <outlet property="tfTasaInteres" destination="field-rate" id="outlet-rate"/>
+                        <segue destination="vc-sale-result" kind="show" identifier="showResultado" id="segue-sale-result"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="first-new-sale" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="570" y="960"/>
+        </scene>
+        <scene sceneID="scene-sale-result">
+            <objects>
+                <viewController storyboardIdentifier="ResultadoVentaViewController" id="vc-sale-result" customClass="ResultadoVentaViewController" customModule="GLAB06" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="view-sale-result">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <viewLayoutGuide key="safeArea" id="safe-sale-result"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="scroll-sale-result">
+                                <subviews>
+                                    <view translatesAutoresizingMaskIntoConstraints="NO" id="content-sale-result">
+                                        <subviews>
+                                            <stackView axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="stack-sale-result">
+                                                <subviews>
+                                                    <label text="Resultado de la venta" lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="title-sale-result"><fontDescription key="fontDescription" type="system" weight="bold" pointSize="24"/><color key="textColor" systemColor="labelColor"/></label>
+                                                    <view translatesAutoresizingMaskIntoConstraints="NO" id="card-sale-result">
+                                                        <subviews>
+                                                            <stackView axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="data-sale-result">
+                                                                <subviews>
+                                                                    <stackView axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="row-subtotal"><subviews><label text="SUBTOTAL" translatesAutoresizingMaskIntoConstraints="NO" id="title-subtotal"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/><color key="textColor" systemColor="secondaryLabelColor"/></label><label text="S/. 0.00" translatesAutoresizingMaskIntoConstraints="NO" id="value-subtotal"><fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/><color key="textColor" systemColor="labelColor"/></label></subviews></stackView>
+                                                                    <stackView axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="row-igv"><subviews><label text="IGV (18 %)" translatesAutoresizingMaskIntoConstraints="NO" id="title-igv"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/><color key="textColor" systemColor="secondaryLabelColor"/></label><label text="S/. 0.00" translatesAutoresizingMaskIntoConstraints="NO" id="value-igv"><fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/><color key="textColor" systemColor="labelColor"/></label></subviews></stackView>
+                                                                    <stackView axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="row-base"><subviews><label text="MONTO BASE" translatesAutoresizingMaskIntoConstraints="NO" id="title-base"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/><color key="textColor" systemColor="secondaryLabelColor"/></label><label text="S/. 0.00" translatesAutoresizingMaskIntoConstraints="NO" id="value-base"><fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/><color key="textColor" systemColor="labelColor"/></label></subviews></stackView>
+                                                                    <stackView axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="row-interests"><subviews><label text="INTERESES TOTALES" translatesAutoresizingMaskIntoConstraints="NO" id="title-interests"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/><color key="textColor" systemColor="secondaryLabelColor"/></label><label text="S/. 0.00" translatesAutoresizingMaskIntoConstraints="NO" id="value-interests"><fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/><color key="textColor" systemColor="labelColor"/></label></subviews></stackView>
+                                                                    <stackView axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="row-total"><subviews><label text="TOTAL A PAGAR" translatesAutoresizingMaskIntoConstraints="NO" id="title-total"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/><color key="textColor" systemColor="secondaryLabelColor"/></label><label text="S/. 0.00" translatesAutoresizingMaskIntoConstraints="NO" id="value-total"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/><color key="textColor" systemColor="labelColor"/></label></subviews></stackView>
+                                                                    <stackView axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="row-payment"><subviews><label text="CUOTA MENSUAL" translatesAutoresizingMaskIntoConstraints="NO" id="title-payment"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/><color key="textColor" systemColor="secondaryLabelColor"/></label><label text="S/. 0.00" translatesAutoresizingMaskIntoConstraints="NO" id="value-payment"><fontDescription key="fontDescription" type="system" weight="bold" pointSize="24"/><color key="textColor" systemColor="systemBlueColor"/></label></subviews></stackView>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="data-sale-result" firstAttribute="top" secondItem="card-sale-result" secondAttribute="top" constant="22" id="result-data-top"/>
+                                                            <constraint firstItem="data-sale-result" firstAttribute="leading" secondItem="card-sale-result" secondAttribute="leading" constant="20" id="result-data-leading"/>
+                                                            <constraint firstAttribute="trailing" secondItem="data-sale-result" secondAttribute="trailing" constant="20" id="result-data-trailing"/>
+                                                            <constraint firstAttribute="bottom" secondItem="data-sale-result" secondAttribute="bottom" constant="22" id="result-data-bottom"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="16"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="stack-sale-result" firstAttribute="top" secondItem="content-sale-result" secondAttribute="top" constant="24" id="result-stack-top"/>
+                                            <constraint firstItem="stack-sale-result" firstAttribute="leading" secondItem="content-sale-result" secondAttribute="leading" constant="20" id="result-stack-leading"/>
+                                            <constraint firstAttribute="trailing" secondItem="stack-sale-result" secondAttribute="trailing" constant="20" id="result-stack-trailing"/>
+                                            <constraint firstAttribute="bottom" secondItem="stack-sale-result" secondAttribute="bottom" constant="24" id="result-stack-bottom"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="content-sale-result" firstAttribute="top" secondItem="scroll-sale-result" secondAttribute="top" id="result-content-top"/>
+                                    <constraint firstItem="content-sale-result" firstAttribute="leading" secondItem="scroll-sale-result" secondAttribute="leading" id="result-content-leading"/>
+                                    <constraint firstAttribute="trailing" secondItem="content-sale-result" secondAttribute="trailing" id="result-content-trailing"/>
+                                    <constraint firstAttribute="bottom" secondItem="content-sale-result" secondAttribute="bottom" id="result-content-bottom"/>
+                                    <constraint firstItem="content-sale-result" firstAttribute="width" secondItem="scroll-sale-result" secondAttribute="width" id="result-content-width"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="scroll-sale-result" firstAttribute="top" secondItem="safe-sale-result" secondAttribute="top" id="result-scroll-top"/>
+                            <constraint firstItem="scroll-sale-result" firstAttribute="leading" secondItem="view-sale-result" secondAttribute="leading" id="result-scroll-leading"/>
+                            <constraint firstAttribute="trailing" secondItem="scroll-sale-result" secondAttribute="trailing" id="result-scroll-trailing"/>
+                            <constraint firstAttribute="bottom" secondItem="scroll-sale-result" secondAttribute="bottom" id="result-scroll-bottom"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Resultado" largeTitleDisplayMode="never" id="nav-sale-result"/>
+                    <connections>
+                        <outlet property="lblSubtotal" destination="value-subtotal" id="outlet-subtotal"/>
+                        <outlet property="lblIgv" destination="value-igv" id="outlet-igv"/>
+                        <outlet property="lblBase" destination="value-base" id="outlet-base"/>
+                        <outlet property="lblIntereses" destination="value-interests" id="outlet-interests"/>
+                        <outlet property="lblTotal" destination="value-total" id="outlet-total"/>
+                        <outlet property="lblCuota" destination="value-payment" id="outlet-payment"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="first-sale-result" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1470" y="960"/>
         </scene>
     </scenes>
     <resources>
