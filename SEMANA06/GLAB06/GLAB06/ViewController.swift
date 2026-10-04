@@ -12,7 +12,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .dark
 
-        let cobre = UIColor(red: 0.843, green: 0.631, blue: 0.416, alpha: 1)
+        let cobre = UIColor(red: 0.925, green: 0.733, blue: 0.486, alpha: 1)
         let texto = UIColor(red: 0.961, green: 0.945, blue: 0.910, alpha: 1)
         let secundario = UIColor(red: 0.753, green: 0.722, blue: 0.675, alpha: 1)
         let barra = UINavigationBarAppearance()
@@ -26,7 +26,13 @@ class ViewController: UIViewController {
         navigationItem.compactAppearance = barra
         navigationItem.leftBarButtonItem?.tintColor = cobre
         navigationItem.rightBarButtonItem?.tintColor = cobre
-        navigationItem.leftBarButtonItem?.setTitleTextAttributes([.foregroundColor: cobre], for: .normal)
+        let barButtonAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: cobre,
+            .font: UIFont.systemFont(ofSize: 15, weight: .semibold)
+        ]
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes(barButtonAttributes, for: .normal)
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes(barButtonAttributes, for: .highlighted)
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes(barButtonAttributes, for: .normal)
 
         cardCliente.layer.borderColor = cobre.withAlphaComponent(0.35).cgColor
         [tfApellido, tfNombre, tfDni].forEach { campo in
@@ -45,7 +51,7 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.tintColor = UIColor(red: 0.843, green: 0.631, blue: 0.416, alpha: 1)
+        navigationController?.navigationBar.tintColor = UIColor(red: 0.925, green: 0.733, blue: 0.486, alpha: 1)
     }
 
     @IBAction func btnContinuar(_ sender: Any) {

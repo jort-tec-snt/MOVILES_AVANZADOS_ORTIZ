@@ -48,7 +48,7 @@
                                                                 <color key="tintColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints><constraint firstAttribute="height" constant="34" id="person-height-01"/><constraint firstAttribute="width" constant="34" id="person-width-01"/></constraints>
                                                             </imageView>
-                                                            <label opaque="NO" text="REGISTRO · 01" translatesAutoresizingMaskIntoConstraints="NO" id="label-eyebrow-client-01"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/><color key="textColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></label>
+                                                            <label opaque="NO" text="REGISTRO · 01" translatesAutoresizingMaskIntoConstraints="NO" id="label-eyebrow-client-01"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/><color key="textColor" red="0.925" green="0.733" blue="0.486" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></label>
                                                             <label opaque="NO" text="Registro de cliente" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="label-screen-01">
                                                                 <fontDescription key="fontDescription" type="system" weight="bold" pointSize="28"/>
                                                                 <color key="textColor" red="0.961" green="0.945" blue="0.910" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -154,7 +154,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Nueva venta" id="button-new-sale-01">
                             <connections><segue destination="vc-new-sale" kind="show" id="segue-new-sale"/></connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Pantalla 2" image="rectangle.portrait.and.arrow.right" catalog="system" id="button-screen-02">
+                        <barButtonItem key="rightBarButtonItem" title="Pantalla 2" image="rectangle.stack.fill" catalog="system" id="button-screen-02">
                             <connections><segue destination="vc-screen-02" kind="show" id="segue-show-screen-02"/></connections>
                         </barButtonItem>
                     </navigationItem>
@@ -182,21 +182,21 @@
                                     <stackView opaque="NO" axis="vertical" spacing="14" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="stack-screen-02">
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" image="rectangle.stack.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="image-screen-02">
-                                                <color key="tintColor" systemColor="systemIndigoColor"/>
+                                                <color key="tintColor" red="0.925" green="0.733" blue="0.486" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints><constraint firstAttribute="height" constant="56" id="screen-02-image-height"/><constraint firstAttribute="width" constant="56" id="screen-02-image-width"/></constraints>
                                             </imageView>
                                             <label opaque="NO" text="Pantalla 2" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="label-screen-02">
                                                 <fontDescription key="fontDescription" type="system" weight="bold" pointSize="24"/>
-                                                <color key="textColor" systemColor="labelColor"/>
+                                                <color key="textColor" red="0.961" green="0.945" blue="0.910" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </label>
                                             <label opaque="NO" text="Llegaste mediante navegación Show dentro del controlador de navegación." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="label-screen-02-subtitle">
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                <color key="textColor" red="0.753" green="0.722" blue="0.675" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                <color key="backgroundColor" red="0.145" green="0.176" blue="0.196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="stack-screen-02" firstAttribute="top" secondItem="card-screen-02" secondAttribute="top" constant="28" id="screen-02-top"/>
                                     <constraint firstItem="stack-screen-02" firstAttribute="leading" secondItem="card-screen-02" secondAttribute="leading" constant="24" id="screen-02-leading"/>
@@ -207,7 +207,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="safe-screen-02"/>
-                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <color key="backgroundColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="card-screen-02" firstAttribute="leading" secondItem="safe-screen-02" secondAttribute="leading" constant="24" id="card-02-leading"/>
                             <constraint firstItem="safe-screen-02" firstAttribute="trailing" secondItem="card-screen-02" secondAttribute="trailing" constant="24" id="card-02-trailing"/>
@@ -227,6 +227,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" translatesAutoresizingMaskIntoConstraints="NO" id="button-confirmation-back-01">
+                                <rect key="frame" x="20" y="12" width="92" height="32"/>
+                                <color key="tintColor" red="0.925" green="0.733" blue="0.486" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Volver" image="chevron.left">
+                                    <color key="titleColor" red="0.925" green="0.733" blue="0.486" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections><action selector="volverDesdeConfirmacion:" destination="vc-confirmation-01" eventType="touchUpInside" id="action-confirmation-back-01"/></connections>
+                            </button>
                             <stackView opaque="NO" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="stack-confirmation-01">
                                 <rect key="frame" x="20" y="64" width="353" height="390"/>
                                 <subviews>
@@ -291,7 +299,11 @@
                         <viewLayoutGuide key="safeArea" id="safe-confirmation-01"/>
                         <color key="backgroundColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="stack-confirmation-01" firstAttribute="top" secondItem="safe-confirmation-01" secondAttribute="top" constant="32" id="confirmation-stack-top"/>
+                            <constraint firstItem="button-confirmation-back-01" firstAttribute="top" secondItem="safe-confirmation-01" secondAttribute="top" constant="10" id="confirmation-back-top"/>
+                            <constraint firstItem="button-confirmation-back-01" firstAttribute="leading" secondItem="safe-confirmation-01" secondAttribute="leading" constant="20" id="confirmation-back-leading"/>
+                            <constraint firstItem="button-confirmation-back-01" firstAttribute="height" constant="32" id="confirmation-back-height"/>
+                            <constraint firstItem="button-confirmation-back-01" firstAttribute="width" constant="92" id="confirmation-back-width"/>
+                            <constraint firstItem="stack-confirmation-01" firstAttribute="top" secondItem="safe-confirmation-01" secondAttribute="top" constant="60" id="confirmation-stack-top"/>
                             <constraint firstItem="stack-confirmation-01" firstAttribute="leading" secondItem="safe-confirmation-01" secondAttribute="leading" constant="20" id="confirmation-stack-leading"/>
                             <constraint firstItem="safe-confirmation-01" firstAttribute="trailing" secondItem="stack-confirmation-01" secondAttribute="trailing" constant="20" id="confirmation-stack-trailing"/>
                             <constraint firstItem="safe-confirmation-01" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="stack-confirmation-01" secondAttribute="bottom" constant="24" id="confirmation-stack-bottom"/>
@@ -495,7 +507,6 @@
         <image name="gearshape.2.fill" catalog="system" width="128" height="112"/>
         <image name="checkmark.seal.fill" catalog="system" width="128" height="123"/>
         <image name="person.text.rectangle.fill" catalog="system" width="128" height="94"/>
-        <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="123"/>
         <image name="rectangle.stack.fill" catalog="system" width="128" height="105"/>
         <systemColor name="labelColor"><color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></systemColor>
         <systemColor name="secondaryLabelColor"><color red="0.235" green="0.235" blue="0.263" alpha="0.6" colorSpace="custom" customColorSpace="sRGB"/></systemColor>

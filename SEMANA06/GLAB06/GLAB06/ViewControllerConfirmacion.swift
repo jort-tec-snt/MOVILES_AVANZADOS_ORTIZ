@@ -20,4 +20,8 @@ class ViewControllerConfirmacion: UIViewController {
         tfNombre.text = pCliente.Nombre
         tfDni.text = pCliente.Dni
     }
+
+    @IBAction func volverDesdeConfirmacion(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
 }
