@@ -135,4 +135,4 @@ Se definieron validaciones explícitas de negocio:
 - **Calidad de interfaz inicial:** La IA tiende a estructurar interfaces más limpias y consistentes (márgenes uniformes, stacks y colores semánticos) frente a la colocación libre y dispersa de controles manuales.
 - **Necesidad de supervisión crítica:** Mientras que en la solución manual el desarrollador comprende cada línea al escribirla, en la solución asistida por IA el desarrollador debe actuar como auditor de calidad, verificando que los nombres de los segues, los constraints y los cálculos matemáticos cumplan rigurosamente con la rúbrica académica.
 
-> **Estado final:** El Prompt 02 se implementó y la app compiló correctamente para iOS Simulator. El catálogo de App Icon sigue sin imagen personalizada.
+> **Estado final:** El Prompt 02 se implementó y la app compiló correctamente para iOS Simulator. El App Icon se integró posteriormente a partir de la imagen proporcionada para GLAB06.

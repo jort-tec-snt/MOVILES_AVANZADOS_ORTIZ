@@ -20,6 +20,7 @@
 - [x] `README.md` y `PROMPTS.md` actualizados; conclusiones académicas incluidas.
 - [x] Compilación CLI con `** BUILD SUCCEEDED **`.
 - [x] Inicio de la app y captura de Pantalla 1 en el iPhone 17e autorizado (`AEA85E68-4EB4-4FDD-8291-2BBBC84B33F4`).
+- [x] App Icon personalizado de 1024 × 1024 integrado en `AppIcon.appiconset` y visible en la pantalla de inicio del iPhone 17e autorizado.
 
 ## Caso numérico de control
 
@@ -34,8 +35,8 @@ Para Laptop, precio unitario 3500, cantidad 1, 12 meses e interés mensual de 1 
 | Total a pagar | S/. 4625.60 |
 | Cuota mensual | S/. 385.47 |
 
-## Pendiente real
+## Estado de publicación
 
-El catálogo `Assets.xcassets/AppIcon.appiconset` solo contiene `Contents.json`, sin imagen personalizada. Se requiere un recurso gráfico del proyecto para completar el icono. No se hizo push.
+No se hizo push.
 
 La captura se guardó temporalmente fuera del repositorio. No se registró una prueba interactiva completa de navegación; se verificaron las conexiones y escenas mediante Storyboard, compilación y auditoría de código.

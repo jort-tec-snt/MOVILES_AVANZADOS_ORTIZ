@@ -87,7 +87,7 @@ Representa la evolución del proyecto mediante asistencia de Inteligencia Artifi
 
 La compilación de `con-ia` se verificó con `** BUILD SUCCEEDED **`. El caso de control con Laptop, S/. 3500, cantidad 1, 12 meses e interés mensual de 1 % produce subtotal S/. 3500.00, IGV S/. 630.00, base S/. 4130.00, intereses S/. 495.60, total S/. 4625.60 y cuota S/. 385.47.
 
-El catálogo `AppIcon.appiconset` existe, pero solo contiene la plantilla sin archivo de imagen. Queda pendiente proporcionar un icono personalizado; no se incluyó uno artificial.
+El catálogo `AppIcon.appiconset` incluye el icono PNG de 1024 × 1024 proporcionado para GLAB06.
 
 Para compilar y verificar el proyecto desde la terminal utilizando las herramientas de línea de comandos de Xcode:
 
