@@ -44,8 +44,8 @@ Garantiza soporte completo para modo claro y oscuro usando colores semánticos d
 ```
 
 ### Reflexión
-- **Qué realizó la IA:** Reorganizó las pantallas del registro de cliente, la segunda pantalla y el modal de confirmación implementando stacks verticales anidados, tarjetas visuales elevadas, iconos vectoriales del sistema (`person.crop.circle.fill`, `checkmark.seal.fill`) y campos de entrada con altura uniforme de 48 pt. Resolvió advertencias de Auto Layout y configuró paletas semánticas dinámicas.
-- **Decisiones revisadas por el estudiante:** Se inspeccionó la legibilidad en simuladores con diferentes factores de forma (iPhone estándar vs modelos Max), se comprobó que el teclado no cubra los campos inferiores mediante el scroll interactivo y se verificó el contraste visual en modo oscuro antes de integrar el cambio.
+- **Qué realizó la IA:** Reorganizó las pantallas del registro de cliente, la segunda pantalla y la confirmación mediante stacks verticales, tarjetas, SF Symbols y colores semánticos. Los campos del formulario tienen altura de 48 pt.
+- **Decisiones de integración:** Se conservaron las conexiones originales y se verificó la compilación del Storyboard. La comprobación visual interactiva en simulador queda fuera de la verificación CLI realizada.
 
 ---
 
@@ -82,7 +82,7 @@ Implementar la solución completa del Ejercicio 4 asistida por IA:
 - Mantener la separación de responsabilidades: modelo (`VentaModel`), controlador de captura (`NuevaVentaViewController`) y controlador de presentación (`ResultadoVentaViewController`).
 
 ### Formato
-Archivos fuente en Swift (`VentaModel.swift`, `NuevaVentaViewController.swift`, `ResultadoVentaViewController.swift`), integración de escenas y segue `showResultado` en `Main.storyboard`, y verificación de compilación sin advertencias.
+Archivos fuente en Swift (`VentaModel.swift`, `NuevaVentaViewController.swift`, `ResultadoVentaViewController.swift`), integración de escenas y segue `showResultado` en `Main.storyboard`, y verificación de compilación mediante CLI.
 
 ### Ejemplo
 ```text
@@ -93,11 +93,11 @@ Implementa el Ejercicio 4 de la guía de laboratorio: Calculadora de Venta a Pla
 3. En la acción de calcular, valida con guard let que los campos no estén vacíos, que precio, cantidad y meses sean > 0 y la tasa >= 0. Si falla, muestra un UIAlertController informativo.
 4. Calcula las fórmulas financieras e instancia VentaModel.
 5. Conecta y ejecuta el segue con identificador "showResultado" pasando los datos mediante prepare(for:sender:).
-6. Crea ResultadoVentaViewController con labels para mostrar cada valor formateado en Soles (ej. S/. 1,250.00).
+6. Crea ResultadoVentaViewController con labels para mostrar cada valor formateado en Soles (ej. S/. 1250.00).
 ```
 
 ### Reflexión
-- **Estado de implementación:** *Pendiente de validación después de integrar el Ejercicio 4.*
+- **Estado de implementación:** Integrado en `con-ia`; estructura, fórmulas y compilación verificadas.
 - **Qué se encargó a la IA:** Generación estructurada del modelo `VentaModel`, controladores de vista con Auto Layout, validación rigurosa de entradas y transferencia de datos mediante segue `Show`.
 - **Decisiones sujetas a revisión del estudiante:**
   - Verificación de la fórmula financiera según los lineamientos de la guía académica (orden de adición de IGV e interés mensual).
@@ -114,7 +114,7 @@ La IA actuó como acelerador de desarrollo en dos frentes complementarios:
 - En el **Prompt 02**, se le encomendó la estructura del Ejercicio 4 (modelo `VentaModel`, controladores `NuevaVentaViewController` y `ResultadoVentaViewController`, cálculo de cuotas y configuración del segue `showResultado`).
 
 ### 2. ¿Qué decisiones fueron revisadas por el estudiante?
-- **Validación visual y de experiencia de usuario (UX):** Comprobación en simulador de que los textos y títulos no se trunquen en pantallas pequeñas y que la vista se adapte con teclado visible.
+- **Validación visual y de experiencia de usuario (UX):** Revisión de la estructura Auto Layout y de los contenedores con desplazamiento; no se registró una prueba visual interactiva en simulador.
 - **Auditoría de fórmulas comerciales:** Verificación de que la tasa de interés se divida entre 100 y se multiplique por el número de meses, y que la cuota mensual resulte de la división exacta del total entre la cantidad de meses.
 - **Compatibilidad con Storyboard:** Confirmación de que las clases personalizadas (*Custom Class*) y los Storyboard IDs coincidan exactamente con los archivos Swift creados.
 
@@ -131,9 +131,8 @@ Se definieron validaciones explícitas de negocio:
 - Manejo de diálogo nativo de advertencia (`UIAlertController`) para guiar al usuario ante datos inconsistentes.
 
 ### 5. Diferencias entre solución manual y con IA
-- **Velocidad de implementación:** La solución con IA genera esqueletos de controladores, modelos y configuraciones de Storyboard en una fracción del tiempo manual.
+- **Velocidad de implementación:** La IA acelera la generación inicial de controladores, modelos y escenas, pero la revisión consume tiempo. No se midieron duraciones comparables para ambos ejercicios.
 - **Calidad de interfaz inicial:** La IA tiende a estructurar interfaces más limpias y consistentes (márgenes uniformes, stacks y colores semánticos) frente a la colocación libre y dispersa de controles manuales.
 - **Necesidad de supervisión crítica:** Mientras que en la solución manual el desarrollador comprende cada línea al escribirla, en la solución asistida por IA el desarrollador debe actuar como auditor de calidad, verificando que los nombres de los segues, los constraints y los cálculos matemáticos cumplan rigurosamente con la rúbrica académica.
 
-> **Nota de estado:** Los resultados de ejecución correspondientes al Prompt 02 están marcados como:  
-> **"Pendiente de validación después de integrar el Ejercicio 4."**
+> **Estado final:** El Prompt 02 se implementó y la app compiló correctamente para iOS Simulator. El catálogo de App Icon sigue sin imagen personalizada.
