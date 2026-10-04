@@ -37,63 +37,65 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="content-main-01">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="600"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="stack-main-01">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="stack-main-01">
                                                 <rect key="frame" x="20" y="24" width="353" height="552"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="stack-heading-01">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" alignment="leading" translatesAutoresizingMaskIntoConstraints="NO" id="stack-heading-01">
                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="109"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="image-person-01">
-                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="44"/>
-                                                                <color key="tintColor" systemColor="systemBlueColor"/>
-                                                                <constraints><constraint firstAttribute="height" constant="44" id="person-height-01"/></constraints>
+                                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" image="person.text.rectangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="image-person-01">
+                                                                <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
+                                                                <color key="tintColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints><constraint firstAttribute="height" constant="34" id="person-height-01"/><constraint firstAttribute="width" constant="34" id="person-width-01"/></constraints>
                                                             </imageView>
+                                                            <label opaque="NO" text="REGISTRO · 01" translatesAutoresizingMaskIntoConstraints="NO" id="label-eyebrow-client-01"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/><color key="textColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></label>
                                                             <label opaque="NO" text="Registro de cliente" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="label-screen-01">
-                                                                <fontDescription key="fontDescription" type="system" weight="bold" pointSize="24"/>
-                                                                <color key="textColor" systemColor="labelColor"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="bold" pointSize="28"/>
+                                                                <color key="textColor" red="0.961" green="0.945" blue="0.910" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </label>
                                                             <label opaque="NO" text="Completa los datos para revisar la información." lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="label-subtitle-01">
                                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                <color key="textColor" red="0.753" green="0.722" blue="0.675" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </label>
                                                         </subviews>
+                                                        <constraints><constraint firstItem="label-subtitle-01" firstAttribute="width" secondItem="stack-heading-01" secondAttribute="width" id="client-subtitle-width-01"/></constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="card-form-01">
                                                         <rect key="frame" x="0.0" y="133" width="353" height="343"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="stack-form-01">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="stack-form-01">
                                                                 <rect key="frame" x="20" y="20" width="313" height="303"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" text="Datos personales" translatesAutoresizingMaskIntoConstraints="NO" id="label-form-title-01">
-                                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                                        <color key="textColor" systemColor="labelColor"/>
+                                                                    <label opaque="NO" text="DATOS PERSONALES" translatesAutoresizingMaskIntoConstraints="NO" id="label-form-title-01">
+                                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                                        <color key="textColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </label>
                                                                     <label opaque="NO" text="Apellido" translatesAutoresizingMaskIntoConstraints="NO" id="label-lastname-01">
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                        <color key="textColor" red="0.961" green="0.945" blue="0.910" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </label>
-                                                                    <textField opaque="NO" borderStyle="roundedRect" placeholder="Ej. Ortiz" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="textfield-lastname-01">
-                                                                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                                                                    <textField opaque="NO" borderStyle="none" placeholder="Ej. Ortiz" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="textfield-lastname-01">
+                                                                        <color key="backgroundColor" red="0.188" green="0.227" blue="0.251" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><color key="textColor" red="0.961" green="0.945" blue="0.910" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints><constraint firstAttribute="height" constant="48" id="lastname-height-01"/></constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="familyName"/>
                                                                     </textField>
                                                                     <label opaque="NO" text="Nombre" translatesAutoresizingMaskIntoConstraints="NO" id="label-firstname-01">
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                        <color key="textColor" red="0.961" green="0.945" blue="0.910" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </label>
-                                                                    <textField opaque="NO" borderStyle="roundedRect" placeholder="Ej. Jorge" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="textfield-firstname-01">
-                                                                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                                                                    <textField opaque="NO" borderStyle="none" placeholder="Ej. Jorge" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="textfield-firstname-01">
+                                                                        <color key="backgroundColor" red="0.188" green="0.227" blue="0.251" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><color key="textColor" red="0.961" green="0.945" blue="0.910" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints><constraint firstAttribute="height" constant="48" id="firstname-height-01"/></constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="givenName"/>
                                                                     </textField>
                                                                     <label opaque="NO" text="DNI" translatesAutoresizingMaskIntoConstraints="NO" id="label-dni-01">
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                        <color key="textColor" red="0.961" green="0.945" blue="0.910" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </label>
-                                                                    <textField opaque="NO" borderStyle="roundedRect" placeholder="8 dígitos" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="textfield-dni-01">
-                                                                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                                                                    <textField opaque="NO" borderStyle="none" placeholder="8 dígitos" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="textfield-dni-01">
+                                                                        <color key="backgroundColor" red="0.188" green="0.227" blue="0.251" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><color key="textColor" red="0.961" green="0.945" blue="0.910" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints><constraint firstAttribute="height" constant="48" id="dni-height-01"/></constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -101,21 +103,21 @@
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                                        <color key="backgroundColor" red="0.145" green="0.176" blue="0.196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="stack-form-01" firstAttribute="top" secondItem="card-form-01" secondAttribute="top" constant="20" id="form-top-01"/>
                                                             <constraint firstItem="stack-form-01" firstAttribute="leading" secondItem="card-form-01" secondAttribute="leading" constant="20" id="form-leading-01"/>
                                                             <constraint firstAttribute="trailing" secondItem="stack-form-01" secondAttribute="trailing" constant="20" id="form-trailing-01"/>
                                                             <constraint firstAttribute="bottom" secondItem="stack-form-01" secondAttribute="bottom" constant="20" id="form-bottom-01"/>
                                                         </constraints>
-                                                        <userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="16"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="18"/></userDefinedRuntimeAttribute><userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth"><real key="value" value="1"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" buttonType="system" translatesAutoresizingMaskIntoConstraints="NO" id="button-continue-01">
                                                         <rect key="frame" x="0.0" y="500" width="353" height="52"/>
-                                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                        <color key="backgroundColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints><constraint firstAttribute="height" constant="52" id="button-height-01"/></constraints>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                        <state key="normal" title="Revisar datos"><color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></state>
+                                                        <fontDescription key="fontDescription" type="system" weight="bold" pointSize="17"/>
+                                                        <state key="normal" title="Revisar datos"><color key="titleColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></state>
                                                         <userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes>
                                                         <connections><action selector="btnContinuar:" destination="vc-screen-01" eventType="touchUpInside" id="action-continue-01"/></connections>
                                                     </button>
@@ -140,7 +142,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="safe-screen-01"/>
-                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <color key="backgroundColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="scroll-main-01" firstAttribute="top" secondItem="safe-screen-01" secondAttribute="top" id="scroll-top-01"/>
                             <constraint firstItem="scroll-main-01" firstAttribute="leading" secondItem="view-screen-01" secondAttribute="leading" id="scroll-leading-01"/>
@@ -157,6 +159,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cardCliente" destination="card-form-01" id="outlet-card-client-01"/>
                         <outlet property="tfApellido" destination="textfield-lastname-01" id="outlet-lastname-01"/>
                         <outlet property="tfNombre" destination="textfield-firstname-01" id="outlet-firstname-01"/>
                         <outlet property="tfDni" destination="textfield-dni-01" id="outlet-dni-01"/>
@@ -227,63 +230,66 @@
                             <stackView opaque="NO" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="stack-confirmation-01">
                                 <rect key="frame" x="20" y="64" width="353" height="390"/>
                                 <subviews>
-                                    <stackView opaque="NO" axis="vertical" spacing="10" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="stack-confirmation-heading-01">
+                                    <stackView opaque="NO" axis="vertical" spacing="8" alignment="leading" translatesAutoresizingMaskIntoConstraints="NO" id="stack-confirmation-heading-01">
                                         <subviews>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="image-confirmation-01">
-                                                <color key="tintColor" systemColor="systemGreenColor"/>
-                                                <constraints><constraint firstAttribute="height" constant="56" id="confirmation-image-height"/><constraint firstAttribute="width" constant="56" id="confirmation-image-width"/></constraints>
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" image="checkmark.seal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="image-confirmation-01">
+                                                <color key="tintColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints><constraint firstAttribute="height" constant="38" id="confirmation-image-height"/><constraint firstAttribute="width" constant="38" id="confirmation-image-width"/></constraints>
                                             </imageView>
-                                            <label opaque="NO" text="Confirma tus datos" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="label-confirmation-title-01">
-                                                <fontDescription key="fontDescription" type="system" weight="bold" pointSize="24"/>
-                                                <color key="textColor" systemColor="labelColor"/>
+                                            <label opaque="NO" text="REGISTRO · 02" translatesAutoresizingMaskIntoConstraints="NO" id="label-confirmation-eyebrow-01"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/><color key="textColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></label>
+                                            <label opaque="NO" text="Confirma tus datos" translatesAutoresizingMaskIntoConstraints="NO" id="label-confirmation-title-01">
+                                                <fontDescription key="fontDescription" type="system" weight="bold" pointSize="28"/>
+                                                <color key="textColor" red="0.961" green="0.945" blue="0.910" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </label>
-                                            <label opaque="NO" text="Información recibida del formulario" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="label-confirmation-subtitle-01">
+                                            <label opaque="NO" text="Información recibida del formulario" lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="label-confirmation-subtitle-01">
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                <color key="textColor" red="0.753" green="0.722" blue="0.675" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </label>
                                         </subviews>
+                                        <constraints><constraint firstItem="label-confirmation-subtitle-01" firstAttribute="width" secondItem="stack-confirmation-heading-01" secondAttribute="width" id="confirmation-subtitle-width"/></constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="card-confirmation-01">
                                         <subviews>
                                             <stackView opaque="NO" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="stack-confirmation-data-01">
                                                 <subviews>
+                                                    <view translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-accent-line"><color key="backgroundColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><constraints><constraint firstAttribute="height" constant="3" id="confirmation-accent-height"/></constraints></view>
                                                     <stackView opaque="NO" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-lastname-stack">
                                                         <subviews>
-                                                            <label opaque="NO" text="APELLIDO" translatesAutoresizingMaskIntoConstraints="NO" id="label-confirmation-lastname-title-01"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/><color key="textColor" systemColor="secondaryLabelColor"/></label>
-                                                            <label opaque="NO" text="-" lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-lastname-01"><fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/><color key="textColor" systemColor="labelColor"/></label>
+                                                            <label opaque="NO" text="APELLIDO" translatesAutoresizingMaskIntoConstraints="NO" id="label-confirmation-lastname-title-01"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/><color key="textColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></label>
+                                                            <label opaque="NO" text="-" lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-lastname-01"><fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/><color key="textColor" red="0.961" green="0.945" blue="0.910" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></label>
                                                         </subviews>
                                                     </stackView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-separator-01"><color key="backgroundColor" systemColor="separatorColor"/><constraints><constraint firstAttribute="height" constant="1" id="confirmation-separator-height-01"/></constraints></view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-separator-01"><color key="backgroundColor" red="0.408" green="0.322" blue="0.247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><constraints><constraint firstAttribute="height" constant="1" id="confirmation-separator-height-01"/></constraints></view>
                                                     <stackView opaque="NO" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-firstname-stack">
                                                         <subviews>
-                                                            <label opaque="NO" text="NOMBRE" translatesAutoresizingMaskIntoConstraints="NO" id="label-confirmation-firstname-title-01"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/><color key="textColor" systemColor="secondaryLabelColor"/></label>
-                                                            <label opaque="NO" text="-" lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-firstname-01"><fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/><color key="textColor" systemColor="labelColor"/></label>
+                                                            <label opaque="NO" text="NOMBRE" translatesAutoresizingMaskIntoConstraints="NO" id="label-confirmation-firstname-title-01"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/><color key="textColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></label>
+                                                            <label opaque="NO" text="-" lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-firstname-01"><fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/><color key="textColor" red="0.961" green="0.945" blue="0.910" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></label>
                                                         </subviews>
                                                     </stackView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-separator-02"><color key="backgroundColor" systemColor="separatorColor"/><constraints><constraint firstAttribute="height" constant="1" id="confirmation-separator-height-02"/></constraints></view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-separator-02"><color key="backgroundColor" red="0.408" green="0.322" blue="0.247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><constraints><constraint firstAttribute="height" constant="1" id="confirmation-separator-height-02"/></constraints></view>
                                                     <stackView opaque="NO" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-dni-stack">
                                                         <subviews>
-                                                            <label opaque="NO" text="DNI" translatesAutoresizingMaskIntoConstraints="NO" id="label-confirmation-dni-title-01"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/><color key="textColor" systemColor="secondaryLabelColor"/></label>
-                                                            <label opaque="NO" text="-" lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-dni-01"><fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/><color key="textColor" systemColor="labelColor"/></label>
+                                                            <label opaque="NO" text="DNI" translatesAutoresizingMaskIntoConstraints="NO" id="label-confirmation-dni-title-01"><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/><color key="textColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></label>
+                                                            <label opaque="NO" text="-" lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-dni-01"><fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/><color key="textColor" red="0.961" green="0.945" blue="0.910" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></label>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.145" green="0.176" blue="0.196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="stack-confirmation-data-01" firstAttribute="top" secondItem="card-confirmation-01" secondAttribute="top" constant="22" id="confirmation-data-top"/>
                                             <constraint firstItem="stack-confirmation-data-01" firstAttribute="leading" secondItem="card-confirmation-01" secondAttribute="leading" constant="20" id="confirmation-data-leading"/>
                                             <constraint firstAttribute="trailing" secondItem="stack-confirmation-data-01" secondAttribute="trailing" constant="20" id="confirmation-data-trailing"/>
                                             <constraint firstAttribute="bottom" secondItem="stack-confirmation-data-01" secondAttribute="bottom" constant="22" id="confirmation-data-bottom"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="16"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="18"/></userDefinedRuntimeAttribute><userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth"><real key="value" value="1"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="safe-confirmation-01"/>
-                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <color key="backgroundColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="stack-confirmation-01" firstAttribute="top" secondItem="safe-confirmation-01" secondAttribute="top" constant="32" id="confirmation-stack-top"/>
                             <constraint firstItem="stack-confirmation-01" firstAttribute="leading" secondItem="safe-confirmation-01" secondAttribute="leading" constant="20" id="confirmation-stack-leading"/>
@@ -292,6 +298,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cardConfirmacion" destination="card-confirmation-01" id="outlet-card-confirmation-01"/>
                         <outlet property="tfApellido" destination="confirmation-lastname-01" id="outlet-confirmation-lastname-01"/>
                         <outlet property="tfNombre" destination="confirmation-firstname-01" id="outlet-confirmation-firstname-01"/>
                         <outlet property="tfDni" destination="confirmation-dni-01" id="outlet-confirmation-dni-01"/>
@@ -486,8 +493,8 @@
     </scenes>
     <resources>
         <image name="gearshape.2.fill" catalog="system" width="128" height="112"/>
-        <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="checkmark.seal.fill" catalog="system" width="128" height="123"/>
+        <image name="person.text.rectangle.fill" catalog="system" width="128" height="94"/>
         <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="123"/>
         <image name="rectangle.stack.fill" catalog="system" width="128" height="105"/>
         <systemColor name="labelColor"><color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></systemColor>
