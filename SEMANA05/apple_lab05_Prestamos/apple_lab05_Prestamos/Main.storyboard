@@ -67,7 +67,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Calcular"/>
                                 <connections>
-                                    <action selector="CalcularPrestamo:" destination="BYZ-38-t0r" event="touchUpInside" id="act-calc"/>
+                                    <action selector="CalcularPrestamo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="act-calc"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cuota mensual" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-monthly">
