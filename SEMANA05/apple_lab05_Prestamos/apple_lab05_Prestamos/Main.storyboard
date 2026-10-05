@@ -66,6 +66,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Calcular"/>
+                                <connections>
+                                    <action selector="CalcularPrestamo:" destination="BYZ-38-t0r" event="touchUpInside" id="act-calc"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cuota mensual" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-monthly">
                                 <rect key="frame" x="32" y="407" width="329" height="21"/>
@@ -111,6 +114,12 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lbl-total" secondAttribute="trailing" constant="32" id="c-trail-total-lbl"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="annualRateTextField" destination="txt-rate" id="out-rate"/>
+                        <outlet property="capitalTextField" destination="txt-capital" id="out-capital"/>
+                        <outlet property="monthlyPaymentLabel" destination="lbl-monthly" id="out-monthly"/>
+                        <outlet property="yearsTextField" destination="txt-term" id="out-term"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
