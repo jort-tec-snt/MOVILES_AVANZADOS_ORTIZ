@@ -118,6 +118,7 @@
                         <outlet property="annualRateTextField" destination="txt-rate" id="out-rate"/>
                         <outlet property="capitalTextField" destination="txt-capital" id="out-capital"/>
                         <outlet property="monthlyPaymentLabel" destination="lbl-monthly" id="out-monthly"/>
+                        <outlet property="totalAmountLabel" destination="lbl-total" id="out-total"/>
                         <outlet property="yearsTextField" destination="txt-term" id="out-term"/>
                     </connections>
                 </viewController>
