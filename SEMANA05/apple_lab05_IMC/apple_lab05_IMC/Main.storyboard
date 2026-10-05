@@ -52,6 +52,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Calcular"/>
+                                <connections>
+                                    <action selector="CalcularResultado:" destination="BYZ-38-t0r" event="touchUpInside" id="act-calc"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resultado" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-result">
                                 <rect key="frame" x="32" y="359" width="329" height="21.666666666666686"/>
