@@ -210,3 +210,19 @@ swift metro-lima.swift
 
 Proyecto desarrollado durante la **Semana 03 del curso Programación en Móviles Avanzado**, con el objetivo de aplicar colecciones, estructuras de datos, control de flujo y funciones en Swift mediante un caso práctico.
 
+
+---
+
+# 🔀 Ejercicios manual vs con IA
+
+Además del simulador Metro de Lima (rama `home`), la semana tiene ejercicios en dos ramas:
+
+| Tipo | Rama | Archivos |
+|---|---|---|
+| Manual (sin IA) | `manual` | `SEMANA03/ejercicio01.swift` … `ejercicio05.swift` |
+| Con IA | `con-ia` | Los anteriores + `SEMANA03/con-ia/ejercicio06.swift`, `ejercicio07.swift` y `PROMPT.md` |
+
+```bash
+git switch manual && swift SEMANA03/ejercicio01.swift
+git switch con-ia && swift SEMANA03/con-ia/ejercicio06.swift
+```
