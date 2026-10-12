@@ -54,6 +54,10 @@ open SEMANA06/GLAB06/GLAB06.xcodeproj
 4. Ver un segue: clic sobre el círculo de la flecha y abrir el **Attributes Inspector** (Identifier, Kind, Presentation).
 5. Ver los enlaces de un botón: clic en el botón y abrir el **Connections Inspector** (acciones `Touch Up Inside` y outlets).
 
+### Captura del Storyboard
+
+![Estructura del Storyboard con los segues](evidencias/01-canvas-completo.png)
+
 ### Mapa del flujo
 
 ```
