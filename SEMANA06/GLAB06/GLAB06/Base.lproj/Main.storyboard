@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="26000" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nav-01-main">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="26000" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tab-main">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="26000"/>
@@ -11,18 +11,19 @@
         <scene sceneID="scene-nav-01">
             <objects>
                 <navigationController id="nav-01-main" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Tienda" image="cart.fill" catalog="system" id="tabitem-tienda"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="nav-bar-01">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" systemColor="systemBlueColor"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="vc-screen-01" kind="relationship" relationship="rootViewController" id="segue-root-01"/>
+                        <segue destination="vc-catalogo" kind="relationship" relationship="rootViewController" id="segue-root-01"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="first-nav-01" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1210" y="40"/>
+            <point key="canvasLocation" x="-2100" y="40"/>
         </scene>
         <scene sceneID="scene-screen-01">
             <objects>
@@ -117,7 +118,7 @@
                                                         <color key="backgroundColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints><constraint firstAttribute="height" constant="52" id="button-height-01"/></constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="bold" pointSize="17"/>
-                                                        <state key="normal" title="Revisar datos"><color key="titleColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></state>
+                                                        <state key="normal" title="Confirmar compra"><color key="titleColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></state>
                                                         <userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes>
                                                         <connections><action selector="btnContinuar:" destination="vc-screen-01" eventType="touchUpInside" id="action-continue-01"/></connections>
                                                     </button>
@@ -163,11 +164,12 @@
                         <outlet property="tfApellido" destination="textfield-lastname-01" id="outlet-lastname-01"/>
                         <outlet property="tfNombre" destination="textfield-firstname-01" id="outlet-firstname-01"/>
                         <outlet property="tfDni" destination="textfield-dni-01" id="outlet-dni-01"/>
+                        <segue destination="vc-boleta" kind="presentation" identifier="verBoleta" modalPresentationStyle="fullScreen" id="seg-ver-boleta"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="first-screen-01" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-330" y="40"/>
+            <point key="canvasLocation" x="1470" y="40"/>
         </scene>
         <scene sceneID="scene-screen-02">
             <objects>
@@ -218,7 +220,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="first-screen-02" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="570" y="40"/>
+            <point key="canvasLocation" x="1470" y="1000"/>
         </scene>
         <scene sceneID="scene-confirmation-01">
             <objects>
@@ -318,7 +320,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="first-confirmation-01" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-330" y="960"/>
+            <point key="canvasLocation" x="2370" y="1000"/>
         </scene>
         <scene sceneID="scene-new-sale">
             <objects>
@@ -411,7 +413,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="first-new-sale" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="570" y="960"/>
+            <point key="canvasLocation" x="-1210" y="1900"/>
         </scene>
         <scene sceneID="scene-sale-result">
             <objects>
@@ -500,10 +502,173 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="first-sale-result" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1470" y="960"/>
+            <point key="canvasLocation" x="-330" y="1900"/>
+        </scene>
+        <scene sceneID="scene-catalogo">
+            <objects>
+                <viewController id="vc-catalogo" customClass="CatalogoViewController" customModule="GLAB06" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="view-catalogo">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="stack-catalogo">
+                                <rect key="frame" x="20" y="123" width="353" height="400"/>
+                                <subviews><label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Elige un producto para ver su detalle." textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cat-sub"><rect key="frame" x="0.0" y="0.0" width="353" height="21"/><fontDescription key="fontDescription" type="system" pointSize="15"/><color key="textColor" red="0.753" green="0.722" blue="0.675" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/></label><button opaque="NO" tag="0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cat-btn-0"><rect key="frame" x="0.0" y="0.0" width="353" height="48"/><color key="backgroundColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><constraints><constraint firstAttribute="height" constant="48" id="cat-btn-0-h"/></constraints><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/><state key="normal" title="Refrigeradora  ·  S/ 2000"><color key="titleColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></state><userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes><connections><action selector="productoTapped:" destination="vc-catalogo" eventType="touchUpInside" id="cat-btn-0-a"/></connections></button><button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cat-btn-1"><rect key="frame" x="0.0" y="0.0" width="353" height="48"/><color key="backgroundColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><constraints><constraint firstAttribute="height" constant="48" id="cat-btn-1-h"/></constraints><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/><state key="normal" title="Licuadora  ·  S/ 250"><color key="titleColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></state><userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes><connections><action selector="productoTapped:" destination="vc-catalogo" eventType="touchUpInside" id="cat-btn-1-a"/></connections></button><button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cat-btn-2"><rect key="frame" x="0.0" y="0.0" width="353" height="48"/><color key="backgroundColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><constraints><constraint firstAttribute="height" constant="48" id="cat-btn-2-h"/></constraints><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/><state key="normal" title="Laptop  ·  S/ 3500"><color key="titleColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></state><userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes><connections><action selector="productoTapped:" destination="vc-catalogo" eventType="touchUpInside" id="cat-btn-2-a"/></connections></button><button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cat-btn-3"><rect key="frame" x="0.0" y="0.0" width="353" height="48"/><color key="backgroundColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><constraints><constraint firstAttribute="height" constant="48" id="cat-btn-3-h"/></constraints><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/><state key="normal" title="Cocina  ·  S/ 1200"><color key="titleColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></state><userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes><connections><action selector="productoTapped:" destination="vc-catalogo" eventType="touchUpInside" id="cat-btn-3-a"/></connections></button>
+<button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cat-btn-4"><rect key="frame" x="0.0" y="0.0" width="353" height="48"/><color key="backgroundColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><constraints><constraint firstAttribute="height" constant="48" id="cat-btn-4-h"/></constraints><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/><state key="normal" title="Microondas  ·  S/ 450"><color key="titleColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></state><userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes><connections><action selector="productoTapped:" destination="vc-catalogo" eventType="touchUpInside" id="cat-btn-4-a"/></connections></button><button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cat-btn-carrito"><rect key="frame" x="0.0" y="0.0" width="353" height="48"/><color key="backgroundColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><constraints><constraint firstAttribute="height" constant="48" id="cat-btn-carrito-h"/></constraints><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/><state key="normal" title="Ver carrito (0)"><color key="titleColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></state><userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes><connections><action selector="verCarritoTapped:" destination="vc-catalogo" eventType="touchUpInside" id="cat-btn-carrito-a"/></connections></button></subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-catalogo"/>
+                        <color key="backgroundColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="stack-catalogo" firstAttribute="top" secondItem="safe-catalogo" secondAttribute="top" constant="20" id="catalogo-top"/>
+                            <constraint firstItem="stack-catalogo" firstAttribute="leading" secondItem="view-catalogo" secondAttribute="leading" constant="20" id="catalogo-lead"/>
+                            <constraint firstAttribute="trailing" secondItem="stack-catalogo" secondAttribute="trailing" constant="20" id="catalogo-trail"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Tienda Tecsup" largeTitleDisplayMode="always" id="nav-catalogo"/>
+                    <connections><outlet property="verCarritoButton" destination="cat-btn-carrito" id="o-catalogo-verCarritoButton"/><outletCollection property="productoButtons" destination="cat-btn-0" collectionClass="NSMutableArray" id="oc-prod-0"/><outletCollection property="productoButtons" destination="cat-btn-1" collectionClass="NSMutableArray" id="oc-prod-1"/><outletCollection property="productoButtons" destination="cat-btn-2" collectionClass="NSMutableArray" id="oc-prod-2"/><outletCollection property="productoButtons" destination="cat-btn-3" collectionClass="NSMutableArray" id="oc-prod-3"/><outletCollection property="productoButtons" destination="cat-btn-4" collectionClass="NSMutableArray" id="oc-prod-4"/><segue destination="vc-detalle" kind="show" identifier="verDetalle" id="seg-ver-detalle"/><segue destination="vc-carrito" kind="show" identifier="verCarrito" id="seg-ver-carrito"/></connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="first-catalogo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1210" y="40"/>
+        </scene>
+        <scene sceneID="scene-detalle">
+            <objects>
+                <viewController id="vc-detalle" customClass="DetalleViewController" customModule="GLAB06" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="view-detalle">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="stack-detalle">
+                                <rect key="frame" x="20" y="123" width="353" height="400"/>
+                                <subviews><label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Producto" textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="det-nombre"><rect key="frame" x="0.0" y="0.0" width="353" height="21"/><fontDescription key="fontDescription" type="system" weight="bold" pointSize="28"/><color key="textColor" red="0.961" green="0.945" blue="0.91" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/></label><label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Precio" textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="det-precio"><rect key="frame" x="0.0" y="0.0" width="353" height="21"/><fontDescription key="fontDescription" type="system" pointSize="17"/><color key="textColor" red="0.961" green="0.945" blue="0.91" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/></label><label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Stock disponible" textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="det-stock"><rect key="frame" x="0.0" y="0.0" width="353" height="21"/><fontDescription key="fontDescription" type="system" pointSize="17"/><color key="textColor" red="0.753" green="0.722" blue="0.675" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/></label><label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Cantidad" textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="det-cant-lbl"><rect key="frame" x="0.0" y="0.0" width="353" height="21"/><fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/><color key="textColor" red="0.961" green="0.945" blue="0.91" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/></label><textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="det-cant"><rect key="frame" x="0.0" y="0.0" width="353" height="44"/><constraints><constraint firstAttribute="height" constant="44" id="det-cant-h"/></constraints><fontDescription key="fontDescription" type="system" pointSize="17"/><textInputTraits key="textInputTraits" keyboardType="numberPad"/></textField><button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="det-btn"><rect key="frame" x="0.0" y="0.0" width="353" height="48"/><color key="backgroundColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><constraints><constraint firstAttribute="height" constant="48" id="det-btn-h"/></constraints><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/><state key="normal" title="Agregar al carrito"><color key="titleColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></state><userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes><connections><action selector="agregarTapped:" destination="vc-detalle" eventType="touchUpInside" id="det-btn-a"/></connections></button></subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-detalle"/>
+                        <color key="backgroundColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="stack-detalle" firstAttribute="top" secondItem="safe-detalle" secondAttribute="top" constant="20" id="detalle-top"/>
+                            <constraint firstItem="stack-detalle" firstAttribute="leading" secondItem="view-detalle" secondAttribute="leading" constant="20" id="detalle-lead"/>
+                            <constraint firstAttribute="trailing" secondItem="stack-detalle" secondAttribute="trailing" constant="20" id="detalle-trail"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Detalle" largeTitleDisplayMode="never" id="nav-detalle"/>
+                    <connections><outlet property="lblNombre" destination="det-nombre" id="o-detalle-lblNombre"/><outlet property="lblPrecio" destination="det-precio" id="o-detalle-lblPrecio"/><outlet property="lblStock" destination="det-stock" id="o-detalle-lblStock"/><outlet property="tfCantidad" destination="det-cant" id="o-detalle-tfCantidad"/></connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="first-detalle" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-330" y="40"/>
+        </scene>
+        <scene sceneID="scene-carrito">
+            <objects>
+                <viewController id="vc-carrito" customClass="CarritoViewController" customModule="GLAB06" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="view-carrito">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="stack-carrito">
+                                <rect key="frame" x="20" y="123" width="353" height="400"/>
+                                <subviews><label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Tu carrito" textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="car-titulo"><rect key="frame" x="0.0" y="0.0" width="353" height="21"/><fontDescription key="fontDescription" type="system" weight="bold" pointSize="28"/><color key="textColor" red="0.961" green="0.945" blue="0.91" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/></label><label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="El carrito está vacío" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="car-lineas"><rect key="frame" x="0.0" y="0.0" width="353" height="21"/><fontDescription key="fontDescription" type="system" pointSize="17"/><color key="textColor" red="0.961" green="0.945" blue="0.91" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/></label><label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Subtotal" textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="car-subtotal"><rect key="frame" x="0.0" y="0.0" width="353" height="21"/><fontDescription key="fontDescription" type="system" pointSize="17"/><color key="textColor" red="0.961" green="0.945" blue="0.91" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/></label><label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Descuento" textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="car-desc"><rect key="frame" x="0.0" y="0.0" width="353" height="21"/><fontDescription key="fontDescription" type="system" pointSize="17"/><color key="textColor" red="0.961" green="0.945" blue="0.91" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/></label><label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="IGV (18%)" textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="car-igv"><rect key="frame" x="0.0" y="0.0" width="353" height="21"/><fontDescription key="fontDescription" type="system" pointSize="17"/><color key="textColor" red="0.961" green="0.945" blue="0.91" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/></label><label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="car-total"><rect key="frame" x="0.0" y="0.0" width="353" height="21"/><fontDescription key="fontDescription" type="system" weight="bold" pointSize="20"/><color key="textColor" red="0.961" green="0.945" blue="0.91" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/></label><label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Categoría" textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="car-cat"><rect key="frame" x="0.0" y="0.0" width="353" height="21"/><fontDescription key="fontDescription" type="system" pointSize="17"/><color key="textColor" red="0.753" green="0.722" blue="0.675" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/></label><button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="car-btn"><rect key="frame" x="0.0" y="0.0" width="353" height="48"/><color key="backgroundColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><constraints><constraint firstAttribute="height" constant="48" id="car-btn-h"/></constraints><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/><state key="normal" title="Continuar"><color key="titleColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></state><userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes><connections><action selector="continuarTapped:" destination="vc-carrito" eventType="touchUpInside" id="car-btn-a"/></connections></button></subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-carrito"/>
+                        <color key="backgroundColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="stack-carrito" firstAttribute="top" secondItem="safe-carrito" secondAttribute="top" constant="20" id="carrito-top"/>
+                            <constraint firstItem="stack-carrito" firstAttribute="leading" secondItem="view-carrito" secondAttribute="leading" constant="20" id="carrito-lead"/>
+                            <constraint firstAttribute="trailing" secondItem="stack-carrito" secondAttribute="trailing" constant="20" id="carrito-trail"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Carrito" largeTitleDisplayMode="never" id="nav-carrito"/>
+                    <connections><outlet property="lblLineas" destination="car-lineas" id="o-carrito-lblLineas"/><outlet property="lblSubtotal" destination="car-subtotal" id="o-carrito-lblSubtotal"/><outlet property="lblDescuento" destination="car-desc" id="o-carrito-lblDescuento"/><outlet property="lblIGV" destination="car-igv" id="o-carrito-lblIGV"/><outlet property="lblTotal" destination="car-total" id="o-carrito-lblTotal"/><outlet property="lblCategoria" destination="car-cat" id="o-carrito-lblCategoria"/><segue destination="vc-screen-01" kind="show" identifier="irDatosCliente" id="seg-ir-datos"/></connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="first-carrito" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="570" y="40"/>
+        </scene>
+        <scene sceneID="scene-boleta">
+            <objects>
+                <viewController id="vc-boleta" customClass="BoletaViewController" customModule="GLAB06" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="view-boleta">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="stack-boleta">
+                                <rect key="frame" x="20" y="123" width="353" height="400"/>
+                                <subviews><label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Boleta" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="bol-texto"><rect key="frame" x="0.0" y="0.0" width="353" height="21"/><fontDescription key="fontDescription" type="system" pointSize="13"/><color key="textColor" red="0.961" green="0.945" blue="0.91" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/></label><button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bol-btn"><rect key="frame" x="0.0" y="0.0" width="353" height="48"/><color key="backgroundColor" red="0.843" green="0.631" blue="0.416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/><constraints><constraint firstAttribute="height" constant="48" id="bol-btn-h"/></constraints><fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/><state key="normal" title="Volver al catálogo"><color key="titleColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></state><userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes><connections><action selector="cerrarTapped:" destination="vc-boleta" eventType="touchUpInside" id="bol-btn-a"/></connections></button></subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-boleta"/>
+                        <color key="backgroundColor" red="0.082" green="0.106" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="stack-boleta" firstAttribute="top" secondItem="safe-boleta" secondAttribute="top" constant="20" id="boleta-top"/>
+                            <constraint firstItem="stack-boleta" firstAttribute="leading" secondItem="view-boleta" secondAttribute="leading" constant="20" id="boleta-lead"/>
+                            <constraint firstAttribute="trailing" secondItem="stack-boleta" secondAttribute="trailing" constant="20" id="boleta-trail"/>
+                        </constraints>
+                    </view>
+                    
+                    <connections><outlet property="lblBoleta" destination="bol-texto" id="o-boleta-lblBoleta"/></connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="first-boleta" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2370" y="40"/>
+        </scene>
+        <scene sceneID="scene-tab-main">
+            <objects>
+                <tabBarController id="tab-main" customClass="TabPrincipalViewController" customModule="GLAB06" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="tabbar-main">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="nav-01-main" kind="relationship" relationship="viewControllers" id="seg-tab-tienda"/>
+                        <segue destination="nav-clientes" kind="relationship" relationship="viewControllers" id="seg-tab-clientes"/>
+                        <segue destination="nav-ventas" kind="relationship" relationship="viewControllers" id="seg-tab-ventas"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="first-tab-main" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3000" y="40"/>
+        </scene>
+        <scene sceneID="scene-nav-clientes">
+            <objects>
+                <navigationController id="nav-clientes" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Clientes" image="person.2.fill" catalog="system" id="tabitem-nav-clientes"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="navbar-nav-clientes">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="systemBlueColor"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vc-screen-01" kind="relationship" relationship="rootViewController" id="seg-root-clientes"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="first-nav-clientes" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2100" y="1000"/>
+        </scene>
+        <scene sceneID="scene-nav-ventas">
+            <objects>
+                <navigationController id="nav-ventas" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Venta a plazos" image="creditcard.fill" catalog="system" id="tabitem-nav-ventas"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="navbar-nav-ventas">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="systemBlueColor"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vc-new-sale" kind="relationship" relationship="rootViewController" id="seg-root-ventas"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="first-nav-ventas" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2100" y="1900"/>
         </scene>
     </scenes>
     <resources>
+        <image name="cart.fill" catalog="system" width="128" height="102"/>
+        <image name="person.2.fill" catalog="system" width="128" height="76"/>
+        <image name="creditcard.fill" catalog="system" width="128" height="93"/>
         <image name="gearshape.2.fill" catalog="system" width="128" height="112"/>
         <image name="checkmark.seal.fill" catalog="system" width="128" height="123"/>
         <image name="person.text.rectangle.fill" catalog="system" width="128" height="94"/>

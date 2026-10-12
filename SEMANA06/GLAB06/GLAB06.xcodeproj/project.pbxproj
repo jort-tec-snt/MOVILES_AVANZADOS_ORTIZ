@@ -19,6 +19,12 @@
 		01000000000000000000000A /* VentaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02000000000000000000000C /* VentaModel.swift */; };
 		01000000000000000000000B /* NuevaVentaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02000000000000000000000D /* NuevaVentaViewController.swift */; };
 		01000000000000000000000C /* ResultadoVentaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02000000000000000000000E /* ResultadoVentaViewController.swift */; };
+		010000000000000000000020 /* Modelos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020000000000000000000020 /* Modelos.swift */; };
+		010000000000000000000021 /* CatalogoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020000000000000000000021 /* CatalogoViewController.swift */; };
+		010000000000000000000022 /* DetalleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020000000000000000000022 /* DetalleViewController.swift */; };
+		010000000000000000000023 /* CarritoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020000000000000000000023 /* CarritoViewController.swift */; };
+		010000000000000000000024 /* BoletaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020000000000000000000024 /* BoletaViewController.swift */; };
+		010000000000000000000025 /* TabPrincipalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020000000000000000000025 /* TabPrincipalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +42,12 @@
 		02000000000000000000000C /* VentaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VentaModel.swift; sourceTree = "<group>"; };
 		02000000000000000000000D /* NuevaVentaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuevaVentaViewController.swift; sourceTree = "<group>"; };
 		02000000000000000000000E /* ResultadoVentaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultadoVentaViewController.swift; sourceTree = "<group>"; };
+		020000000000000000000020 /* Modelos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modelos.swift; sourceTree = "<group>"; };
+		020000000000000000000021 /* CatalogoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogoViewController.swift; sourceTree = "<group>"; };
+		020000000000000000000022 /* DetalleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalleViewController.swift; sourceTree = "<group>"; };
+		020000000000000000000023 /* CarritoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarritoViewController.swift; sourceTree = "<group>"; };
+		020000000000000000000024 /* BoletaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoletaViewController.swift; sourceTree = "<group>"; };
+		020000000000000000000025 /* TabPrincipalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabPrincipalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +81,12 @@
 				02000000000000000000000C /* VentaModel.swift */,
 				02000000000000000000000D /* NuevaVentaViewController.swift */,
 				02000000000000000000000E /* ResultadoVentaViewController.swift */,
+				020000000000000000000020 /* Modelos.swift */,
+				020000000000000000000021 /* CatalogoViewController.swift */,
+				020000000000000000000022 /* DetalleViewController.swift */,
+				020000000000000000000023 /* CarritoViewController.swift */,
+				020000000000000000000024 /* BoletaViewController.swift */,
+				020000000000000000000025 /* TabPrincipalViewController.swift */,
 				020000000000000000000005 /* Main.storyboard */,
 				020000000000000000000006 /* LaunchScreen.storyboard */,
 				020000000000000000000007 /* Assets.xcassets */,
@@ -165,6 +183,12 @@
 				01000000000000000000000A /* VentaModel.swift in Sources */,
 				01000000000000000000000B /* NuevaVentaViewController.swift in Sources */,
 				01000000000000000000000C /* ResultadoVentaViewController.swift in Sources */,
+				010000000000000000000020 /* Modelos.swift in Sources */,
+				010000000000000000000021 /* CatalogoViewController.swift in Sources */,
+				010000000000000000000022 /* DetalleViewController.swift in Sources */,
+				010000000000000000000023 /* CarritoViewController.swift in Sources */,
+				010000000000000000000024 /* BoletaViewController.swift in Sources */,
+				010000000000000000000025 /* TabPrincipalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
