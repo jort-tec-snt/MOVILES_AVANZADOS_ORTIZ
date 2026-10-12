@@ -106,6 +106,54 @@ Implementa el Ejercicio 4 de la guía de laboratorio: Calculadora de Venta a Pla
 
 ---
 
+## Prompt 03 - Caso integrador: Tienda de Electrodomésticos
+
+### Contexto
+Proyecto `GLAB06` en la rama `con-ia` (UIKit + Storyboard). Ya existen `ClienteModel`, la pantalla de datos del cliente (`ViewController`) y el estilo oscuro/cobre de las pantallas anteriores. El enunciado del caso integrador pide una mini tienda de 5 pantallas: Catálogo, Detalle, Carrito, Datos del cliente y Boleta modal.
+
+### Tarea
+Integrar el caso reutilizando lo existente: `Modelos.swift` (Producto, ItemCarrito, CarritoModel), Catálogo como raíz del `UINavigationController`, Detalle y Carrito nuevos, la pantalla de clientes como "Datos del cliente" y una Boleta presentada de forma modal.
+
+### Restricciones
+- Un solo carrito, creado en el Catálogo y pasado por `prepare(for:sender:)` (Regla 2).
+- Un solo segue `verDetalle` para los 4 productos, elegidos con `tag` (Regla 3).
+- Cálculos (subtotal, descuento, IGV, total, categoría) dentro de `CarritoModel` (Regla 5).
+- Validaciones con `UIAlertController`: stock, campos vacíos y DNI de 8 dígitos (Regla 8).
+- Mantener intactos los flujos de Nueva Venta y Pantalla 2, y no tocar `ClienteModel`.
+
+### Formato
+Archivos Swift por pantalla, escenas nuevas en `Main.storyboard` con sus identifiers (`verDetalle`, `verCarrito`, `irDatosCliente`, `verBoleta`) y commits progresivos en español.
+
+### Reflexión
+- **Qué se encargó a la IA:** modelos, controladores, escenas del storyboard y registro de archivos en el proyecto.
+- **Pendiente del estudiante:** compilar en Xcode, recorrer los 5 escenarios de verificación y responder la prueba final (Microondas: cuántos cambios en Storyboard y en código).
+- **Verificación:** coherencia de outlets/acciones con el storyboard revisada por script; no se ejecutó compilación ni simulador en esta intervención.
+
+---
+
+## Prompt 04 - Integración de la tienda con las pantallas anteriores
+
+### Contexto
+Con el caso integrador, la app abría solo en el Catálogo y las pantallas de las prácticas previas (Clientes, Nueva venta, Pantalla 2) quedaban fuera de alcance, por lo que la app se sentía como una maqueta.
+
+### Tarea
+Unir todo en una sola app navegable: barra de pestañas con Tienda, Clientes y Venta a plazos, y hacer la tienda más realista.
+
+### Restricciones
+- Mantener los identifiers de los segues y los outlets existentes.
+- Reutilizar la pantalla de Datos del cliente tanto en la pestaña Clientes (registro suelto, flujo original) como en el pago de la tienda.
+- Un solo carrito; la lógica de cálculo sigue en `CarritoModel`.
+
+### Formato
+`TabPrincipalViewController`, nuevos `UINavigationController` por pestaña en el storyboard y commits progresivos en español.
+
+### Reflexión
+- **Mejoras de realismo:** el stock se ve en cada botón del Catálogo, los productos sin stock se deshabilitan (Agotado) y la pestaña Tienda muestra una insignia con la cantidad del carrito.
+- **Decisión de diseño:** Datos del cliente funciona en dos modos según `carrito` sea nil o no; dentro del pago se ocultan los botones hacia otras pantallas.
+- **Pendiente del estudiante:** probar en simulador que la modal de la Boleta regresa al Catálogo (se presenta desde el `UITabBarController`).
+
+---
+
 ## Reflexión sobre el uso de Inteligencia Artificial
 
 ### 1. ¿Qué realizó la IA?
