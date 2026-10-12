@@ -58,6 +58,28 @@ open SEMANA06/GLAB06/GLAB06.xcodeproj
 
 ![Estructura del Storyboard con los segues](evidencias/01-canvas-completo.png)
 
+### Storyboard de la versión con IA (`con-ia`)
+
+En `con-ia` el Storyboard integra todo el trabajo de la semana en una sola app. Un **Tab Bar Controller** es la pantalla inicial y reparte el flujo en tres pestañas, cada una con su propio Navigation Controller:
+
+| Pestaña | Contenido | Segues |
+|---|---|---|
+| **Tienda** | Caso integrador: Catálogo, Detalle, Carrito y Boleta | `verDetalle`, `verCarrito`, `irDatosCliente`, `verBoleta` (modal) |
+| **Clientes** | Registro de cliente y confirmación (flujo del ejercicio anterior) | Show hacia "Pantalla 2" y confirmación |
+| **Venta a plazos** | Ejercicio 4: Nueva Venta y Resultado | Show `showResultado` |
+
+La captura se divide en dos partes porque el canvas es grande: la parte superior muestra la barra de pestañas y las escenas de Tienda y Clientes; la inferior, la pestaña "Venta a plazos" (Nueva Venta → Resultado).
+
+**Parte superior** (Tab Principal, Tienda, Clientes):
+
+![Storyboard con IA, parte superior](evidencias/02-storyboard-con-ia-parte-superior.png)
+
+**Parte inferior** (Clientes y Venta a plazos):
+
+![Storyboard con IA, parte inferior](evidencias/03-storyboard-con-ia-parte-inferior.png)
+
+Diferencias frente a `manual`: la app arranca en la barra de pestañas en lugar del Catálogo, el diseño es oscuro con acentos dorados, y las pestañas permiten usar el caso integrador y el Ejercicio 4 sin salir de la app. La lógica del caso integrador (modelos, descuentos, IGV, categoría, stock) es la misma que en `manual`.
+
 ### Mapa del flujo
 
 ```
@@ -87,6 +109,7 @@ Capturas de la estructura y de cómo se creó, en la carpeta `SEMANA06/evidencia
 - `02-document-outline.png`: escenas en el Document Outline
 - `03-segue-identifier.png`: un segue con su Identifier
 - `04-connections-inspector.png`: conexiones del botón "Ver carrito"
+- `02-storyboard-con-ia-parte-superior.png` y `03-storyboard-con-ia-parte-inferior.png`: Storyboard de la rama `con-ia`
 - `05-demo-git.png`: `git log --oneline --graph --all` y `git branch -a`
 
 ## Compilar desde terminal
