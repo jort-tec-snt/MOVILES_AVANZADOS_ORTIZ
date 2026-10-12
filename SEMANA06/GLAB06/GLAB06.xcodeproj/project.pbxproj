@@ -16,6 +16,11 @@
 		010000000000000000000007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 020000000000000000000007 /* Assets.xcassets */; };
 		010000000000000000000008 /* ClienteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02000000000000000000000A /* ClienteModel.swift */; };
 		010000000000000000000009 /* ViewControllerConfirmacion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02000000000000000000000B /* ViewControllerConfirmacion.swift */; };
+		010000000000000000000020 /* Modelos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020000000000000000000020 /* Modelos.swift */; };
+		010000000000000000000021 /* CatalogoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020000000000000000000021 /* CatalogoViewController.swift */; };
+		010000000000000000000022 /* DetalleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020000000000000000000022 /* DetalleViewController.swift */; };
+		010000000000000000000023 /* CarritoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020000000000000000000023 /* CarritoViewController.swift */; };
+		010000000000000000000024 /* BoletaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020000000000000000000024 /* BoletaViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,11 @@
 		020000000000000000000009 /* GLAB06.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLAB06.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02000000000000000000000A /* ClienteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClienteModel.swift; sourceTree = "<group>"; };
 		02000000000000000000000B /* ViewControllerConfirmacion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerConfirmacion.swift; sourceTree = "<group>"; };
+		020000000000000000000020 /* Modelos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modelos.swift; sourceTree = "<group>"; };
+		020000000000000000000021 /* CatalogoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogoViewController.swift; sourceTree = "<group>"; };
+		020000000000000000000022 /* DetalleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalleViewController.swift; sourceTree = "<group>"; };
+		020000000000000000000023 /* CarritoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarritoViewController.swift; sourceTree = "<group>"; };
+		020000000000000000000024 /* BoletaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoletaViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +70,11 @@
 				020000000000000000000004 /* ViewController2.swift */,
 				02000000000000000000000A /* ClienteModel.swift */,
 				02000000000000000000000B /* ViewControllerConfirmacion.swift */,
+				020000000000000000000020 /* Modelos.swift */,
+				020000000000000000000021 /* CatalogoViewController.swift */,
+				020000000000000000000022 /* DetalleViewController.swift */,
+				020000000000000000000023 /* CarritoViewController.swift */,
+				020000000000000000000024 /* BoletaViewController.swift */,
 				020000000000000000000005 /* Main.storyboard */,
 				020000000000000000000006 /* LaunchScreen.storyboard */,
 				020000000000000000000007 /* Assets.xcassets */,
@@ -153,6 +168,11 @@
 				010000000000000000000004 /* ViewController2.swift in Sources */,
 				010000000000000000000008 /* ClienteModel.swift in Sources */,
 				010000000000000000000009 /* ViewControllerConfirmacion.swift in Sources */,
+				010000000000000000000020 /* Modelos.swift in Sources */,
+				010000000000000000000021 /* CatalogoViewController.swift in Sources */,
+				010000000000000000000022 /* DetalleViewController.swift in Sources */,
+				010000000000000000000023 /* CarritoViewController.swift in Sources */,
+				010000000000000000000024 /* BoletaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
