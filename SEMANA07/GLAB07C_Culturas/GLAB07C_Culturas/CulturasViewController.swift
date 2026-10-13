@@ -8,9 +8,11 @@ class CulturasViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Culturas del Perú"
+        navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .systemBackground
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(CulturaTableViewCell.self, forCellReuseIdentifier: CulturaTableViewCell.identificador)
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
@@ -27,17 +29,9 @@ class CulturasViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "celda")
-            ?? UITableViewCell(style: .default, reuseIdentifier: "celda")
-        let cultura = culturas[indexPath.row]
-        cell.textLabel?.text = cultura.nombre
-        cell.imageView?.image = UIImage(named: cultura.imagen)
-        cell.accessoryType = .disclosureIndicator
+        let cell = tableView.dequeueReusableCell(withIdentifier: CulturaTableViewCell.identificador, for: indexPath) as! CulturaTableViewCell
+        cell.configurar(con: culturas[indexPath.row])
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
     }
 
     // Se instancia el detalle, se le pasa la cultura por una propiedad y se hace push en el UINavigationController
