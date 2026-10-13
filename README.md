@@ -21,7 +21,8 @@ Programación en Móviles Avanzado — TECSUP.
 | 04 | POO | `manual` | `con-ia` | [SEMANA04](SEMANA04/README.md) |
 | 05 | UIKit | `manual` | — | [SEMANA05](SEMANA05/README.md) |
 | 06 | Navegación UIKit | `manual` | `con-ia` | [SEMANA06](SEMANA06/README.md) |
-| 07–16 | SwiftUI + UI/UX | por definir | por definir | — |
+| 07 | Tablas y colecciones (UIKit) | `manual` | — | [SEMANA07](SEMANA07/README.md) |
+| 08–16 | Por definir | por definir | por definir | — |
 
 ## Ver un trabajo
 
