@@ -11,6 +11,12 @@ La semana tiene un solo tipo de trabajo, en la rama `manual`, con **tres proyect
 
 Ruta de los proyectos: `SEMANA07/<proyecto>/<proyecto>.xcodeproj`
 
+## Demo del caso C
+
+Lista de culturas y detalle de cada una (Caral, Chavín, Paracas, Nazca, Moche e Inca):
+
+![Demo del caso C: lista de culturas y detalle](evidencias/culturas-demo.gif)
+
 ## Ver el trabajo
 
 ```bash
