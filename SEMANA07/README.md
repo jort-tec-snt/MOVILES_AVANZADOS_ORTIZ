@@ -38,6 +38,17 @@ Abrir: `open SEMANA07/<proyecto>/<proyecto>.xcodeproj`
 3. En las escenas de Nazca e Inca, seleccionar la imagen, la etiqueta de región o un título y revisar en el Attributes Inspector la imagen de Assets, los colores con nombre y las fuentes.
 4. Clic en el círculo de una flecha de la lista: Identifier `verNazca`, `verInca` o `verDetalle` (Kind Show). Los botones de los detalles usan `verLugares` y las filas de lugares `verLugar`.
 
+### Identificadores del Storyboard (caso C)
+
+| Qué | Identificador |
+|---|---|
+| Escenas (Storyboard ID) | `NavegacionCulturas`, `CulturasViewController`, `DetalleCulturaViewController`, `DetalleNazca`, `DetalleInca`, `LugaresViewController`, `LugarDetalleViewController` |
+| Celdas de "Culturas del Perú" (Identifier) | `celdaCaral`, `celdaChavin`, `celdaParacas`, `celdaNazca`, `celdaMoche`, `celdaInca` |
+| Celda de lugares (Identifier) | `lugarCell` |
+| Segues (Identifier) | `verDetalle` (Caral, Chavín, Paracas, Moche), `verNazca`, `verInca`, `verLugares` (botón de cada detalle), `verLugar` (fila de lugares) |
+
+Dónde verlos en Xcode: en la escena, el **Identity Inspector** (Storyboard ID); en la celda, el **Attributes Inspector** (Identifier); en la flecha del segue, el **Attributes Inspector** (Identifier).
+
 ## Conclusiones (borrador)
 
 1. `UITableView` necesita `dataSource` (cuántas filas y qué celda) y `delegate` (qué pasa al seleccionar); reutilizar celdas con `dequeueReusableCell` evita crear una vista por fila.

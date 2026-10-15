@@ -13,7 +13,7 @@
         <!--Navigation Controller-->
         <scene sceneID="sc-nav">
             <objects>
-                <navigationController id="nav-main" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavegacionCulturas" id="nav-main" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="nav-bar">
                         <rect key="frame" x="0.0" y="118" width="393" height="106"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -24,12 +24,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fr-nav" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1190" y="400"/>
+            <point key="canvasLocation" x="-953" y="400"/>
         </scene>
         <!--Culturas del Perú-->
         <scene sceneID="sc-lista">
             <objects>
-                <tableViewController id="vc-lista" customClass="CulturasViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CulturasViewController" id="vc-lista" customClass="CulturasViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="86" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="tv-lista">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,7 +37,7 @@
                         <sections>
                             <tableViewSection id="sec-culturas">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="86" id="cell-caral">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="celdaCaral" rowHeight="86" id="cell-caral">
                                         <rect key="frame" x="0.0" y="50" width="393" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cell-caral" id="cell-caral-content">
@@ -86,7 +86,7 @@
                                             <segue destination="vc-detalle" kind="show" identifier="verDetalle" id="seg-caral"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="86" id="cell-chavin">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="celdaChavin" rowHeight="86" id="cell-chavin">
                                         <rect key="frame" x="0.0" y="136" width="393" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cell-chavin" id="cell-chavin-content">
@@ -135,7 +135,7 @@
                                             <segue destination="vc-detalle" kind="show" identifier="verDetalle" id="seg-chavin"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="86" id="cell-paracas">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="celdaParacas" rowHeight="86" id="cell-paracas">
                                         <rect key="frame" x="0.0" y="222" width="393" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cell-paracas" id="cell-paracas-content">
@@ -157,12 +157,12 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cell-paracas-st">
                                                     <rect key="frame" x="121.99999999999999" y="23.000000000000004" width="232.66666666666663" height="40.333333333333343"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paracas" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-paracas-n">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Paracas" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-paracas-n">
                                                             <rect key="frame" x="0.0" y="0.0" width="232.66666666666666" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ica" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-paracas-r">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ica" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-paracas-r">
                                                             <rect key="frame" x="0.0" y="22.333333333333336" width="232.66666666666666" height="18"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -184,7 +184,7 @@
                                             <segue destination="vc-detalle" kind="show" identifier="verDetalle" id="seg-paracas"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="86" id="cell-nazca">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="celdaNazca" rowHeight="86" id="cell-nazca">
                                         <rect key="frame" x="0.0" y="308" width="393" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cell-nazca" id="cell-nazca-content">
@@ -206,12 +206,12 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cell-nazca-st">
                                                     <rect key="frame" x="121.99999999999999" y="23.000000000000004" width="232.66666666666663" height="40.333333333333343"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Nazca" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-nazca-n">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nazca" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-nazca-n">
                                                             <rect key="frame" x="0.0" y="0.0" width="232.66666666666666" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ica" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-nazca-r">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ica" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-nazca-r">
                                                             <rect key="frame" x="0.0" y="22.333333333333336" width="232.66666666666666" height="18"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -233,7 +233,7 @@
                                             <segue destination="vc-nazca" kind="show" identifier="verNazca" id="seg-nazca"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="86" id="cell-moche">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="celdaMoche" rowHeight="86" id="cell-moche">
                                         <rect key="frame" x="0.0" y="394" width="393" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cell-moche" id="cell-moche-content">
@@ -255,12 +255,12 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cell-moche-st">
                                                     <rect key="frame" x="121.99999999999999" y="23.000000000000004" width="232.66666666666663" height="40.333333333333343"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Moche" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-moche-n">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moche" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-moche-n">
                                                             <rect key="frame" x="0.0" y="0.0" width="232.66666666666666" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="La Libertad y Lambayeque" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-moche-r">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="La Libertad y Lambayeque" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-moche-r">
                                                             <rect key="frame" x="0.0" y="22.333333333333336" width="232.66666666666666" height="18"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -282,7 +282,7 @@
                                             <segue destination="vc-detalle" kind="show" identifier="verDetalle" id="seg-moche"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="86" id="cell-inca">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="celdaInca" rowHeight="86" id="cell-inca">
                                         <rect key="frame" x="0.0" y="480" width="393" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cell-inca" id="cell-inca-content">
@@ -344,7 +344,7 @@
         <!--Detalle-->
         <scene sceneID="sc-detalle">
             <objects>
-                <viewController id="vc-detalle" customClass="DetalleCulturaViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetalleCulturaViewController" id="vc-detalle" customClass="DetalleCulturaViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="v-det">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -513,12 +513,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fr-det" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="906" y="75"/>
+            <point key="canvasLocation" x="934" y="168"/>
         </scene>
         <!--Nazca-->
         <scene sceneID="sc-nazca">
             <objects>
-                <viewController id="vc-nazca" customClass="DetalleMinuciosoViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetalleNazca" id="vc-nazca" customClass="DetalleMinuciosoViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="v-nazca">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -806,12 +806,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fr-nazca" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="600" y="1100"/>
+            <point key="canvasLocation" x="-134" y="1162"/>
         </scene>
         <!--Inca-->
         <scene sceneID="sc-inca">
             <objects>
-                <viewController id="vc-inca" customClass="DetalleMinuciosoViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetalleInca" id="vc-inca" customClass="DetalleMinuciosoViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="v-inca">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1136,12 +1136,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fr-inca" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1200" y="1100"/>
+            <point key="canvasLocation" x="1060" y="1001"/>
         </scene>
         <!--Lugares turísticos-->
         <scene sceneID="sc-lugares">
             <objects>
-                <viewController id="vc-lugares" customClass="LugaresViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LugaresViewController" id="vc-lugares" customClass="LugaresViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="v-lug">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1229,12 +1229,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fr-lug" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1900" y="400"/>
+            <point key="canvasLocation" x="2143" y="456"/>
         </scene>
         <!--Lugar-->
         <scene sceneID="sc-lugar">
             <objects>
-                <viewController id="vc-lugar" customClass="LugarDetalleViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LugarDetalleViewController" id="vc-lugar" customClass="LugarDetalleViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="v-lugar">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1381,12 +1381,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fr-lugar" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2500" y="400"/>
+            <point key="canvasLocation" x="2984" y="477"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="seg-lug-d"/>
-        <segue reference="seg-caral"/>
+        <segue reference="seg-lug-inca"/>
+        <segue reference="seg-moche"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="111"/>
@@ -1399,10 +1399,10 @@
         <image name="nazca" width="1200" height="675"/>
         <image name="paracas" width="1200" height="600"/>
         <namedColor name="AcentoInca">
-            <color red="0.1804" green="0.54510000000000003" blue="0.3412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.1803921568627451" green="0.54509803921568623" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="AcentoNazca">
-            <color red="0.6588235294117647" green="0.45490196078431372" blue="0.10196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.65880000000000005" green="0.45490000000000003" blue="0.10199999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
