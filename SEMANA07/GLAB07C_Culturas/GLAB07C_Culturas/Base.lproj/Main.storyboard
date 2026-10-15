@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nav-main">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="sc-nav">
+            <objects>
+                <navigationController id="nav-main" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="nav-bar">
+                        <rect key="frame" x="0.0" y="62" width="393" height="116"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vc-lista" kind="relationship" relationship="rootViewController" id="seg-root"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fr-nav" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-700" y="100"/>
+        </scene>
+        <!--Culturas del Perú-->
+        <scene sceneID="sc-lista">
+            <objects>
+                <viewController id="vc-lista" customClass="CulturasViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="v-lista">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tv-lista">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="culturaCell" rowHeight="86" id="cell-cultura" customClass="CulturaTableViewCell" customModule="GLAB07C_Culturas" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="86"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cell-cultura" id="cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="362" height="86"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c-img">
+                                                    <rect key="frame" x="20" y="10" width="88" height="66"/>
+                                                    <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="88" id="c-img-w"/>
+                                                        <constraint firstAttribute="height" constant="66" id="c-img-h"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="c-stack">
+                                                    <rect key="frame" x="122" y="22" width="220" height="42"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cultura" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c-nombre">
+                                                            <rect key="frame" x="0.0" y="0.0" width="220" height="21"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <color key="textColor" systemColor="labelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Región" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c-region">
+                                                            <rect key="frame" x="0.0" y="23" width="220" height="19"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="c-img" firstAttribute="leading" secondItem="cell-content" secondAttribute="leadingMargin" id="c-img-lead"/>
+                                                <constraint firstItem="c-img" firstAttribute="top" secondItem="cell-content" secondAttribute="top" constant="10" id="c-img-top"/>
+                                                <constraint firstAttribute="bottom" secondItem="c-img" secondAttribute="bottom" constant="10" id="c-img-bot"/>
+                                                <constraint firstItem="c-stack" firstAttribute="leading" secondItem="c-img" secondAttribute="trailing" constant="14" id="c-stack-lead"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="c-stack" secondAttribute="trailing" id="c-stack-trail"/>
+                                                <constraint firstItem="c-stack" firstAttribute="centerY" secondItem="cell-content" secondAttribute="centerY" id="c-stack-cy"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="miniatura" destination="c-img" id="o-miniatura"/>
+                                            <outlet property="nombreLabel" destination="c-nombre" id="o-nombre"/>
+                                            <outlet property="regionLabel" destination="c-region" id="o-region"/>
+                                            <segue destination="vc-detalle" kind="show" identifier="verDetalle" id="seg-detalle"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vc-lista" id="o-ds"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-lista"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tv-lista" firstAttribute="top" secondItem="v-lista" secondAttribute="top" id="tv-top"/>
+                            <constraint firstItem="tv-lista" firstAttribute="leading" secondItem="v-lista" secondAttribute="leading" id="tv-lead"/>
+                            <constraint firstAttribute="trailing" secondItem="tv-lista" secondAttribute="trailing" id="tv-trail"/>
+                            <constraint firstAttribute="bottom" secondItem="tv-lista" secondAttribute="bottom" id="tv-bot"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Culturas del Perú" largeTitleDisplayMode="always" id="ni-lista"/>
+                    <connections>
+                        <outlet property="tableView" destination="tv-lista" id="o-tv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fr-lista" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-100" y="100"/>
+        </scene>
+        <!--Detalle-->
+        <scene sceneID="sc-detalle">
+            <objects>
+                <viewController id="vc-detalle" customClass="DetalleCulturaViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="v-det">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-scroll">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d-img">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="295"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d-card">
+                                        <rect key="frame" x="0.0" y="267" width="393" height="585"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="d-stack">
+                                                <rect key="frame" x="20" y="24" width="353" height="200"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cultura" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-nombre">
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="41"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <color key="textColor" systemColor="labelColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d-fila">
+                                                        <rect key="frame" x="0.0" y="55" width="353" height="30"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Región" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-chip" customClass="EtiquetaConRelleno" customModule="GLAB07C_Culturas" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="80" height="30"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="d-spacer">
+                                                                <rect key="frame" x="80" y="0.0" width="273" height="30"/>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acerca de esta cultura" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-acerca">
+                                                        <rect key="frame" x="0.0" y="99" width="353" height="21"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <color key="textColor" systemColor="labelColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descripción" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-desc">
+                                                        <rect key="frame" x="0.0" y="134" width="353" height="66"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                        <color key="textColor" systemColor="labelColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="d-stack" firstAttribute="top" secondItem="d-card" secondAttribute="top" constant="24" id="s-top"/>
+                                            <constraint firstItem="d-stack" firstAttribute="leading" secondItem="d-card" secondAttribute="leading" constant="20" id="s-lead"/>
+                                            <constraint firstAttribute="trailing" secondItem="d-stack" secondAttribute="trailing" constant="20" id="s-trail"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="d-stack" secondAttribute="bottom" constant="32" id="s-bot"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="d-img" firstAttribute="top" secondItem="d-content" secondAttribute="top" id="i-top"/>
+                                    <constraint firstItem="d-img" firstAttribute="leading" secondItem="d-frame" secondAttribute="leading" id="i-lead"/>
+                                    <constraint firstItem="d-img" firstAttribute="trailing" secondItem="d-frame" secondAttribute="trailing" id="i-trail"/>
+                                    <constraint firstItem="d-img" firstAttribute="height" secondItem="d-frame" secondAttribute="width" multiplier="0.75" id="i-h"/>
+                                    <constraint firstItem="d-card" firstAttribute="top" secondItem="d-img" secondAttribute="bottom" constant="-28" id="k-top"/>
+                                    <constraint firstItem="d-card" firstAttribute="leading" secondItem="d-frame" secondAttribute="leading" id="k-lead"/>
+                                    <constraint firstItem="d-card" firstAttribute="trailing" secondItem="d-frame" secondAttribute="trailing" id="k-trail"/>
+                                    <constraint firstItem="d-card" firstAttribute="bottom" secondItem="d-content" secondAttribute="bottom" id="k-bot"/>
+                                    <constraint firstItem="d-card" firstAttribute="height" relation="greaterThanOrEqual" secondItem="d-frame" secondAttribute="height" multiplier="0.5" id="k-h"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="d-content"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="d-frame"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-det"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="d-scroll" firstAttribute="top" secondItem="v-det" secondAttribute="top" id="sc-top"/>
+                            <constraint firstItem="d-scroll" firstAttribute="leading" secondItem="v-det" secondAttribute="leading" id="sc-lead"/>
+                            <constraint firstAttribute="trailing" secondItem="d-scroll" secondAttribute="trailing" id="sc-trail"/>
+                            <constraint firstAttribute="bottom" secondItem="d-scroll" secondAttribute="bottom" id="sc-bot"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Detalle" largeTitleDisplayMode="never" id="ni-det"/>
+                    <connections>
+                        <outlet property="contenidoStack" destination="d-stack" id="o-stack"/>
+                        <outlet property="descripcionLabel" destination="d-desc" id="o-desc"/>
+                        <outlet property="filaRegion" destination="d-fila" id="o-fila"/>
+                        <outlet property="imagenView" destination="d-img" id="o-img"/>
+                        <outlet property="nombreLabel" destination="d-nombre" id="o-nom"/>
+                        <outlet property="regionChip" destination="d-chip" id="o-chip"/>
+                        <outlet property="tarjetaView" destination="d-card" id="o-card"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fr-det" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="500" y="100"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
