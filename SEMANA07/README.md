@@ -7,15 +7,9 @@ La semana tiene un solo tipo de trabajo, en la rama `manual`, con **tres proyect
 |---|---|---|
 | A | `GLAB07A_Profesores` | `UITableView` con celda `celda` (estilo Subtitle), clase `Profesor`, reuso de celdas, fotos desde Assets |
 | B | `GLAB07B_Personas` | Celda personalizada `PersonasTableViewCell` (imagen + label) y alerta en `didSelectRowAt` |
-| C | `GLAB07C_Culturas` | Caso a desarrollar: lista de culturas peruanas con foto y pantalla de detalle (imagen, nombre, región, descripción) |
+| C | `GLAB07C_Culturas` | Caso a desarrollar: culturas peruanas. El proyecto está en esta semana y su explicación completa (segues, GIF y Storyboard) está en [SEMANA08](../SEMANA08/README.md) |
 
 Ruta de los proyectos: `SEMANA07/<proyecto>/<proyecto>.xcodeproj`
-
-## Demo del caso C
-
-Lista de culturas y detalle de cada una (Caral, Chavín, Paracas, Nazca, Moche e Inca):
-
-![Demo del caso C: lista de culturas y detalle](evidencias/culturas-demo.gif)
 
 ## Ver el trabajo
 
@@ -26,15 +20,9 @@ open SEMANA07/GLAB07C_Culturas/GLAB07C_Culturas.xcodeproj   # caso C (cambia el 
 
 Pulsar **Run** (⌘R) con un iPhone como destino.
 
-## Qué ver en el caso C
+## Caso C
 
-1. **Storyboard y segue** (`Main.storyboard`): Navigation Controller → lista con celda prototipo → segue `verDetalle` → escena de detalle diseñada con imagen de Assets, color con nombre, tarjeta, iconos y secciones. Usar `Editor > Canvas > Zoom to Fit`.
-2. **Información en los controladores**: `CulturasViewController` (nombre, región e imagen de cada fila y envío por el segue) y `DetalleCulturaViewController` (periodo, descripción, aportes y sitios).
-3. **Colores**: un color con nombre por cultura en Assets (`AcentoNazca`, `AcentoInca`, etc.), aplicado a la etiqueta de región y a los títulos.
-4. **Información ampliada**: Nazca e Inca tienen aportes y sitios emblemáticos.
-5. **Fotos**: `Assets.xcassets` (`caral`, `chavin`, `paracas`, `nazca`, `moche`, `inca`).
-
-Detalle de decisiones y borrador de conclusiones: `SEMANA07/README.md` en la rama `manual`.
+El caso de las culturas peruanas se explica en [SEMANA08](../SEMANA08/README.md): flujo de pantallas, segues, identificadores y demo en GIF.
 
 ## Compilar desde terminal
 
