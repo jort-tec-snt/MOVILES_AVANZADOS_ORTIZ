@@ -10,27 +10,33 @@ Abrir: `open SEMANA07/<proyecto>/<proyecto>.xcodeproj`
 
 ## Decisiones
 
-- **UI de A y B por código; C con el diseño en Storyboard y la información en los controladores.** En C las pantallas, imágenes de Assets, colores con nombre y segue se ven en `Main.storyboard`; los datos viven en `CulturasViewController` y `DetalleCulturaViewController`.
+- **UI de A y B por código; C con la maqueta en Storyboard.** La lista de las 6 culturas y los detalles de Nazca e Inca están diseñados por completo en `Main.storyboard`. Caral, Chavín, Paracas y Moche usan un detalle básico cuya información guardan los controladores.
 - **Un proyecto por ejercicio** (la guía crea otra aplicación para la parte B).
 - **Propiedad `cargo`** en `Profesor`, como en la guía; se muestra como subtítulo.
 - **Imágenes A y B:** placeholders (círculo de color + SF Symbol) guardados en Assets. Se pueden reemplazar por fotos reales manteniendo el nombre del imageset.
 - **Imágenes C:** fotos reales de Caral, Chavín, Paracas, Nazca e Inca (aportadas por el autor, reducidas a JPEG). **Moche** también tiene su foto (imageset `moche`).
 - **Culturas:** 6 (Caral, Chavín, Paracas, Nazca, Moche, Inca). La guía no fija la cantidad.
-- **Navegación de C:** celda prototipo con un segue `verDetalle` (Show) hacia una sola escena de detalle. `CulturasViewController.prepare(for:sender:)` entrega nombre, región e imagen de la fila elegida; el detalle busca el resto de su información por nombre.
+- **Navegación de C:** lista de celdas estáticas con un segue por fila. `verNazca` y `verInca` llevan a escenas de detalle minucioso diseñadas en el Storyboard; `verDetalle` (las otras 4) lleva a una escena básica, y `CulturasViewController.prepare(for:sender:)` le entrega nombre, región e imagen.
 
 ## Interfaz de C
 
-- **Storyboard (`Main.storyboard`):** Navigation Controller → lista con celda prototipo → segue `verDetalle` → una escena de detalle diseñada completa (se ve en el canvas con Nazca como ejemplo: imagen de Assets, color con nombre, tarjeta, iconos, periodo, descripción, aportes y sitios).
-- **`CulturasViewController`:** guarda nombre, región e imagen de las 6 culturas, llena las celdas (por tag: 1 imagen, 2 nombre, 3 región) y entrega la elegida por el segue.
-- **`DetalleCulturaViewController`:** guarda periodo, descripción, aportes y sitios de cada cultura, los carga en la escena y aplica el color de la cultura (`AcentoCaral`, `AcentoChavin`, `AcentoParacas`, `AcentoNazca`, `AcentoMoche`, `AcentoInca` en Assets). Las secciones sin datos no se muestran.
-- **Información ampliada:** Nazca e Inca tienen **Aportes** y **Sitios emblemáticos**; las demás muestran periodo y descripción.
+- **Storyboard (`Main.storyboard`):** Navigation Controller → lista con las 6 culturas (imagen de Assets, nombre y región en cada fila) → 3 escenas de detalle:
+  - **Nazca** e **Inca**: detalle minucioso construido en el canvas (imagen, color con nombre, tarjeta, región, periodo, descripción, aportes y sitios emblemáticos).
+  - **Detalle básico** (Caral, Chavín, Paracas y Moche): una sola escena que cargan los controladores.
+- **Lugares turísticos:** cada detalle tiene un botón "Ver lugares turísticos" (segue `verLugares`, Show) hacia una pantalla con los sitios de la zona de esa cultura (3 o 4 por cultura), diseñada en el Storyboard con una celda prototipo (icono con el color de la cultura, nombre, ubicación y descripción). Cada lugar es una fila con flecha que lleva (segue `verLugar`) a su propio **detalle del lugar**: foto (o banda de color si no tiene), nombre, ubicación, descripción y, en los lugares del Inca, una lista "Qué ver". Los lugares de Nazca e Inca tienen foto (miniatura en la lista y foto grande en el detalle, en `Assets.xcassets` como `lugar_*`); los de las demás culturas usan un icono con el color de la cultura.
+- **`CulturasViewController`:** guarda nombre, región e imagen de las 6 culturas y entrega la fila elegida por el segue `verDetalle`.
+- **`DetalleCulturaViewController`:** guarda periodo y descripción de las 4 culturas básicas, carga la escena, aplica el color de la cultura (`AcentoCaral`, `AcentoChavin`, `AcentoParacas`, `AcentoMoche` en Assets) y entrega la cultura a Lugares.
+- **`DetalleMinuciosoViewController`:** en Nazca e Inca solo entrega la cultura a Lugares.
+- **`LugaresViewController`:** guarda los lugares de cada cultura (modelo `Lugar`), llena la tabla y entrega el lugar elegido al detalle.
+- **`LugarDetalleViewController`:** carga el detalle del lugar recibido y aplica el color de su cultura; la sección "Qué ver" solo aparece si el lugar tiene datos.
+- **Código:** cinco controladores pequeños, `AppDelegate` y `SceneDelegate`.
 
-### Ver el diseño y el segue en Xcode
+### Ver el diseño y los segues en Xcode
 
 1. Abrir `GLAB07C_Culturas.xcodeproj` y luego `Main.storyboard`.
-2. `Editor > Canvas > Zoom to Fit` para ver las tres escenas y las flechas.
-3. En la escena de detalle, seleccionar la imagen, la etiqueta de región o un título y revisar en el Attributes Inspector la imagen de Assets, los colores con nombre y las fuentes.
-4. Clic en el círculo de la flecha entre lista y detalle: Identifier `verDetalle`, Kind Show.
+2. `Editor > Canvas > Zoom to Fit` para ver las 7 escenas y las flechas.
+3. En las escenas de Nazca e Inca, seleccionar la imagen, la etiqueta de región o un título y revisar en el Attributes Inspector la imagen de Assets, los colores con nombre y las fuentes.
+4. Clic en el círculo de una flecha de la lista: Identifier `verNazca`, `verInca` o `verDetalle` (Kind Show). Los botones de los detalles usan `verLugares` y las filas de lugares `verLugar`.
 
 ## Conclusiones (borrador)
 
