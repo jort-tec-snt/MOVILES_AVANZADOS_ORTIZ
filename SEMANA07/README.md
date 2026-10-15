@@ -10,28 +10,27 @@ Abrir: `open SEMANA07/<proyecto>/<proyecto>.xcodeproj`
 
 ## Decisiones
 
-- **UI de A y B por código; C íntegramente en Storyboard.** En C todo el diseño (imágenes de Assets, colores con nombre, tipografías, textos y segues) se ve en `Main.storyboard`; el código solo declara los controladores.
+- **UI de A y B por código; C con el diseño en Storyboard y la información en los controladores.** En C las pantallas, imágenes de Assets, colores con nombre y segue se ven en `Main.storyboard`; los datos viven en `CulturasViewController` y `DetalleCulturaViewController`.
 - **Un proyecto por ejercicio** (la guía crea otra aplicación para la parte B).
 - **Propiedad `cargo`** en `Profesor`, como en la guía; se muestra como subtítulo.
 - **Imágenes A y B:** placeholders (círculo de color + SF Symbol) guardados en Assets. Se pueden reemplazar por fotos reales manteniendo el nombre del imageset.
 - **Imágenes C:** fotos reales de Caral, Chavín, Paracas, Nazca e Inca (aportadas por el autor, reducidas a JPEG). **Moche** también tiene su foto (imageset `moche`).
 - **Culturas:** 6 (Caral, Chavín, Paracas, Nazca, Moche, Inca). La guía no fija la cantidad.
-- **Navegación de C:** celdas estáticas, cada una con su segue Show (`verCaral`, `verChavin`, `verParacas`, `verNazca`, `verMoche`, `verInca`) hacia su propia escena de detalle. No hay paso de datos por código: cada escena ya contiene su información.
+- **Navegación de C:** celda prototipo con un segue `verDetalle` (Show) hacia una sola escena de detalle. `CulturasViewController.prepare(for:sender:)` entrega nombre, región e imagen de la fila elegida; el detalle busca el resto de su información por nombre.
 
 ## Interfaz de C
 
-- **Storyboard:** Navigation Controller → lista (7 escenas en total: lista + 6 detalles). Cada celda tiene un segue a su detalle.
-- **Imágenes:** tomadas de `Assets.xcassets` (`caral`, `chavin`, `paracas`, `nazca`, `moche`, `inca`) directamente en los Image View.
-- **Colores:** un color con nombre por cultura en Assets (`AcentoCaral`, `AcentoChavin`, `AcentoParacas`, `AcentoNazca`, `AcentoMoche`, `AcentoInca`) aplicado a la etiqueta de región y a los títulos de sección.
-- **Detalle:** imagen grande, tarjeta de esquinas redondeadas, nombre, región (etiqueta con icono), periodo, "Acerca de esta cultura" y, en Nazca e Inca, **Aportes** y **Sitios emblemáticos**.
-- **Código:** `CulturasViewController` (ajuste de cabecera de la tabla) y `DetalleCulturaViewController` (vacío), más `AppDelegate` y `SceneDelegate`.
+- **Storyboard (`Main.storyboard`):** Navigation Controller → lista con celda prototipo → segue `verDetalle` → una escena de detalle diseñada completa (se ve en el canvas con Nazca como ejemplo: imagen de Assets, color con nombre, tarjeta, iconos, periodo, descripción, aportes y sitios).
+- **`CulturasViewController`:** guarda nombre, región e imagen de las 6 culturas, llena las celdas (por tag: 1 imagen, 2 nombre, 3 región) y entrega la elegida por el segue.
+- **`DetalleCulturaViewController`:** guarda periodo, descripción, aportes y sitios de cada cultura, los carga en la escena y aplica el color de la cultura (`AcentoCaral`, `AcentoChavin`, `AcentoParacas`, `AcentoNazca`, `AcentoMoche`, `AcentoInca` en Assets). Las secciones sin datos no se muestran.
+- **Información ampliada:** Nazca e Inca tienen **Aportes** y **Sitios emblemáticos**; las demás muestran periodo y descripción.
 
-### Ver el diseño y los segues en Xcode
+### Ver el diseño y el segue en Xcode
 
 1. Abrir `GLAB07C_Culturas.xcodeproj` y luego `Main.storyboard`.
-2. `Editor > Canvas > Zoom to Fit` para ver las 7 escenas y las flechas de los segues.
-3. Seleccionar una escena de detalle y revisar sus Image View y Label en el Attributes Inspector (imagen de Assets, colores con nombre, fuentes).
-4. Clic en el círculo de una flecha: Attributes Inspector con el Identifier (por ejemplo `verNazca`).
+2. `Editor > Canvas > Zoom to Fit` para ver las tres escenas y las flechas.
+3. En la escena de detalle, seleccionar la imagen, la etiqueta de región o un título y revisar en el Attributes Inspector la imagen de Assets, los colores con nombre y las fuentes.
+4. Clic en el círculo de la flecha entre lista y detalle: Identifier `verDetalle`, Kind Show.
 
 ## Conclusiones (borrador)
 
