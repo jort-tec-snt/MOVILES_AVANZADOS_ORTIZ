@@ -28,10 +28,11 @@ Pulsar **Run** (⌘R) con un iPhone como destino.
 
 ## Qué ver en el caso C
 
-1. **Lista**: cada cultura con su foto, nombre y región. Archivos: `CulturaTableViewCell.swift`, `CulturasViewController.swift`.
-2. **Detalle** al tocar una fila: imagen grande, nombre, región, descripción. Archivo: `DetalleCulturaViewController.swift`.
-3. **Paso de datos**: el detalle recibe la `Cultura` por propiedad y se muestra con `pushViewController` en un `UINavigationController` (sin segue, porque la UI está hecha por código).
-4. **Datos y fotos**: `Cultura.swift` y `Assets.xcassets` (`caral`, `chavin`, `paracas`, `nazca`, `moche`, `inca`).
+1. **Storyboard y segue** (`Main.storyboard`): Navigation Controller → lista con celda prototipo → segue `verDetalle` → escena de detalle diseñada con imagen de Assets, color con nombre, tarjeta, iconos y secciones. Usar `Editor > Canvas > Zoom to Fit`.
+2. **Información en los controladores**: `CulturasViewController` (nombre, región e imagen de cada fila y envío por el segue) y `DetalleCulturaViewController` (periodo, descripción, aportes y sitios).
+3. **Colores**: un color con nombre por cultura en Assets (`AcentoNazca`, `AcentoInca`, etc.), aplicado a la etiqueta de región y a los títulos.
+4. **Información ampliada**: Nazca e Inca tienen aportes y sitios emblemáticos.
+5. **Fotos**: `Assets.xcassets` (`caral`, `chavin`, `paracas`, `nazca`, `moche`, `inca`).
 
 Detalle de decisiones y borrador de conclusiones: `SEMANA07/README.md` en la rama `manual`.
 
