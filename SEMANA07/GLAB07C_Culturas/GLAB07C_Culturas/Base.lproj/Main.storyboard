@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -14,69 +15,480 @@
             <objects>
                 <navigationController id="nav-main" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="nav-bar">
-                        <rect key="frame" x="0.0" y="62" width="393" height="116"/>
+                        <rect key="frame" x="0.0" y="118" width="393" height="106"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections><segue destination="vc-lista" kind="relationship" relationship="rootViewController" id="seg-root"/></connections>
+                    <connections>
+                        <segue destination="vc-lista" kind="relationship" relationship="rootViewController" id="seg-root"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fr-nav" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-700" y="100"/>
+            <point key="canvasLocation" x="-1190" y="400"/>
         </scene>
         <!--Culturas del Perú-->
         <scene sceneID="sc-lista">
             <objects>
-                <viewController id="vc-lista" customClass="CulturasViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="v-lista"><rect key="frame" x="0" y="0" width="393" height="852"/>
+                <tableViewController id="vc-lista" customClass="CulturasViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="86" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="tv-lista">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tv-lista">
-                                <rect key="frame" x="0" y="0" width="393" height="852"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes><tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="culturaCell" rowHeight="86" id="cell-cultura">
-                                        <rect key="frame" x="0" y="50" width="393" height="86"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="sec-culturas">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="86" id="cell-caral">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cell-cultura" id="c-content">
-                                            <rect key="frame" x="0" y="0" width="362" height="86"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cell-caral" id="cell-caral-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="86"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews><imageView tag="1" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="caral" translatesAutoresizingMaskIntoConstraints="NO" id="c-img"><rect key="frame" x="20" y="10" width="88" height="66"/><constraints><constraint firstAttribute="width" constant="88" id="c-w"/><constraint firstAttribute="height" constant="66" id="c-h"/></constraints><userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><integer key="value" value="12"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes></imageView><stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="c-st"><rect key="frame" x="20" y="24" width="353" height="300"/><subviews><label tag="2" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caral" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c-n"><rect key="frame" x="0" y="0" width="300" height="21"/><fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/><color key="textColor" systemColor="labelColor"/><nil key="highlightedColor"/></label><label tag="3" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valle de Supe, Lima" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c-r"><rect key="frame" x="0" y="0" width="300" height="21"/><fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/><color key="textColor" systemColor="secondaryLabelColor"/><nil key="highlightedColor"/></label></subviews></stackView></subviews>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="caral" translatesAutoresizingMaskIntoConstraints="NO" id="cell-caral-img">
+                                                    <rect key="frame" x="20" y="10" width="88" height="66"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="66" id="cell-caral-h"/>
+                                                        <constraint firstAttribute="width" constant="88" id="cell-caral-w"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cell-caral-st">
+                                                    <rect key="frame" x="121.99999999999999" y="23.000000000000004" width="232.66666666666663" height="40.333333333333343"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Caral" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-caral-n">
+                                                            <rect key="frame" x="0.0" y="0.0" width="232.66666666666666" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Valle de Supe, Lima" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-caral-r">
+                                                            <rect key="frame" x="0.0" y="22.333333333333336" width="232.66666666666666" height="18"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
                                             <constraints>
-                                                <constraint firstItem="c-img" firstAttribute="leading" secondItem="c-content" secondAttribute="leadingMargin" id="c-1"/>
-                                                <constraint firstItem="c-img" firstAttribute="top" secondItem="c-content" secondAttribute="top" constant="10" id="c-2"/>
-                                                <constraint firstAttribute="bottom" secondItem="c-img" secondAttribute="bottom" constant="10" id="c-3"/>
-                                                <constraint firstItem="c-st" firstAttribute="leading" secondItem="c-img" secondAttribute="trailing" constant="14" id="c-4"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="c-st" secondAttribute="trailing" id="c-5"/>
-                                                <constraint firstItem="c-st" firstAttribute="centerY" secondItem="c-content" secondAttribute="centerY" id="c-6"/>
+                                                <constraint firstItem="cell-caral-img" firstAttribute="leading" secondItem="cell-caral-content" secondAttribute="leadingMargin" id="cell-caral-c1"/>
+                                                <constraint firstItem="cell-caral-img" firstAttribute="top" secondItem="cell-caral-content" secondAttribute="top" constant="10" id="cell-caral-c2"/>
+                                                <constraint firstAttribute="bottom" secondItem="cell-caral-img" secondAttribute="bottom" constant="10" id="cell-caral-c3"/>
+                                                <constraint firstItem="cell-caral-st" firstAttribute="leading" secondItem="cell-caral-img" secondAttribute="trailing" constant="14" id="cell-caral-c4"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="cell-caral-st" secondAttribute="trailing" id="cell-caral-c5"/>
+                                                <constraint firstItem="cell-caral-st" firstAttribute="centerY" secondItem="cell-caral-content" secondAttribute="centerY" id="cell-caral-c6"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections><segue destination="vc-detalle" kind="show" identifier="verDetalle" id="seg-detalle"/></connections>
-                                    </tableViewCell></prototypes>
-                                <connections><outlet property="dataSource" destination="vc-lista" id="o-ds"/></connections>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="safe-lista"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="tv-lista" firstAttribute="top" secondItem="v-lista" secondAttribute="top" id="tv-1"/>
-                            <constraint firstItem="tv-lista" firstAttribute="leading" secondItem="v-lista" secondAttribute="leading" id="tv-2"/>
-                            <constraint firstAttribute="trailing" secondItem="tv-lista" secondAttribute="trailing" id="tv-3"/>
-                            <constraint firstAttribute="bottom" secondItem="tv-lista" secondAttribute="bottom" id="tv-4"/>
-                        </constraints>
-                    </view>
+                                        <connections>
+                                            <segue destination="vc-detalle" kind="show" identifier="verDetalle" id="seg-caral"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="86" id="cell-chavin">
+                                        <rect key="frame" x="0.0" y="136" width="393" height="86"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cell-chavin" id="cell-chavin-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="86"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chavin" translatesAutoresizingMaskIntoConstraints="NO" id="cell-chavin-img">
+                                                    <rect key="frame" x="20" y="10" width="88" height="66"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="66" id="cell-chavin-h"/>
+                                                        <constraint firstAttribute="width" constant="88" id="cell-chavin-w"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cell-chavin-st">
+                                                    <rect key="frame" x="121.99999999999999" y="23.000000000000004" width="232.66666666666663" height="40.333333333333343"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Chavín" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-chavin-n">
+                                                            <rect key="frame" x="0.0" y="0.0" width="232.66666666666666" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Áncash" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-chavin-r">
+                                                            <rect key="frame" x="0.0" y="22.333333333333336" width="232.66666666666666" height="18"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cell-chavin-img" firstAttribute="leading" secondItem="cell-chavin-content" secondAttribute="leadingMargin" id="cell-chavin-c1"/>
+                                                <constraint firstItem="cell-chavin-img" firstAttribute="top" secondItem="cell-chavin-content" secondAttribute="top" constant="10" id="cell-chavin-c2"/>
+                                                <constraint firstAttribute="bottom" secondItem="cell-chavin-img" secondAttribute="bottom" constant="10" id="cell-chavin-c3"/>
+                                                <constraint firstItem="cell-chavin-st" firstAttribute="leading" secondItem="cell-chavin-img" secondAttribute="trailing" constant="14" id="cell-chavin-c4"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="cell-chavin-st" secondAttribute="trailing" id="cell-chavin-c5"/>
+                                                <constraint firstItem="cell-chavin-st" firstAttribute="centerY" secondItem="cell-chavin-content" secondAttribute="centerY" id="cell-chavin-c6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="vc-detalle" kind="show" identifier="verDetalle" id="seg-chavin"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="86" id="cell-paracas">
+                                        <rect key="frame" x="0.0" y="222" width="393" height="86"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cell-paracas" id="cell-paracas-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="86"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paracas" translatesAutoresizingMaskIntoConstraints="NO" id="cell-paracas-img">
+                                                    <rect key="frame" x="20" y="10" width="88" height="66"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="66" id="cell-paracas-h"/>
+                                                        <constraint firstAttribute="width" constant="88" id="cell-paracas-w"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cell-paracas-st">
+                                                    <rect key="frame" x="121.99999999999999" y="23.000000000000004" width="232.66666666666663" height="40.333333333333343"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paracas" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-paracas-n">
+                                                            <rect key="frame" x="0.0" y="0.0" width="232.66666666666666" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ica" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-paracas-r">
+                                                            <rect key="frame" x="0.0" y="22.333333333333336" width="232.66666666666666" height="18"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cell-paracas-img" firstAttribute="leading" secondItem="cell-paracas-content" secondAttribute="leadingMargin" id="cell-paracas-c1"/>
+                                                <constraint firstItem="cell-paracas-img" firstAttribute="top" secondItem="cell-paracas-content" secondAttribute="top" constant="10" id="cell-paracas-c2"/>
+                                                <constraint firstAttribute="bottom" secondItem="cell-paracas-img" secondAttribute="bottom" constant="10" id="cell-paracas-c3"/>
+                                                <constraint firstItem="cell-paracas-st" firstAttribute="leading" secondItem="cell-paracas-img" secondAttribute="trailing" constant="14" id="cell-paracas-c4"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="cell-paracas-st" secondAttribute="trailing" id="cell-paracas-c5"/>
+                                                <constraint firstItem="cell-paracas-st" firstAttribute="centerY" secondItem="cell-paracas-content" secondAttribute="centerY" id="cell-paracas-c6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="vc-detalle" kind="show" identifier="verDetalle" id="seg-paracas"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="86" id="cell-nazca">
+                                        <rect key="frame" x="0.0" y="308" width="393" height="86"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cell-nazca" id="cell-nazca-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="86"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nazca" translatesAutoresizingMaskIntoConstraints="NO" id="cell-nazca-img">
+                                                    <rect key="frame" x="20" y="10" width="88" height="66"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="66" id="cell-nazca-h"/>
+                                                        <constraint firstAttribute="width" constant="88" id="cell-nazca-w"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cell-nazca-st">
+                                                    <rect key="frame" x="121.99999999999999" y="23.000000000000004" width="232.66666666666663" height="40.333333333333343"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Nazca" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-nazca-n">
+                                                            <rect key="frame" x="0.0" y="0.0" width="232.66666666666666" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ica" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-nazca-r">
+                                                            <rect key="frame" x="0.0" y="22.333333333333336" width="232.66666666666666" height="18"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cell-nazca-img" firstAttribute="leading" secondItem="cell-nazca-content" secondAttribute="leadingMargin" id="cell-nazca-c1"/>
+                                                <constraint firstItem="cell-nazca-img" firstAttribute="top" secondItem="cell-nazca-content" secondAttribute="top" constant="10" id="cell-nazca-c2"/>
+                                                <constraint firstAttribute="bottom" secondItem="cell-nazca-img" secondAttribute="bottom" constant="10" id="cell-nazca-c3"/>
+                                                <constraint firstItem="cell-nazca-st" firstAttribute="leading" secondItem="cell-nazca-img" secondAttribute="trailing" constant="14" id="cell-nazca-c4"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="cell-nazca-st" secondAttribute="trailing" id="cell-nazca-c5"/>
+                                                <constraint firstItem="cell-nazca-st" firstAttribute="centerY" secondItem="cell-nazca-content" secondAttribute="centerY" id="cell-nazca-c6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="vc-nazca" kind="show" identifier="verNazca" id="seg-nazca"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="86" id="cell-moche">
+                                        <rect key="frame" x="0.0" y="394" width="393" height="86"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cell-moche" id="cell-moche-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="86"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moche" translatesAutoresizingMaskIntoConstraints="NO" id="cell-moche-img">
+                                                    <rect key="frame" x="20" y="10" width="88" height="66"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="66" id="cell-moche-h"/>
+                                                        <constraint firstAttribute="width" constant="88" id="cell-moche-w"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cell-moche-st">
+                                                    <rect key="frame" x="121.99999999999999" y="23.000000000000004" width="232.66666666666663" height="40.333333333333343"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Moche" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-moche-n">
+                                                            <rect key="frame" x="0.0" y="0.0" width="232.66666666666666" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="La Libertad y Lambayeque" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-moche-r">
+                                                            <rect key="frame" x="0.0" y="22.333333333333336" width="232.66666666666666" height="18"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cell-moche-img" firstAttribute="leading" secondItem="cell-moche-content" secondAttribute="leadingMargin" id="cell-moche-c1"/>
+                                                <constraint firstItem="cell-moche-img" firstAttribute="top" secondItem="cell-moche-content" secondAttribute="top" constant="10" id="cell-moche-c2"/>
+                                                <constraint firstAttribute="bottom" secondItem="cell-moche-img" secondAttribute="bottom" constant="10" id="cell-moche-c3"/>
+                                                <constraint firstItem="cell-moche-st" firstAttribute="leading" secondItem="cell-moche-img" secondAttribute="trailing" constant="14" id="cell-moche-c4"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="cell-moche-st" secondAttribute="trailing" id="cell-moche-c5"/>
+                                                <constraint firstItem="cell-moche-st" firstAttribute="centerY" secondItem="cell-moche-content" secondAttribute="centerY" id="cell-moche-c6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="vc-detalle" kind="show" identifier="verDetalle" id="seg-moche"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="86" id="cell-inca">
+                                        <rect key="frame" x="0.0" y="480" width="393" height="86"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cell-inca" id="cell-inca-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="86"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="inca" translatesAutoresizingMaskIntoConstraints="NO" id="cell-inca-img">
+                                                    <rect key="frame" x="20" y="10" width="88" height="66"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="66" id="cell-inca-h"/>
+                                                        <constraint firstAttribute="width" constant="88" id="cell-inca-w"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cell-inca-st">
+                                                    <rect key="frame" x="121.99999999999999" y="23.000000000000004" width="232.66666666666663" height="40.333333333333343"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inca" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-inca-n">
+                                                            <rect key="frame" x="0.0" y="0.0" width="232.66666666666666" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cusco" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cell-inca-r">
+                                                            <rect key="frame" x="0.0" y="22.333333333333336" width="232.66666666666666" height="18"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cell-inca-img" firstAttribute="leading" secondItem="cell-inca-content" secondAttribute="leadingMargin" id="cell-inca-c1"/>
+                                                <constraint firstItem="cell-inca-img" firstAttribute="top" secondItem="cell-inca-content" secondAttribute="top" constant="10" id="cell-inca-c2"/>
+                                                <constraint firstAttribute="bottom" secondItem="cell-inca-img" secondAttribute="bottom" constant="10" id="cell-inca-c3"/>
+                                                <constraint firstItem="cell-inca-st" firstAttribute="leading" secondItem="cell-inca-img" secondAttribute="trailing" constant="14" id="cell-inca-c4"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="cell-inca-st" secondAttribute="trailing" id="cell-inca-c5"/>
+                                                <constraint firstItem="cell-inca-st" firstAttribute="centerY" secondItem="cell-inca-content" secondAttribute="centerY" id="cell-inca-c6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="vc-inca" kind="show" identifier="verInca" id="seg-inca"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                    </tableView>
                     <navigationItem key="navigationItem" title="Culturas del Perú" largeTitleDisplayMode="always" id="ni-lista"/>
-                    <connections><outlet property="tableView" destination="tv-lista" id="o-tv"/></connections>
-                </viewController>
+                </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fr-lista" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-100" y="100"/>
+            <point key="canvasLocation" x="-100" y="400"/>
         </scene>
         <!--Detalle-->
         <scene sceneID="sc-detalle">
             <objects>
                 <viewController id="vc-detalle" customClass="DetalleCulturaViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="v-det"><rect key="frame" x="0" y="0" width="393" height="852"/>
+                    <view key="view" contentMode="scaleToFill" id="v-det">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews><scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-scroll"><rect key="frame" x="0" y="0" width="393" height="852"/><subviews><imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nazca" translatesAutoresizingMaskIntoConstraints="NO" id="d-img"><rect key="frame" x="0" y="0" width="393" height="295"/></imageView><view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d-card"><rect key="frame" x="0" y="267" width="393" height="585"/><subviews><stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="d-stack"><rect key="frame" x="20" y="24" width="353" height="300"/><subviews><label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nazca" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="d-nombre"><rect key="frame" x="0" y="0" width="300" height="21"/><fontDescription key="fontDescription" type="system" weight="bold" pointSize="34"/><color key="textColor" systemColor="labelColor"/><nil key="highlightedColor"/></label><stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="d-fila"><rect key="frame" x="0" y="0" width="300" height="30"/><subviews><view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d-chip"><rect key="frame" x="0" y="0" width="200" height="30"/><subviews><stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="d-chip-st"><rect key="frame" x="0" y="0" width="300" height="30"/><subviews><imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d-pin"><imageReference key="image" image="mappin.and.ellipse" catalog="system" symbolScale="default"/><rect key="frame" x="0" y="0" width="16" height="16"/><color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><constraints><constraint firstAttribute="width" constant="16" id="d-pin-w"/><constraint firstAttribute="height" constant="16" id="d-pin-h"/></constraints></imageView><label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ica" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-region"><rect key="frame" x="0" y="0" width="300" height="21"/><fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/><color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/></label></subviews></stackView></subviews><color key="backgroundColor" name="AcentoNazca"/><constraints><constraint firstItem="d-chip-st" firstAttribute="top" secondItem="d-chip" secondAttribute="top" constant="6" id="d-c1"/><constraint firstAttribute="bottom" secondItem="d-chip-st" secondAttribute="bottom" constant="6" id="d-c2"/><constraint firstItem="d-chip-st" firstAttribute="leading" secondItem="d-chip" secondAttribute="leading" constant="12" id="d-c3"/><constraint firstAttribute="trailing" secondItem="d-chip-st" secondAttribute="trailing" constant="12" id="d-c4"/></constraints><userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><integer key="value" value="14"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes></view><view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="d-sp"><rect key="frame" x="0" y="0" width="50" height="30"/></view></subviews></stackView><stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="d-per"><rect key="frame" x="0" y="0" width="300" height="30"/><subviews><imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d-cal"><imageReference key="image" image="calendar" catalog="system" symbolScale="default"/><rect key="frame" x="0" y="0" width="16" height="16"/><color key="tintColor" systemColor="secondaryLabelColor"/><constraints><constraint firstAttribute="width" constant="16" id="d-cal-w"/><constraint firstAttribute="height" constant="16" id="d-cal-h"/></constraints></imageView><label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="c. 100 a.C. – 800 d.C." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-perl"><rect key="frame" x="0" y="0" width="300" height="21"/><fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/><color key="textColor" systemColor="secondaryLabelColor"/><nil key="highlightedColor"/></label></subviews></stackView><label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acerca de esta cultura" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-acerca"><rect key="frame" x="0" y="0" width="300" height="21"/><fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/><color key="textColor" name="AcentoNazca"/><nil key="highlightedColor"/></label><label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creadora de las líneas y geoglifos de la pampa de Nazca, además de una cerámica policroma y un ingenioso sistema de acueductos." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-desc"><rect key="frame" x="0" y="0" width="300" height="21"/><fontDescription key="fontDescription" style="UICTFontTextStyleBody"/><color key="textColor" systemColor="labelColor"/><nil key="highlightedColor"/></label><stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="d-ap-stack"><rect key="frame" x="20" y="24" width="353" height="300"/><subviews><label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aportes" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-ap-titulo"><rect key="frame" x="0" y="0" width="300" height="21"/><fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/><color key="textColor" name="AcentoNazca"/><nil key="highlightedColor"/></label><label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  Geoglifos: figuras gigantes como el colibrí, el mono y la araña&#10;•  Puquios: acueductos subterráneos en espiral&#10;•  Cerámica policroma con motivos de animales" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-ap-lista"><rect key="frame" x="0" y="0" width="300" height="21"/><fontDescription key="fontDescription" style="UICTFontTextStyleBody"/><color key="textColor" systemColor="labelColor"/><nil key="highlightedColor"/></label></subviews></stackView><stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="d-si-stack"><rect key="frame" x="20" y="24" width="353" height="300"/><subviews><label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sitios emblemáticos" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-si-titulo"><rect key="frame" x="0" y="0" width="300" height="21"/><fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/><color key="textColor" name="AcentoNazca"/><nil key="highlightedColor"/></label><label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  Líneas y geoglifos de Nazca&#10;•  Cahuachi, centro ceremonial" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-si-lista"><rect key="frame" x="0" y="0" width="300" height="21"/><fontDescription key="fontDescription" style="UICTFontTextStyleBody"/><color key="textColor" systemColor="labelColor"/><nil key="highlightedColor"/></label></subviews></stackView></subviews></stackView></subviews><color key="backgroundColor" systemColor="systemBackgroundColor"/><constraints><constraint firstItem="d-stack" firstAttribute="top" secondItem="d-card" secondAttribute="top" constant="24" id="d-s1"/><constraint firstItem="d-stack" firstAttribute="leading" secondItem="d-card" secondAttribute="leading" constant="20" id="d-s2"/><constraint firstAttribute="trailing" secondItem="d-stack" secondAttribute="trailing" constant="20" id="d-s3"/><constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="d-stack" secondAttribute="bottom" constant="32" id="d-s4"/></constraints><userDefinedRuntimeAttributes><userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><integer key="value" value="24"/></userDefinedRuntimeAttribute><userDefinedRuntimeAttribute type="number" keyPath="layer.maskedCorners"><integer key="value" value="3"/></userDefinedRuntimeAttribute></userDefinedRuntimeAttributes></view></subviews><constraints><constraint firstItem="d-img" firstAttribute="top" secondItem="d-content" secondAttribute="top" id="d-k1"/><constraint firstItem="d-img" firstAttribute="leading" secondItem="d-frame" secondAttribute="leading" id="d-k2"/><constraint firstItem="d-img" firstAttribute="trailing" secondItem="d-frame" secondAttribute="trailing" id="d-k3"/><constraint firstItem="d-img" firstAttribute="height" secondItem="d-frame" secondAttribute="width" multiplier="0.75" id="d-k4"/><constraint firstItem="d-card" firstAttribute="top" secondItem="d-img" secondAttribute="bottom" constant="-28" id="d-k5"/><constraint firstItem="d-card" firstAttribute="leading" secondItem="d-frame" secondAttribute="leading" id="d-k6"/><constraint firstItem="d-card" firstAttribute="trailing" secondItem="d-frame" secondAttribute="trailing" id="d-k7"/><constraint firstItem="d-card" firstAttribute="bottom" secondItem="d-content" secondAttribute="bottom" id="d-k8"/><constraint firstItem="d-card" firstAttribute="height" relation="greaterThanOrEqual" secondItem="d-frame" secondAttribute="height" multiplier="0.5" id="d-k9"/></constraints><viewLayoutGuide key="contentLayoutGuide" id="d-content"/><viewLayoutGuide key="frameLayoutGuide" id="d-frame"/></scrollView></subviews>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-scroll">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nazca" translatesAutoresizingMaskIntoConstraints="NO" id="d-img">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="294.66666666666669"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-card">
+                                        <rect key="frame" x="0.0" y="267" width="393" height="585"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="d-stack">
+                                                <rect key="frame" x="20" y="24" width="353" height="313.33333333333331"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nazca" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="d-nombre">
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="40.666666666666664"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="d-fila">
+                                                        <rect key="frame" x="0.0" y="54.666666666666629" width="353" height="50"/>
+                                                        <subviews>
+                                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d-chip">
+                                                                <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+                                                                <subviews>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="d-chip-st">
+                                                                        <rect key="frame" x="12" y="6" width="176" height="38"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d-pin">
+                                                                                <rect key="frame" x="0.0" y="9.3333333333333321" width="16" height="18"/>
+                                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="16" id="d-pin-h"/>
+                                                                                    <constraint firstAttribute="width" constant="16" id="d-pin-w"/>
+                                                                                </constraints>
+                                                                                <imageReference key="image" image="mappin.and.ellipse" catalog="system" symbolScale="default"/>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ica" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-region">
+                                                                                <rect key="frame" x="22" y="10" width="154" height="18"/>
+                                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" name="AcentoNazca"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="d-chip-st" firstAttribute="top" secondItem="d-chip" secondAttribute="top" constant="6" id="d-c1"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="d-chip-st" secondAttribute="bottom" constant="6" id="d-c2"/>
+                                                                    <constraint firstItem="d-chip-st" firstAttribute="leading" secondItem="d-chip" secondAttribute="leading" constant="12" id="d-c3"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="d-chip-st" secondAttribute="trailing" constant="12" id="d-c4"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="14"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="d-sp">
+                                                                <rect key="frame" x="208" y="0.0" width="145" height="50"/>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="d-per">
+                                                        <rect key="frame" x="0.0" y="118.66666666666663" width="353" height="18"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d-cal">
+                                                                <rect key="frame" x="0.0" y="2.3333333333333304" width="16" height="13.66666666666667"/>
+                                                                <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="16" id="d-cal-h"/>
+                                                                    <constraint firstAttribute="width" constant="16" id="d-cal-w"/>
+                                                                </constraints>
+                                                                <imageReference key="image" image="calendar" catalog="system" symbolScale="default"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="c. 100 a.C. – 800 d.C." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-perl">
+                                                                <rect key="frame" x="22" y="0.0" width="331" height="18"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acerca de esta cultura" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-acerca">
+                                                        <rect key="frame" x="0.0" y="150.66666666666663" width="353" height="20.333333333333343"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <color key="textColor" name="AcentoNazca"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creadora de las líneas y geoglifos de la pampa de Nazca, además de una cerámica policroma y un ingenioso sistema de acueductos." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d-desc">
+                                                        <rect key="frame" x="0.0" y="185" width="353" height="64.333333333333314"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d-btn">
+                                                        <rect key="frame" x="0.0" y="263.33333333333331" width="353" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="d-btn-h"/>
+                                                        </constraints>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Ver lugares turísticos" cornerStyle="capsule" titleAlignment="center">
+                                                            <color key="baseBackgroundColor" name="AcentoNazca"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <segue destination="vc-lugares" kind="show" identifier="verLugares" id="seg-lug-d"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="d-stack" firstAttribute="top" secondItem="d-card" secondAttribute="top" constant="24" id="d-s1"/>
+                                            <constraint firstItem="d-stack" firstAttribute="leading" secondItem="d-card" secondAttribute="leading" constant="20" id="d-s2"/>
+                                            <constraint firstAttribute="trailing" secondItem="d-stack" secondAttribute="trailing" constant="20" id="d-s3"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="d-stack" secondAttribute="bottom" constant="32" id="d-s4"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="24"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.maskedCorners">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="d-img" firstAttribute="top" secondItem="d-content" secondAttribute="top" id="d-k1"/>
+                                    <constraint firstItem="d-img" firstAttribute="leading" secondItem="d-frame" secondAttribute="leading" id="d-k2"/>
+                                    <constraint firstItem="d-img" firstAttribute="trailing" secondItem="d-frame" secondAttribute="trailing" id="d-k3"/>
+                                    <constraint firstItem="d-img" firstAttribute="height" secondItem="d-frame" secondAttribute="width" multiplier="0.75" id="d-k4"/>
+                                    <constraint firstItem="d-card" firstAttribute="top" secondItem="d-img" secondAttribute="bottom" constant="-28" id="d-k5"/>
+                                    <constraint firstItem="d-card" firstAttribute="leading" secondItem="d-frame" secondAttribute="leading" id="d-k6"/>
+                                    <constraint firstItem="d-card" firstAttribute="trailing" secondItem="d-frame" secondAttribute="trailing" id="d-k7"/>
+                                    <constraint firstItem="d-card" firstAttribute="bottom" secondItem="d-content" secondAttribute="bottom" id="d-k8"/>
+                                    <constraint firstItem="d-card" firstAttribute="height" relation="greaterThanOrEqual" secondItem="d-frame" secondAttribute="height" multiplier="0.5" id="d-k9"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="d-content"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="d-frame"/>
+                            </scrollView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="safe-det"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -87,22 +499,916 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detalle" largeTitleDisplayMode="never" id="ni-det"/>
-                    <connections><outlet property="imagenView" destination="d-img" id="o-d-img"/><outlet property="nombreLabel" destination="d-nombre" id="o-d-nombre"/><outlet property="regionLabel" destination="d-region" id="o-d-region"/><outlet property="chipView" destination="d-chip" id="o-d-chip"/><outlet property="periodoStack" destination="d-per" id="o-d-per"/><outlet property="periodoLabel" destination="d-perl" id="o-d-perl"/><outlet property="acercaLabel" destination="d-acerca" id="o-d-acerca"/><outlet property="descripcionLabel" destination="d-desc" id="o-d-desc"/><outlet property="aportesStack" destination="d-ap-stack" id="o-d-ap-stack"/><outlet property="aportesTitulo" destination="d-ap-titulo" id="o-d-ap-titulo"/><outlet property="aportesLista" destination="d-ap-lista" id="o-d-ap-lista"/><outlet property="sitiosStack" destination="d-si-stack" id="o-d-si-stack"/><outlet property="sitiosTitulo" destination="d-si-titulo" id="o-d-si-titulo"/><outlet property="sitiosLista" destination="d-si-lista" id="o-d-si-lista"/></connections>
+                    <connections>
+                        <outlet property="acercaLabel" destination="d-acerca" id="o-d-acerca"/>
+                        <outlet property="chipView" destination="d-chip" id="o-d-chip"/>
+                        <outlet property="descripcionLabel" destination="d-desc" id="o-d-desc"/>
+                        <outlet property="imagenView" destination="d-img" id="o-d-img"/>
+                        <outlet property="lugaresButton" destination="d-btn" id="o-d-btn"/>
+                        <outlet property="nombreLabel" destination="d-nombre" id="o-d-nombre"/>
+                        <outlet property="periodoLabel" destination="d-perl" id="o-d-perl"/>
+                        <outlet property="periodoStack" destination="d-per" id="o-d-per"/>
+                        <outlet property="regionLabel" destination="d-region" id="o-d-region"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fr-det" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="500" y="100"/>
+            <point key="canvasLocation" x="906" y="75"/>
+        </scene>
+        <!--Nazca-->
+        <scene sceneID="sc-nazca">
+            <objects>
+                <viewController id="vc-nazca" customClass="DetalleMinuciosoViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="v-nazca">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-scroll">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nazca" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-img">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="294.66666666666669"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-card">
+                                        <rect key="frame" x="0.0" y="266.66666666666674" width="393" height="708"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-stack">
+                                                <rect key="frame" x="20" y="24" width="353" height="652"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nazca" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-nombre">
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="40.666666666666664"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-fila">
+                                                        <rect key="frame" x="0.0" y="54.666666666666629" width="353" height="50"/>
+                                                        <subviews>
+                                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-chip">
+                                                                <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+                                                                <subviews>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-chip-st">
+                                                                        <rect key="frame" x="12" y="6" width="176" height="38"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-pin">
+                                                                                <rect key="frame" x="0.0" y="9.3333333333333321" width="16" height="18"/>
+                                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="16" id="nazca-pin-h"/>
+                                                                                    <constraint firstAttribute="width" constant="16" id="nazca-pin-w"/>
+                                                                                </constraints>
+                                                                                <imageReference key="image" image="mappin.and.ellipse" catalog="system" symbolScale="default"/>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ica" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-region">
+                                                                                <rect key="frame" x="22" y="10" width="154" height="18"/>
+                                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" name="AcentoNazca"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="nazca-chip-st" firstAttribute="top" secondItem="nazca-chip" secondAttribute="top" constant="6" id="nazca-c1"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="nazca-chip-st" secondAttribute="bottom" constant="6" id="nazca-c2"/>
+                                                                    <constraint firstItem="nazca-chip-st" firstAttribute="leading" secondItem="nazca-chip" secondAttribute="leading" constant="12" id="nazca-c3"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="nazca-chip-st" secondAttribute="trailing" constant="12" id="nazca-c4"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="14"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-sp">
+                                                                <rect key="frame" x="208" y="0.0" width="145" height="50"/>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-per">
+                                                        <rect key="frame" x="0.0" y="118.66666666666663" width="353" height="18"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-cal">
+                                                                <rect key="frame" x="0.0" y="2.3333333333333304" width="16" height="13.66666666666667"/>
+                                                                <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="16" id="nazca-cal-h"/>
+                                                                    <constraint firstAttribute="width" constant="16" id="nazca-cal-w"/>
+                                                                </constraints>
+                                                                <imageReference key="image" image="calendar" catalog="system" symbolScale="default"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="c. 100 a.C. – 800 d.C." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-perl">
+                                                                <rect key="frame" x="22" y="0.0" width="331" height="18"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acerca de esta cultura" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-acerca">
+                                                        <rect key="frame" x="0.0" y="150.66666666666663" width="353" height="20.333333333333343"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <color key="textColor" name="AcentoNazca"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creadora de las líneas y geoglifos de la pampa de Nazca, además de una cerámica policroma y un ingenioso sistema de acueductos." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-desc">
+                                                        <rect key="frame" x="0.0" y="185" width="353" height="64.333333333333314"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aportes" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-ap-h">
+                                                        <rect key="frame" x="0.0" y="263.33333333333331" width="353" height="20.333333333333314"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <color key="textColor" name="AcentoNazca"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-ap-lista">
+                                                        <rect key="frame" x="0.0" y="297.66666666666669" width="353" height="143"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-ap-r0">
+                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="42.333333333333336"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-ap-b0">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="10" height="20.333333333333332"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="10" id="nazca-ap-bw0"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geoglifos: figuras gigantes como el colibrí, el mono y la araña, visibles desde el aire" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-ap-t0">
+                                                                        <rect key="frame" x="18" y="0.0" width="335" height="42.333333333333336"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-ap-r1">
+                                                                <rect key="frame" x="0.0" y="50.333333333333258" width="353" height="42.333333333333343"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-ap-b1">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="10" height="20.333333333333332"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="10" id="nazca-ap-bw1"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Puquios: acueductos subterráneos en espiral para aprovechar el agua del desierto" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-ap-t1">
+                                                                        <rect key="frame" x="18" y="0.0" width="335" height="42.333333333333336"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-ap-r2">
+                                                                <rect key="frame" x="0.0" y="100.66666666666663" width="353" height="42.333333333333343"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-ap-b2">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="10" height="20.333333333333332"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="10" id="nazca-ap-bw2"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cerámica policroma con motivos de animales y seres míticos" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-ap-t2">
+                                                                        <rect key="frame" x="18" y="0.0" width="335" height="42.333333333333336"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sitios emblemáticos" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-si-h">
+                                                        <rect key="frame" x="0.0" y="454.66666666666669" width="353" height="20.333333333333314"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <color key="textColor" name="AcentoNazca"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-si-lista">
+                                                        <rect key="frame" x="0.0" y="489" width="353" height="99"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-si-r0">
+                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="42.333333333333336"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-si-b0">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="10" height="20.333333333333332"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="10" id="nazca-si-bw0"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Líneas y geoglifos de Nazca y Pampas de Jumana" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-si-t0">
+                                                                        <rect key="frame" x="18" y="0.0" width="335" height="42.333333333333336"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-si-r1">
+                                                                <rect key="frame" x="0.0" y="50.333333333333371" width="353" height="20.333333333333329"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-si-b1">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="10" height="20.333333333333332"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="10" id="nazca-si-bw1"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cahuachi, centro ceremonial" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-si-t1">
+                                                                        <rect key="frame" x="18" y="0.0" width="335" height="20.333333333333332"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-si-r2">
+                                                                <rect key="frame" x="0.0" y="78.666666666666742" width="353" height="20.333333333333329"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-si-b2">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="10" height="20.333333333333332"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="10" id="nazca-si-bw2"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acueductos de Cantalloc" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-si-t2">
+                                                                        <rect key="frame" x="18" y="0.0" width="335" height="20.333333333333332"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nazca-btn">
+                                                        <rect key="frame" x="0.0" y="602" width="353" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="nazca-btn-h"/>
+                                                        </constraints>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Ver lugares turísticos" cornerStyle="capsule" titleAlignment="center">
+                                                            <color key="baseBackgroundColor" name="AcentoNazca"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <segue destination="vc-lugares" kind="show" identifier="verLugares" id="seg-lug-nazca"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="nazca-stack" firstAttribute="top" secondItem="nazca-card" secondAttribute="top" constant="24" id="nazca-s1"/>
+                                            <constraint firstItem="nazca-stack" firstAttribute="leading" secondItem="nazca-card" secondAttribute="leading" constant="20" id="nazca-s2"/>
+                                            <constraint firstAttribute="trailing" secondItem="nazca-stack" secondAttribute="trailing" constant="20" id="nazca-s3"/>
+                                            <constraint firstAttribute="bottom" secondItem="nazca-stack" secondAttribute="bottom" constant="32" id="nazca-s4"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="24"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.maskedCorners">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="nazca-img" firstAttribute="top" secondItem="nazca-content" secondAttribute="top" id="nazca-k1"/>
+                                    <constraint firstItem="nazca-img" firstAttribute="leading" secondItem="nazca-frame" secondAttribute="leading" id="nazca-k2"/>
+                                    <constraint firstItem="nazca-img" firstAttribute="trailing" secondItem="nazca-frame" secondAttribute="trailing" id="nazca-k3"/>
+                                    <constraint firstItem="nazca-img" firstAttribute="height" secondItem="nazca-frame" secondAttribute="width" multiplier="0.75" id="nazca-k4"/>
+                                    <constraint firstItem="nazca-card" firstAttribute="top" secondItem="nazca-img" secondAttribute="bottom" constant="-28" id="nazca-k5"/>
+                                    <constraint firstItem="nazca-card" firstAttribute="leading" secondItem="nazca-frame" secondAttribute="leading" id="nazca-k6"/>
+                                    <constraint firstItem="nazca-card" firstAttribute="trailing" secondItem="nazca-frame" secondAttribute="trailing" id="nazca-k7"/>
+                                    <constraint firstItem="nazca-card" firstAttribute="bottom" secondItem="nazca-content" secondAttribute="bottom" id="nazca-k8"/>
+                                    <constraint firstItem="nazca-card" firstAttribute="height" relation="greaterThanOrEqual" secondItem="nazca-frame" secondAttribute="height" multiplier="0.5" id="nazca-k9"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="nazca-content"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="nazca-frame"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-nazca"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nazca-scroll" firstAttribute="top" secondItem="v-nazca" secondAttribute="top" id="nazca-v1"/>
+                            <constraint firstItem="nazca-scroll" firstAttribute="leading" secondItem="v-nazca" secondAttribute="leading" id="nazca-v2"/>
+                            <constraint firstAttribute="trailing" secondItem="nazca-scroll" secondAttribute="trailing" id="nazca-v3"/>
+                            <constraint firstAttribute="bottom" secondItem="nazca-scroll" secondAttribute="bottom" id="nazca-v4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Nazca" largeTitleDisplayMode="never" id="ni-nazca"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fr-nazca" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="600" y="1100"/>
+        </scene>
+        <!--Inca-->
+        <scene sceneID="sc-inca">
+            <objects>
+                <viewController id="vc-inca" customClass="DetalleMinuciosoViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="v-inca">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-scroll">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="inca" translatesAutoresizingMaskIntoConstraints="NO" id="inca-img">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="294.66666666666669"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="inca-card">
+                                        <rect key="frame" x="0.0" y="266.66666666666669" width="393" height="764.66666666666652"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="inca-stack">
+                                                <rect key="frame" x="20" y="24" width="353" height="708.66666666666663"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inca" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="inca-nombre">
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="40.666666666666664"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="inca-fila">
+                                                        <rect key="frame" x="0.0" y="54.666666666666629" width="353" height="50"/>
+                                                        <subviews>
+                                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="inca-chip">
+                                                                <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+                                                                <subviews>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="inca-chip-st">
+                                                                        <rect key="frame" x="12" y="6" width="176" height="38"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="inca-pin">
+                                                                                <rect key="frame" x="0.0" y="9.3333333333333321" width="16" height="18"/>
+                                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="16" id="inca-pin-h"/>
+                                                                                    <constraint firstAttribute="width" constant="16" id="inca-pin-w"/>
+                                                                                </constraints>
+                                                                                <imageReference key="image" image="mappin.and.ellipse" catalog="system" symbolScale="default"/>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cusco" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-region">
+                                                                                <rect key="frame" x="22" y="10" width="154" height="18"/>
+                                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" name="AcentoInca"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="inca-chip-st" firstAttribute="top" secondItem="inca-chip" secondAttribute="top" constant="6" id="inca-c1"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="inca-chip-st" secondAttribute="bottom" constant="6" id="inca-c2"/>
+                                                                    <constraint firstItem="inca-chip-st" firstAttribute="leading" secondItem="inca-chip" secondAttribute="leading" constant="12" id="inca-c3"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="inca-chip-st" secondAttribute="trailing" constant="12" id="inca-c4"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="14"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="inca-sp">
+                                                                <rect key="frame" x="208" y="0.0" width="145" height="50"/>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="inca-per">
+                                                        <rect key="frame" x="0.0" y="118.66666666666663" width="353" height="18"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="inca-cal">
+                                                                <rect key="frame" x="0.0" y="2.3333333333333304" width="16" height="13.66666666666667"/>
+                                                                <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="16" id="inca-cal-h"/>
+                                                                    <constraint firstAttribute="width" constant="16" id="inca-cal-w"/>
+                                                                </constraints>
+                                                                <imageReference key="image" image="calendar" catalog="system" symbolScale="default"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="c. 1200 – 1533 d.C." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-perl">
+                                                                <rect key="frame" x="22" y="0.0" width="331" height="18"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acerca de esta cultura" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-acerca">
+                                                        <rect key="frame" x="0.0" y="150.66666666666663" width="353" height="20.333333333333343"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <color key="textColor" name="AcentoInca"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-desc">
+                                                        <rect key="frame" x="0.0" y="185" width="353" height="86.333333333333314"/>
+                                                        <string key="text">Mayor imperio de la América precolombina (s. XV–XVI). Se destacó por su ingeniería, sus caminos (Qhapaq Ñan) y ciudades como Machu Picchu.</string>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aportes" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-ap-h">
+                                                        <rect key="frame" x="0.0" y="285.33333333333331" width="353" height="20.333333333333314"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <color key="textColor" name="AcentoInca"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="inca-ap-lista">
+                                                        <rect key="frame" x="0.0" y="319.66666666666669" width="353" height="171.33333333333331"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="inca-ap-r0">
+                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="42.333333333333336"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-ap-b0">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="10" height="20.333333333333332"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="10" id="inca-ap-bw0"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qhapaq Ñan: red de caminos que unía el imperio por los Andes" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-ap-t0">
+                                                                        <rect key="frame" x="18" y="0.0" width="335" height="42.333333333333336"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="inca-ap-r1">
+                                                                <rect key="frame" x="0.0" y="50.333333333333258" width="353" height="42.333333333333343"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-ap-b1">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="10" height="20.333333333333332"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="10" id="inca-ap-bw1"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Andenes: terrazas agrícolas para cultivar en las laderas" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-ap-t1">
+                                                                        <rect key="frame" x="18" y="0.0" width="335" height="42.333333333333336"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="inca-ap-r2">
+                                                                <rect key="frame" x="0.0" y="100.66666666666663" width="353" height="42.333333333333343"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-ap-b2">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="10" height="20.333333333333332"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="10" id="inca-ap-bw2"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quipu: sistema de registro con cuerdas anudadas" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-ap-t2">
+                                                                        <rect key="frame" x="18" y="0.0" width="335" height="42.333333333333336"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="inca-ap-r3">
+                                                                <rect key="frame" x="0.0" y="151" width="353" height="20.333333333333343"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-ap-b3">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="10" height="20.333333333333332"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="10" id="inca-ap-bw3"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arquitectura en piedra encajada sin mortero" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-ap-t3">
+                                                                        <rect key="frame" x="18" y="0.0" width="335" height="20.333333333333332"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sitios emblemáticos" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-si-h">
+                                                        <rect key="frame" x="0.0" y="504.99999999999994" width="353" height="20.333333333333314"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <color key="textColor" name="AcentoInca"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="inca-si-lista">
+                                                        <rect key="frame" x="0.0" y="539.33333333333326" width="353" height="105.33333333333337"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="inca-si-r0">
+                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="20.333333333333332"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-si-b0">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="10" height="20.333333333333332"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="10" id="inca-si-bw0"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Machu Picchu" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-si-t0">
+                                                                        <rect key="frame" x="18" y="0.0" width="335" height="20.333333333333332"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="inca-si-r1">
+                                                                <rect key="frame" x="0.0" y="28.333333333333371" width="353" height="20.333333333333329"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-si-b1">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="10" height="20.333333333333332"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="10" id="inca-si-bw1"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sacsayhuamán" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-si-t1">
+                                                                        <rect key="frame" x="18" y="0.0" width="335" height="20.333333333333332"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="inca-si-r2">
+                                                                <rect key="frame" x="0.0" y="56.666666666666636" width="353" height="20.333333333333336"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-si-b2">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="10" height="20.333333333333332"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="10" id="inca-si-bw2"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ollantaytambo" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-si-t2">
+                                                                        <rect key="frame" x="18" y="0.0" width="335" height="20.333333333333332"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="inca-si-r3">
+                                                                <rect key="frame" x="0.0" y="85" width="353" height="20.333333333333329"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-si-b3">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="10" height="20.333333333333332"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="10" id="inca-si-bw3"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coricancha, en Cusco" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inca-si-t3">
+                                                                        <rect key="frame" x="18" y="0.0" width="335" height="20.333333333333332"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="inca-btn">
+                                                        <rect key="frame" x="0.0" y="658.66666666666674" width="353" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="inca-btn-h"/>
+                                                        </constraints>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Ver lugares turísticos" cornerStyle="capsule" titleAlignment="center">
+                                                            <color key="baseBackgroundColor" name="AcentoInca"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <segue destination="vc-lugares" kind="show" identifier="verLugares" id="seg-lug-inca"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="inca-stack" firstAttribute="top" secondItem="inca-card" secondAttribute="top" constant="24" id="inca-s1"/>
+                                            <constraint firstItem="inca-stack" firstAttribute="leading" secondItem="inca-card" secondAttribute="leading" constant="20" id="inca-s2"/>
+                                            <constraint firstAttribute="trailing" secondItem="inca-stack" secondAttribute="trailing" constant="20" id="inca-s3"/>
+                                            <constraint firstAttribute="bottom" secondItem="inca-stack" secondAttribute="bottom" constant="32" id="inca-s4"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="24"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.maskedCorners">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="inca-img" firstAttribute="top" secondItem="inca-content" secondAttribute="top" id="inca-k1"/>
+                                    <constraint firstItem="inca-img" firstAttribute="leading" secondItem="inca-frame" secondAttribute="leading" id="inca-k2"/>
+                                    <constraint firstItem="inca-img" firstAttribute="trailing" secondItem="inca-frame" secondAttribute="trailing" id="inca-k3"/>
+                                    <constraint firstItem="inca-img" firstAttribute="height" secondItem="inca-frame" secondAttribute="width" multiplier="0.75" id="inca-k4"/>
+                                    <constraint firstItem="inca-card" firstAttribute="top" secondItem="inca-img" secondAttribute="bottom" constant="-28" id="inca-k5"/>
+                                    <constraint firstItem="inca-card" firstAttribute="leading" secondItem="inca-frame" secondAttribute="leading" id="inca-k6"/>
+                                    <constraint firstItem="inca-card" firstAttribute="trailing" secondItem="inca-frame" secondAttribute="trailing" id="inca-k7"/>
+                                    <constraint firstItem="inca-card" firstAttribute="bottom" secondItem="inca-content" secondAttribute="bottom" id="inca-k8"/>
+                                    <constraint firstItem="inca-card" firstAttribute="height" relation="greaterThanOrEqual" secondItem="inca-frame" secondAttribute="height" multiplier="0.5" id="inca-k9"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="inca-content"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="inca-frame"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-inca"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="inca-scroll" firstAttribute="top" secondItem="v-inca" secondAttribute="top" id="inca-v1"/>
+                            <constraint firstItem="inca-scroll" firstAttribute="leading" secondItem="v-inca" secondAttribute="leading" id="inca-v2"/>
+                            <constraint firstAttribute="trailing" secondItem="inca-scroll" secondAttribute="trailing" id="inca-v3"/>
+                            <constraint firstAttribute="bottom" secondItem="inca-scroll" secondAttribute="bottom" id="inca-v4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Inca" largeTitleDisplayMode="never" id="ni-inca"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fr-inca" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1200" y="1100"/>
+        </scene>
+        <!--Lugares turísticos-->
+        <scene sceneID="sc-lugares">
+            <objects>
+                <viewController id="vc-lugares" customClass="LugaresViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="v-lug">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tv-lug">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="lugarCell" id="cell-lugar">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="157.66667175292969"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cell-lugar" id="l-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="157.66667175292969"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l-ico">
+                                                    <rect key="frame" x="20" y="11.333333333333336" width="84" height="69.333333333333314"/>
+                                                    <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
+                                                    <color key="tintColor" name="AcentoNazca"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="64" id="l-h"/>
+                                                        <constraint firstAttribute="width" constant="84" id="l-w"/>
+                                                    </constraints>
+                                                    <imageReference key="image" image="mappin.circle.fill" catalog="system" symbolScale="large"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="l-st">
+                                                    <rect key="frame" x="117.99999999999999" y="12" width="236.66666666666663" height="133.66666666666666"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Machu Picchu" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l-n">
+                                                            <rect key="frame" x="0.0" y="0.0" width="236.66666666666666" height="21.333333333333332"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Urubamba, Cusco" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l-u">
+                                                            <rect key="frame" x="0.0" y="25.333333333333336" width="236.66666666666666" height="18"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ciudad inca de piedra sobre la montaña, una de las siete maravillas del mundo moderno." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l-d">
+                                                            <rect key="frame" x="0.0" y="47.333333333333336" width="236.66666666666666" height="86.333333333333314"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="l-ico" firstAttribute="leading" secondItem="l-content" secondAttribute="leadingMargin" id="l-1"/>
+                                                <constraint firstItem="l-ico" firstAttribute="top" secondItem="l-content" secondAttribute="top" constant="14" id="l-2"/>
+                                                <constraint firstItem="l-st" firstAttribute="leading" secondItem="l-ico" secondAttribute="trailing" constant="14" id="l-3"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="l-st" secondAttribute="trailing" id="l-4"/>
+                                                <constraint firstItem="l-st" firstAttribute="top" secondItem="l-content" secondAttribute="top" constant="12" id="l-5"/>
+                                                <constraint firstAttribute="bottom" secondItem="l-st" secondAttribute="bottom" constant="12" id="l-6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="vc-lugar" kind="show" identifier="verLugar" id="seg-lugar"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vc-lugares" id="o-lug-ds"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-lug"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tv-lug" firstAttribute="top" secondItem="v-lug" secondAttribute="top" id="lt-1"/>
+                            <constraint firstItem="tv-lug" firstAttribute="leading" secondItem="v-lug" secondAttribute="leading" id="lt-2"/>
+                            <constraint firstAttribute="trailing" secondItem="tv-lug" secondAttribute="trailing" id="lt-3"/>
+                            <constraint firstAttribute="bottom" secondItem="tv-lug" secondAttribute="bottom" id="lt-4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Lugares turísticos" largeTitleDisplayMode="never" id="ni-lug"/>
+                    <connections>
+                        <outlet property="tableView" destination="tv-lug" id="o-lug-tv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fr-lug" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1900" y="400"/>
+        </scene>
+        <!--Lugar-->
+        <scene sceneID="sc-lugar">
+            <objects>
+                <viewController id="vc-lugar" customClass="LugarDetalleViewController" customModule="GLAB07C_Culturas" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="v-lugar">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g-scroll">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g-banner">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="240"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="inca" translatesAutoresizingMaskIntoConstraints="NO" id="g-bimg">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="240"/>
+                                            </imageView>
+                                            <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g-bcapa">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="240"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="g-bst">
+                                                <rect key="frame" x="160.66666666666666" y="70" width="72" height="100.33333333333331"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g-ico">
+                                                        <rect key="frame" x="0.0" y="-2.6666666666666643" width="72" height="77.333333333333314"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="72" id="g-ih"/>
+                                                            <constraint firstAttribute="width" constant="72" id="g-iw"/>
+                                                        </constraints>
+                                                        <imageReference key="image" image="mappin.circle.fill" catalog="system" symbolScale="large"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inca" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g-cultura">
+                                                        <rect key="frame" x="18.999999999999996" y="80" width="33.666666666666657" height="20.333333333333329"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" name="AcentoInca"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="240" id="g-b0"/>
+                                            <constraint firstItem="g-bst" firstAttribute="centerX" secondItem="g-banner" secondAttribute="centerX" id="g-b1"/>
+                                            <constraint firstItem="g-bst" firstAttribute="centerY" secondItem="g-banner" secondAttribute="centerY" id="g-b2"/>
+                                            <constraint firstItem="g-bcapa" firstAttribute="top" secondItem="g-banner" secondAttribute="top" id="g-c1"/>
+                                            <constraint firstItem="g-bcapa" firstAttribute="leading" secondItem="g-banner" secondAttribute="leading" id="g-c2"/>
+                                            <constraint firstAttribute="trailing" secondItem="g-bcapa" secondAttribute="trailing" id="g-c3"/>
+                                            <constraint firstAttribute="bottom" secondItem="g-bcapa" secondAttribute="bottom" id="g-c4"/>
+                                            <constraint firstItem="g-bimg" firstAttribute="top" secondItem="g-banner" secondAttribute="top" id="g-f1"/>
+                                            <constraint firstItem="g-bimg" firstAttribute="leading" secondItem="g-banner" secondAttribute="leading" id="g-f2"/>
+                                            <constraint firstAttribute="trailing" secondItem="g-bimg" secondAttribute="trailing" id="g-f3"/>
+                                            <constraint firstAttribute="bottom" secondItem="g-bimg" secondAttribute="bottom" id="g-f4"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="g-stack">
+                                        <rect key="frame" x="20" y="264" width="353" height="209"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Machu Picchu" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="g-nombre">
+                                                <rect key="frame" x="0.0" y="0.0" width="353" height="36"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="g-ubicf">
+                                                <rect key="frame" x="0.0" y="50" width="353" height="18"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g-pin">
+                                                        <rect key="frame" x="0.0" y="-0.66666666666666785" width="16" height="18"/>
+                                                        <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="16" id="g-pin-h"/>
+                                                            <constraint firstAttribute="width" constant="16" id="g-pin-w"/>
+                                                        </constraints>
+                                                        <imageReference key="image" image="mappin.and.ellipse" catalog="system" symbolScale="default"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Machupicchu, Urubamba, Cusco" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g-ubic">
+                                                        <rect key="frame" x="22" y="0.0" width="331" height="18"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ciudadela inca sobre la montaña, una de las siete maravillas del mundo moderno." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g-desc">
+                                                <rect key="frame" x="0.0" y="82" width="353" height="42.333333333333343"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="g-qv-stack">
+                                                <rect key="frame" x="0.0" y="138.33333333333331" width="353" height="70.666666666666686"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qué ver" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g-qv-titulo">
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <color key="textColor" name="AcentoInca"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g-qv-lista">
+                                                        <rect key="frame" x="0.0" y="28.333333333333375" width="353" height="42.333333333333343"/>
+                                                        <string key="text">•  Intihuatana, el reloj solar ritual
+•  Templo del Sol</string>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="g-banner" firstAttribute="top" secondItem="g-content" secondAttribute="top" id="g-k1"/>
+                                    <constraint firstItem="g-banner" firstAttribute="leading" secondItem="g-frame" secondAttribute="leading" id="g-k2"/>
+                                    <constraint firstItem="g-banner" firstAttribute="trailing" secondItem="g-frame" secondAttribute="trailing" id="g-k3"/>
+                                    <constraint firstItem="g-stack" firstAttribute="top" secondItem="g-banner" secondAttribute="bottom" constant="24" id="g-k4"/>
+                                    <constraint firstItem="g-stack" firstAttribute="leading" secondItem="g-frame" secondAttribute="leading" constant="20" id="g-k5"/>
+                                    <constraint firstItem="g-stack" firstAttribute="trailing" secondItem="g-frame" secondAttribute="trailing" constant="-20" id="g-k6"/>
+                                    <constraint firstItem="g-stack" firstAttribute="bottom" secondItem="g-content" secondAttribute="bottom" constant="-32" id="g-k7"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="g-content"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="g-frame"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-lugar"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="g-scroll" firstAttribute="top" secondItem="v-lugar" secondAttribute="top" id="g-v1"/>
+                            <constraint firstItem="g-scroll" firstAttribute="leading" secondItem="v-lugar" secondAttribute="leading" id="g-v2"/>
+                            <constraint firstAttribute="trailing" secondItem="g-scroll" secondAttribute="trailing" id="g-v3"/>
+                            <constraint firstAttribute="bottom" secondItem="g-scroll" secondAttribute="bottom" id="g-v4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Lugar" largeTitleDisplayMode="never" id="ni-lugar"/>
+                    <connections>
+                        <outlet property="bannerCapa" destination="g-bcapa" id="o-g-bcapa"/>
+                        <outlet property="bannerIcono" destination="g-ico" id="o-g-ico"/>
+                        <outlet property="bannerImagen" destination="g-bimg" id="o-g-bimg"/>
+                        <outlet property="bannerView" destination="g-banner" id="o-g-banner"/>
+                        <outlet property="culturaLabel" destination="g-cultura" id="o-g-cultura"/>
+                        <outlet property="descripcionLabel" destination="g-desc" id="o-g-desc"/>
+                        <outlet property="nombreLabel" destination="g-nombre" id="o-g-nombre"/>
+                        <outlet property="queVerLista" destination="g-qv-lista" id="o-g-qv-lista"/>
+                        <outlet property="queVerStack" destination="g-qv-stack" id="o-g-qv-stack"/>
+                        <outlet property="queVerTitulo" destination="g-qv-titulo" id="o-g-qv-titulo"/>
+                        <outlet property="ubicacionLabel" destination="g-ubic" id="o-g-ubic"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fr-lugar" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2500" y="400"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="seg-lug-d"/>
+        <segue reference="seg-caral"/>
+    </inferredMetricsTieBreakers>
     <resources>
+        <image name="calendar" catalog="system" width="128" height="111"/>
         <image name="caral" width="1200" height="823"/>
+        <image name="chavin" width="1200" height="675"/>
+        <image name="inca" width="1200" height="600"/>
+        <image name="mappin.and.ellipse" catalog="system" width="106" height="128"/>
+        <image name="mappin.circle.fill" catalog="system" width="128" height="128"/>
+        <image name="moche" width="1200" height="899"/>
         <image name="nazca" width="1200" height="675"/>
-        <namedColor name="AcentoNazca"><color red="0.6588" green="0.4549" blue="0.1020" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="paracas" width="1200" height="600"/>
+        <namedColor name="AcentoInca">
+            <color red="0.1804" green="0.54510000000000003" blue="0.3412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AcentoNazca">
+            <color red="0.6588235294117647" green="0.45490196078431372" blue="0.10196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
