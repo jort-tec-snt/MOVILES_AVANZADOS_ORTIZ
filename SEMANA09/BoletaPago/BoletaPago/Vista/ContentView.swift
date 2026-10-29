@@ -16,63 +16,148 @@ struct ContentView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 14) {
-                Text("Boleta de ejemplo").font(.largeTitle).bold()
-                Text("Datos ficticios · Montos en soles").foregroundStyle(.secondary)
-                Text("Datos del mes").font(.headline)
-                campo("Sueldo básico", texto: $sueldo)
-                campo("Días laborados (1 a 30)", texto: $dias, entero: true)
-                Text("¿Tiene hijos?")
-                Picker("¿Tiene hijos?", selection: $tieneHijos) {
-                    Text("No").tag(false)
-                    Text("Sí").tag(true)
-                }.pickerStyle(.segmented).accessibilityIdentifier("hijos")
-                Text("Sistema de pensiones")
-                Picker("Sistema de pensiones", selection: $sistema) {
-                    Text("ONP").tag(SistemaPension.onp)
-                    Text("AFP").tag(SistemaPension.afp)
-                }.pickerStyle(.segmented).accessibilityIdentifier("pension")
-                if sistema == .afp {
-                    Picker("AFP", selection: $afp) {
-                        Text("AFP Ejemplo").tag("AFP Ejemplo")
-                        Text("Habitat").tag("Habitat")
-                        Text("Integra").tag("Integra")
-                        Text("Prima").tag("Prima")
-                        Text("Profuturo").tag("Profuturo")
-                    }.accessibilityIdentifier("afp")
-                    Text("Comisión sobre flujo. AFP Ejemplo corresponde a los casos de la guía.")
-                        .font(.footnote).foregroundStyle(.secondary)
+            VStack(spacing: Estilo.espacio) {
+                encabezado
+
+                seccion("Datos del mes") {
+                    campo("Sueldo básico", prefijo: "S/", texto: $sueldo)
+                    campo("Días laborados (1 a 30)", prefijo: nil, texto: $dias, entero: true)
+                    etiqueta("¿Tiene hijos?")
+                    Picker("¿Tiene hijos?", selection: $tieneHijos) {
+                        Text("No").tag(false)
+                        Text("Sí").tag(true)
+                    }
+                    .pickerStyle(.segmented)
+                    .accessibilityIdentifier("hijos")
                 }
-                campo("Horas extras al 25%", texto: $horasExtras25)
-                campo("Horas extras al 35%", texto: $horasExtras35)
-                campo("Adelantos", texto: $adelantos)
+
+                seccion("Sistema de pensiones") {
+                    Picker("Sistema de pensiones", selection: $sistema) {
+                        Text("ONP").tag(SistemaPension.onp)
+                        Text("AFP").tag(SistemaPension.afp)
+                    }
+                    .pickerStyle(.segmented)
+                    .accessibilityIdentifier("pension")
+
+                    // Solo aparece si eligió AFP
+                    if sistema == .afp {
+                        etiqueta("AFP")
+                        Picker("AFP", selection: $afp) {
+                            Text("AFP Ejemplo").tag("AFP Ejemplo")
+                            Text("Habitat").tag("Habitat")
+                            Text("Integra").tag("Integra")
+                            Text("Prima").tag("Prima")
+                            Text("Profuturo").tag("Profuturo")
+                        }
+                        .pickerStyle(.menu)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .aspectoCampo()
+                        .accessibilityIdentifier("afp")
+                        Text("Comisión sobre flujo. AFP Ejemplo corresponde a los casos de la guía.")
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                    } else {
+                        Text("ONP: 13% del total de remuneraciones.")
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+
+                seccion("Pagos adicionales") {
+                    campo("Horas extras al 25%", prefijo: nil, texto: $horasExtras25)
+                    campo("Horas extras al 35%", prefijo: nil, texto: $horasExtras35)
+                    campo("Adelantos", prefijo: "S/", texto: $adelantos)
+                }
+
                 Button("Calcular boleta") { calcular() }
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(BotonPrincipal())
                     .accessibilityIdentifier("calcular")
+
                 if let mensajeError = mensajeError {
-                    Text(mensajeError).foregroundStyle(.red)
-                        .accessibilityIdentifier("error-validacion")
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Revisa los datos")
+                            .font(.subheadline)
+                            .fontWeight(.bold)
+                        Text(mensajeError)
+                            .font(.subheadline)
+                            .accessibilityIdentifier("error-validacion")
+                    }
+                    .foregroundStyle(Color(UIColor.systemRed))
+                    .padding(Estilo.espacio)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color(UIColor.systemRed).opacity(0.12))
+                    .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 }
+
                 if let boleta = boleta {
                     BoletaView(boleta: boleta)
                 }
-            }.padding(20)
+            }
+            .padding(Estilo.espacio)
         }
         .scrollDismissesKeyboard(.interactively)
         .clipped()
+        .background(Estilo.fondoPantalla.ignoresSafeArea())
     }
 
-    private func campo(_ nombre: String, texto: Binding<String>, entero: Bool = false) -> some View {
-        HStack {
-            Text(nombre).frame(maxWidth: .infinity, alignment: .leading)
-            TextField("0", text: texto)
-                .keyboardType(entero ? .numberPad : .decimalPad)
-                .textFieldStyle(.roundedBorder)
-                .frame(width: 115)
-                .accessibilityLabel(nombre)
-                .accessibilityIdentifier(nombre)
+    // MARK: - Piezas de la pantalla
+
+    private var encabezado: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("BOLETA DE EJEMPLO")
+                .font(.caption2)
+                .fontWeight(.bold)
+                .tracking(1)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 4)
+                .background(Color.white.opacity(0.2))
+                .clipShape(Capsule())
+            Text("Boleta de pago")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            Text("Datos ficticios · Montos en soles")
+                .font(.subheadline)
+                .opacity(0.9)
+        }
+        .foregroundStyle(.white)
+        .padding(Estilo.espacio * 1.25)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Estilo.degradado)
+        .clipShape(RoundedRectangle(cornerRadius: Estilo.radio, style: .continuous))
+    }
+
+    private func seccion<Contenido: View>(_ titulo: String, @ViewBuilder contenido: () -> Contenido) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text(titulo).font(.headline)
+            contenido()
+        }
+        .tarjeta()
+    }
+
+    private func etiqueta(_ titulo: String) -> some View {
+        Text(titulo)
+            .font(.subheadline)
+            .fontWeight(.medium)
+            .foregroundStyle(.secondary)
+    }
+
+    private func campo(_ nombre: String, prefijo: String?, texto: Binding<String>, entero: Bool = false) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            etiqueta(nombre)
+            HStack(spacing: 8) {
+                if let prefijo = prefijo {
+                    Text(prefijo).foregroundStyle(.secondary)
+                }
+                TextField("0", text: texto)
+                    .keyboardType(entero ? .numberPad : .decimalPad)
+                    .accessibilityLabel(nombre)
+                    .accessibilityIdentifier(nombre)
+            }
+            .aspectoCampo()
         }
     }
+
+    // MARK: - Acción
 
     private func calcular() {
         // El teclado decimal no tiene Return: se cierra al calcular para leer la boleta.
@@ -95,4 +180,10 @@ struct ContentView: View {
     }
 }
 
-#Preview { ContentView() }
+#Preview("Claro") { ContentView() }
+
+#Preview("Oscuro, texto grande") {
+    ContentView()
+        .preferredColorScheme(.dark)
+        .dynamicTypeSize(.xxxLarge)
+}
