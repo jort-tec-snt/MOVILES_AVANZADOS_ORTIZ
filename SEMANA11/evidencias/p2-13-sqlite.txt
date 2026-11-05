@@ -1,0 +1,4 @@
+-- ZALUMNO (apellido | nombre | dni | curso)
+Garcia|Ana|71234567|Programación en Móviles
+Lopez|Luis|70123456|Programación en Móviles
+Garcia|Pedro|72345678|Programación en Móviles
