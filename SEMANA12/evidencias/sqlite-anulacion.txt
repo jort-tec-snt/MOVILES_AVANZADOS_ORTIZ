@@ -1,0 +1,5 @@
+-- Ventas (cliente | cantidad | total | anulada | motivo)
+Comercial Andina SAC|30|7080.0|0|
+Luis Paredes|30|1239.0|1|Prueba MVVM
+-- Stock Mouse (antes 60 + 30 devueltos al anular)
+Mouse|90
