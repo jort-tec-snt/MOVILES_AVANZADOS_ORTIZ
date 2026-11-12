@@ -4,6 +4,14 @@ Refactor de la app Ventas de la SEMANA 11 (Grupo A) al patrón **MVVM**. La app 
 
 > **Trabajo asistido por IA.** Va en la rama `con-ia`, con su registro en [`PROMPTS.md`](PROMPTS.md).
 
+## Demostración
+
+<p align="center">
+  <img src="../evidencias/mvvm-demo.gif" alt="Demostración de Ventas con MVVM: Resumen, anular una venta con motivo y venta anulada" width="260">
+</p>
+
+Recorrido del GIF (simulador iPhone 17e): **1)** panel de Resumen del supervisor, **2)** anular una venta pidiendo motivo, **3)** la venta queda tachada y marcada como ANULADA. Las capturas originales están en [`../evidencias/`](../evidencias).
+
 ## Estructura
 
 ```
