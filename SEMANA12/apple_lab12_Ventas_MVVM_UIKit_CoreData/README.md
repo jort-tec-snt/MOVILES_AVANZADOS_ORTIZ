@@ -33,6 +33,12 @@ Fila 4              Nueva venta (A5)
 
 <p align="center"><img src="../evidencias/storyboard-pantallas.png" alt="Las pantallas del Main.storyboard" width="640"></p>
 
+### Diseño UIKit en el lienzo de Xcode
+
+Así se ve `Main.storyboard` abierto en Interface Builder: el flujo de acceso arriba (Navigation Controller → Login → Crear cuenta), el `Tab Bar Controller` en el centro con sus 5 pestañas, y abajo "Nueva venta" que se abre desde Ventas.
+
+<p align="center"><img src="../evidencias/storyboard-xcode.png" alt="Main.storyboard en el lienzo de Xcode" width="420"></p>
+
 > **Alcance.** El storyboard define el diseño y la navegación. Al ejecutar, las pantallas siguen construyéndose desde los ViewControllers de `Views/` (todavía sin `@IBOutlet`/`@IBAction`). Por eso, en ejecución el vendedor ve "Nueva venta" como pestaña propia, y las listas muestran sus celdas prototipo solo en el lienzo de Xcode.
 
 ## Estructura
