@@ -14,28 +14,26 @@ Recorrido del GIF (simulador iPhone 17e): **1)** panel de Resumen del supervisor
 
 ## Estructura visual: `Main.storyboard`
 
-La estructura de pantallas y navegación de la app está en [`Storyboard/Main.storyboard`](apple_lab12_Ventas_MVVM_UIKit_CoreData/Storyboard/Main.storyboard) para verla y editarla en Interface Builder (Xcode ▸ abrir el archivo).
+La interfaz UIKit está diseñada de forma visual en [`Storyboard/Main.storyboard`](apple_lab12_Ventas_MVVM_UIKit_CoreData/Storyboard/Main.storyboard) (Xcode ▸ abrir el archivo). Son **10 escenas**, ordenadas en tres filas de izquierda a derecha:
 
 ```
-Login (LoginNav) ──► Crear cuenta                       (push)
-   │
-   ├─ entrarVendedor ──► Tab Vendedor:   Productos · Clientes · Venta · Mis ventas · Cuenta
-   └─ entrarSupervisor ► Tab Supervisor: Resumen · Ventas · Productos · Clientes · Cuenta
-
-Productos (supervisor) ──► Formulario de producto       (botón +)
-Clientes ────────────────► Formulario de cliente        (botón +)
-Nueva venta ─────────────► Seleccionar cliente / producto
+Fila 1   LoginNav ──► Login (A1) ──► Crear cuenta (A2)
+                         │ entrar
+Fila 2              Barra de pestañas
+                         │
+Fila 3   Resumen (A9) · Ventas (A6/A7) · Productos (A3) · Clientes (A4) · Cuenta
+                          │ "Nueva"
+Fila 4              Nueva venta (A5)
 ```
 
-- **28 escenas**: 2 barras de pestañas (una por rol), 12 controladores de navegación y 14 pantallas, con `UITabBarController`, `UINavigationController`, `UITableView` con celdas prototipo, `UIStackView`, `UISegmentedControl`, `UIStepper` y *segues* (`show` y `presentation`).
-- Cada escena lleva como etiqueta el nombre de su clase (`LoginViewController`, `VentasViewController`…), así se ve a qué pantalla de código corresponde.
-- El archivo compila con el proyecto y `ibtool` lo valida sin errores ni avisos.
+- **Una sola barra de pestañas** con 5 pestañas. Al iniciar sesión, el código (`MainTabBarController`) muestra las que corresponden a cada rol.
+- **A8 · Anular** no es una pantalla: es una alerta que se abre al deslizar una venta.
+- Componentes UIKit: `UINavigationController`, `UITabBarController`, `UITableView` con celdas prototipo, `UIStackView`, `UISegmentedControl`, `UIStepper` y *segues*. Cada escena lleva como etiqueta el nombre de su clase (`LoginViewController`, `VentasViewController`…).
+- Los marcos de cada vista se calcularon con Auto Layout, así que el lienzo de Xcode se ve igual que en el simulador. `ibtool` lo valida sin errores ni avisos.
 
-| Login | Resumen del supervisor | Nueva venta (vendedor) |
-|---|---|---|
-| <img src="../evidencias/storyboard-01-login.png" width="200"> | <img src="../evidencias/storyboard-02-resumen.png" width="200"> | <img src="../evidencias/storyboard-03-nueva-venta.png" width="200"> |
+<p align="center"><img src="../evidencias/storyboard-pantallas.png" alt="Las pantallas del Main.storyboard" width="640"></p>
 
-> **Alcance.** El storyboard define la estructura visual y el flujo. Las pantallas que la app muestra al ejecutarse siguen construyéndose desde los ViewControllers de `Views/`; todavía no están conectadas al storyboard con `@IBOutlet`/`@IBAction`. Las listas muestran sus celdas prototipo en el lienzo de Xcode, no al ejecutar.
+> **Alcance.** El storyboard define el diseño y la navegación. Al ejecutar, las pantallas siguen construyéndose desde los ViewControllers de `Views/` (todavía sin `@IBOutlet`/`@IBAction`). Por eso, en ejecución el vendedor ve "Nueva venta" como pestaña propia, y las listas muestran sus celdas prototipo solo en el lienzo de Xcode.
 
 ## Estructura
 

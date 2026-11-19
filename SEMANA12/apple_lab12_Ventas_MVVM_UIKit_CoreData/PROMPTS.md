@@ -31,4 +31,4 @@ Conviene poder explicar sin ayuda: qué responsabilidad tiene cada capa, cómo `
 - **Formato esperado:** `Main.storyboard` con las pantallas, las pestañas por rol y los *segues*.
 - **Qué hice con la respuesta:** *(completar)*
 
-**Resultado entregado por la IA:** `Storyboard/Main.storyboard` con 28 escenas, validado con `ibtool` y comprobado cargándolo en el simulador. No conecta las pantallas en ejecución con el storyboard (sin `IBOutlet`).
+**Resultado entregado por la IA:** `Storyboard/Main.storyboard` con 10 escenas (Login, Registro, una barra de 5 pestañas y Nueva venta), con marcos calculados por Auto Layout. Una primera versión de 28 escenas se descartó por excesiva y desordenada. Validado con `ibtool` y comprobado cargándolo en el simulador. No conecta las pantallas en ejecución con el storyboard (sin `IBOutlet`).
