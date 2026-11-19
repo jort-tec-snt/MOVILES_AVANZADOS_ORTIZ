@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
+            // Ruta del archivo SQLite: aparece en la consola de Xcode al ejecutar la app
+            print("Base de datos SQLite en: \(storeDescription.url?.path ?? "sin ruta")")
         })
         return container
     }()

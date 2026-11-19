@@ -22,3 +22,13 @@ Registro de las consultas a la IA, con el formato de la guía. **El estudiante d
 ## Para la defensa oral
 
 Conviene poder explicar sin ayuda: qué responsabilidad tiene cada capa, cómo `onChange` conecta ViewModel y vista, por qué `Views/` no importa Core Data, y qué hace `VentasViewModel.anular(en:motivo:)`.
+
+## Consulta 2 · Estructura visual en Main.storyboard
+
+- **Contexto:** el docente no quiere la interfaz UIKit solo en código, sino visual (Storyboard).
+- **Tarea:** "solo la estructura del UIKit, el Main.storyboard, eso necesito".
+- **Restricciones:** no reescribir las vistas existentes; el storyboard debe compilar y mostrar la estructura y el flujo de la app.
+- **Formato esperado:** `Main.storyboard` con las pantallas, las pestañas por rol y los *segues*.
+- **Qué hice con la respuesta:** *(completar)*
+
+**Resultado entregado por la IA:** `Storyboard/Main.storyboard` con 28 escenas, validado con `ibtool` y comprobado cargándolo en el simulador. No conecta las pantallas en ejecución con el storyboard (sin `IBOutlet`).

@@ -12,6 +12,31 @@ Refactor de la app Ventas de la SEMANA 11 (Grupo A) al patrón **MVVM**. La app 
 
 Recorrido del GIF (simulador iPhone 17e): **1)** panel de Resumen del supervisor, **2)** anular una venta pidiendo motivo, **3)** la venta queda tachada y marcada como ANULADA. Las capturas originales están en [`../evidencias/`](../evidencias).
 
+## Estructura visual: `Main.storyboard`
+
+La estructura de pantallas y navegación de la app está en [`Storyboard/Main.storyboard`](apple_lab12_Ventas_MVVM_UIKit_CoreData/Storyboard/Main.storyboard) para verla y editarla en Interface Builder (Xcode ▸ abrir el archivo).
+
+```
+Login (LoginNav) ──► Crear cuenta                       (push)
+   │
+   ├─ entrarVendedor ──► Tab Vendedor:   Productos · Clientes · Venta · Mis ventas · Cuenta
+   └─ entrarSupervisor ► Tab Supervisor: Resumen · Ventas · Productos · Clientes · Cuenta
+
+Productos (supervisor) ──► Formulario de producto       (botón +)
+Clientes ────────────────► Formulario de cliente        (botón +)
+Nueva venta ─────────────► Seleccionar cliente / producto
+```
+
+- **28 escenas**: 2 barras de pestañas (una por rol), 12 controladores de navegación y 14 pantallas, con `UITabBarController`, `UINavigationController`, `UITableView` con celdas prototipo, `UIStackView`, `UISegmentedControl`, `UIStepper` y *segues* (`show` y `presentation`).
+- Cada escena lleva como etiqueta el nombre de su clase (`LoginViewController`, `VentasViewController`…), así se ve a qué pantalla de código corresponde.
+- El archivo compila con el proyecto y `ibtool` lo valida sin errores ni avisos.
+
+| Login | Resumen del supervisor | Nueva venta (vendedor) |
+|---|---|---|
+| <img src="../evidencias/storyboard-01-login.png" width="200"> | <img src="../evidencias/storyboard-02-resumen.png" width="200"> | <img src="../evidencias/storyboard-03-nueva-venta.png" width="200"> |
+
+> **Alcance.** El storyboard define la estructura visual y el flujo. Las pantallas que la app muestra al ejecutarse siguen construyéndose desde los ViewControllers de `Views/`; todavía no están conectadas al storyboard con `@IBOutlet`/`@IBAction`. Las listas muestran sus celdas prototipo en el lienzo de Xcode, no al ejecutar.
+
 ## Estructura
 
 ```
@@ -20,6 +45,7 @@ apple_lab12_Ventas_MVVM_UIKit_CoreData/
 ├── Modelo/         Modelo Core Data (.xcdatamodeld) y Reglas.swift (fórmulas de negocio)
 ├── Servicios/      Datos (acceso a Core Data), Sesion (usuario conectado), SeedData
 ├── ViewModels/     Un ViewModel por pantalla: estado, validación y reglas de la pantalla
+├── Storyboard/     Main.storyboard: estructura visual y navegación
 ├── Views/          ViewControllers: solo UI y enlace con su ViewModel
 └── Utilidades/     Formato de moneda y fechas, estilos
 ```
